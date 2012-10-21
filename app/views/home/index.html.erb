@@ -1,4 +1,21 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
-<% end %>
+<% title "Home" %>
+
+<div class="well">
+
+  <!-- ** widget header ** -->
+  <div class="navbar navbar-heading">
+    <div class="navbar-inner">
+      <div class="container" style="width: auto;">
+        <a class="brand" href="#">Home</a>
+      </div>
+    </div>
+  </div>
+  <!-- ** ./ widget header ** -->
+
+  <!-- ** content ** -->
+  <% @users.each do |user| %>
+      <p>User: <%=link_to user.name, user %></p>
+  <% end %>
+  <!-- ** ./ content ** -->
+
+</div>

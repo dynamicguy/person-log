@@ -68,3 +68,4 @@ module PersonLog
     config.assets.version = '1.0'
   end
 end
+SITE_NAME = "PERSON LOG"

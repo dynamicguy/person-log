@@ -1,15 +1,16 @@
-<%= link_to "Rails3 Bootstrap Devise Cancan", root_path, :class => 'brand' %>
+<!--
+<%= link_to "PERSON LOG", root_path, :class => 'brand' %>
 <ul class="nav">
   <% if user_signed_in? %>
     <li>
-    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>        
+    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
     </li>
   <% else %>
     <li>
-    <%= link_to 'Login', new_user_session_path %>  
+    <%= link_to 'Login', new_user_session_path %>
     </li>
   <% end %>
-  <% if user_signed_in? %>
+<% if user_signed_in? %>
     <li>
     <%= link_to 'Edit account', edit_user_registration_path %>
     </li>
@@ -18,9 +19,83 @@
       <%= link_to 'Admin', users_path %>
       </li>
     <% end %>
-  <% else %>
+<% else %>
     <li>
     <%= link_to 'Sign up', new_user_registration_path %>
     </li>
   <% end %>
 </ul>
+-->
+
+<div class="navbar-inner">
+  <div class="container" style="width: auto;">
+    <a class="brand" href="/"><img src="/assets/logo.png"></a>
+
+    <ul class="nav pull-left">
+      <li><a href="#"><i class="icon-xlarge icon-cog"></i></a></li>
+      <li class="divider-vertical"></li>
+      <li><a href="#"><i class="icon-xlarge icon-wrench"></i></a></li>
+      <li class="divider-vertical"></li>
+      <li><a href="#"><i class="icon-xlarge icon-globe"></i></a></li>
+    </ul>
+
+    <!-- top navbar search -->
+    <form id="formSearch" class="navbar-search pull-left" action="">
+      <div class="input-prepend input-append">
+        <span class="add-on"><i class="icon-large icon-search"></i></span><input id="appendedPrependedSearch" class="span3" size="16" type="text">
+
+        <div class="add-on add-on-custom add-on-primary">
+          <div class="btn-group btn-group-prep">
+            <button class="btn btn-inverse">Search</button>
+            <button class="btn btn-inverse dropdown-toggle" data-toggle="dropdown"><span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu">
+              <li><a href="#"><i class="icon-th-large"></i> Templates</a></li>
+              <li><a href="#"><i class="icon-th-large"></i> Gigs</a></li>
+              <li><a href="#"><i class="icon-th-large"></i> Projects</a></li>
+              <li><a href="#"><i class="icon-th-large"></i> Forum Topics</a></li>
+              <li><a href="#"><i class="icon-th-large"></i> Blog Posts</a></li>
+              <li><a href="#"><i class="icon-th-large"></i> Users</a></li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- ./top navbar search -->
+
+    <ul class="nav pull-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-xlarge icon-user"></i>
+          <b class="caret"></b></a>
+
+        <ul class="dropdown-menu dropdown-user-account">
+          <li class="account-img-container">
+            <img class="thumb account-img" src="/assets/100/07.png">
+          </li>
+          <li class="account-info">
+            <h3>Geunevere Calista</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.</p>
+
+            <p><a href="#">Edit</a> | <a href="#">Privacy Settings</a></p>
+          </li>
+          <li class="account-footer">
+            <div class="row-fluid">
+              <div class="span8">
+                <a class="btn btn-primary btn-small" href="#">Change avatar</a>
+                <a class="btn btn-primary btn-small" href="#">View profile</a>
+              </div>
+              <div class="span4 align-right">
+                <a class="btn btn-danger btn-small" href="#">Logout</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+      </li>
+    </ul>
+
+  </div>
+</div>
