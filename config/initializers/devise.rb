@@ -82,7 +82,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = "3fb11f24c9c436c1b105b405f8493bb6bd13b01e52b71cef31ab527a38158efaa13cd94b09e0908ddee9a8507ed10dcf6bae72b0042d87a7f8e384c9a98baa7c"
+  # config.pepper = "c3a36dd0f75cf238bb3899558caa45724a3d1eaafa294cff9b7acab4e3445ef099a5fcf11ff99015eed2087d1cc0827614b22e61bdf4c06123e161bacadebaad"
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -125,7 +125,7 @@ Devise.setup do |config|
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
   # config.timeout_in = 30.minutes
-
+  
   # If true, expires auth token on session timeout.
   # config.expire_auth_token_on_timeout = false
 
@@ -200,7 +200,7 @@ Devise.setup do |config|
   # config.navigational_formats = ["*/*", :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = Rails.env.test? ? :get : :delete
+  config.sign_out_via = :delete
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting

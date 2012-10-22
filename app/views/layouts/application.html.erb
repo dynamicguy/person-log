@@ -12,103 +12,101 @@
 <body>
 
 <div id="maincontainer" class="right-sb-fluid">
-<!---- ************* ./ CLASS FOR RIGHT SIDEBAR FLUID ********* -->
-
-<div id="contentwrapper">
-<div id="contentcolumn">
-
-<!-- ** blue top navbar ** -->
-<div class="blue navbar navbar-static nomargin">
-  <%= render 'layouts/navigation' %>
-</div>
-<!-- ** ./ blue top navbar ** -->
-
-<div class="container-fluid">
-  <div class="row-fluid wrapper">
-
-    <!-- ** main content ** -->
-    <div class="span9 contentcolumn">
-      <%= render_breadcrumb %>
-      <div class="row-fluid">
-        <%= render 'layouts/messages' %>
-        <%= yield %>
+  <!---- ************* ./ CLASS FOR RIGHT SIDEBAR FLUID ********* -->
+  <div id="contentwrapper">
+    <div id="contentcolumn">
+      <!-- ** top navbar ** -->
+      <div class="blue navbar navbar-static nomargin">
+        <%= render 'layouts/navigation' %>
       </div>
+      <!-- ** ./ top navbar ** -->
+      <div class="container-fluid">
+        <div class="row-fluid wrapper">
 
-    </div>
-    <!-- ** ./ main content ** -->
+          <!-- ** main content ** -->
+          <div class="span9 contentcolumn">
+            <%= render_breadcrumb %>
+            <div class="row-fluid">
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+            </div>
 
-    <!-- ** right sidebar ** -->
-    <div class="span3 right-sidebar-fluid">
-      <%= render 'layouts/right-sidebar' %>
-    </div>
-  </div>
-</div>
-</div>
-</div>
+          </div>
+          <!-- ** ./ main content ** -->
 
-<div id="leftcolumn">
-
-  <!-- ** left panel ** -->
-  <div id="leftpanel">
-    <div class="leftpanel-wrapper">
-      <ul class="nav nav-pills nav-stacked">
-
-        <li class="user-container">
-          <a href="#">
-            <img src="/assets/100/07.png">
-            Gwen
-          </a>
-        </li>
-
-        <li>
-          <a href="index.html">
-            <i class="icon-large icon-home"></i>
-            Dashboard
-          </a>
-        </li>
-
-        <li class="active">
-          <a href="sample-layouts.html">
-            <i class="icon-large icon-file"></i>
-            Sample Layouts
-          </a>
-        </li>
-
-        <li>
-          <a href="user-interface.html">
-            <i class="icon-large icon-random"></i>
-            User Interface
-          </a>
-        </li>
-
-        <li>
-          <a href="charts-maps.html">
-            <i class="icon-large icon-bar-chart"></i>
-            Charts &amp; Maps
-          </a>
-        </li>
-
-        <li>
-          <a href="form-elements.html">
-            <i class="icon-large icon-check"></i>
-            Form Elements
-          </a>
-        </li>
-
-        <li>
-          <a href="tables.html">
-            <i class="icon-large icon-table"></i>
-            Tables
-          </a>
-        </li>
-
-      </ul>
+          <!-- ** right sidebar ** -->
+          <div class="span3 right-sidebar-fluid">
+            <%= render 'layouts/right-sidebar' %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <!-- ** ./ left panel ** -->
 
-</div>
-<div class="clearfix"></div>
+  <div id="leftcolumn">
+    <!-- ** left panel ** -->
+    <div id="leftpanel">
+      <div class="leftpanel-wrapper">
+        <ul class="nav nav-pills nav-stacked">
+
+          <li class="user-container">
+            <% if user_signed_in? %>
+            <a href="/users/<%= current_user.id.to_s %>">
+              <%= image_tag(current_user.avatar.thumb, :class => 'thumb account-img') %>
+              <%= current_user.name %>
+            </a>
+            <% else %>
+            <% end %>
+          </li>
+
+          <li>
+            <a href="/">
+              <i class="icon-large icon-home"></i>
+              Dashboard
+            </a>
+          </li>
+
+          <li class="active">
+            <a href="sample-layouts.html">
+              <i class="icon-large icon-user-md"></i>
+              Users
+            </a>
+          </li>
+
+          <li>
+            <a href="user-interface.html">
+              <i class="icon-large icon-random"></i>
+              User Interface
+            </a>
+          </li>
+
+          <li>
+            <a href="charts-maps.html">
+              <i class="icon-large icon-bar-chart"></i>
+              Charts &amp; Maps
+            </a>
+          </li>
+
+          <li>
+            <a href="form-elements.html">
+              <i class="icon-large icon-check"></i>
+              Form Elements
+            </a>
+          </li>
+
+          <li>
+            <a href="tables.html">
+              <i class="icon-large icon-table"></i>
+              Tables
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <!-- ** ./ left panel ** -->
+  </div>
+  <div class="clearfix"></div>
 </div>
 </body>
 </html>

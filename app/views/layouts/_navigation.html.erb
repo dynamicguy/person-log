@@ -3,7 +3,7 @@
 <ul class="nav">
   <% if user_signed_in? %>
     <li>
-    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+    <%= link_to 'Logout', destroy_user_session_path, :method => 'delete' %>
     </li>
   <% else %>
     <li>
@@ -49,7 +49,6 @@
             <button class="btn btn-inverse">Search</button>
             <button class="btn btn-inverse dropdown-toggle" data-toggle="dropdown"><span class="caret"></span>
             </button>
-
             <ul class="dropdown-menu">
               <li><a href="#"><i class="icon-th-large"></i> Templates</a></li>
               <li><a href="#"><i class="icon-th-large"></i> Gigs</a></li>
@@ -71,27 +70,38 @@
           <b class="caret"></b></a>
 
         <ul class="dropdown-menu dropdown-user-account">
-          <li class="account-img-container">
-            <img class="thumb account-img" src="/assets/100/07.png">
-          </li>
-          <li class="account-info">
-            <h3>Geunevere Calista</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua.</p>
+          <% if user_signed_in? %>
+              <li class="account-img-container">
+                <%= image_tag(current_user.avatar.thumb, :class => 'thumb account-img') %>
+              </li>
+              <li class="account-info">
+                <h3><%= current_user.name %></h3>
 
-            <p><a href="#">Edit</a> | <a href="#">Privacy Settings</a></p>
-          </li>
-          <li class="account-footer">
-            <div class="row-fluid">
-              <div class="span8">
-                <a class="btn btn-primary btn-small" href="#">Change avatar</a>
-                <a class="btn btn-primary btn-small" href="#">View profile</a>
-              </div>
-              <div class="span4 align-right">
-                <a class="btn btn-danger btn-small" href="#">Logout</a>
-              </div>
-            </div>
-          </li>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                  et
+                  dolore magna aliqua.</p>
+
+                <p><a href="#">Edit</a> | <a href="#">Privacy Settings</a></p>
+              </li>
+              <li class="account-footer">
+                <div class="row-fluid">
+                  <div class="span8">
+                    <a class="btn btn-primary btn-small" href="#">Change avatar</a>
+                    <%= link_to 'View profile', current_user, :class => 'btn btn-primary btn-small' %>
+                  </div>
+                  <div class="span4 align-right">
+                    <%= link_to 'Logout', destroy_user_session_path, :method => 'delete', :class => 'btn btn-danger btn-small' %>
+                  </div>
+                </div>
+              </li>
+          <% else %>
+              <li>
+                <%= link_to 'Login', new_user_session_path %>
+              </li>
+              <li>
+                <%= link_to 'Sign up', new_user_registration_path %>
+              </li>
+        <% end %>
         </ul>
 
       </li>

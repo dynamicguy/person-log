@@ -17,6 +17,7 @@ end
 
 module PersonLog
   class Application < Rails::Application
+    config.assets.paths << File.join(Rails.root, 'app', 'assets', 'fonts')
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -60,12 +61,13 @@ module PersonLog
     # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
     # parameters by using an attr_accessible or attr_protected declaration.
     config.active_record.whitelist_attributes = true
+    config.assets.initialize_on_precompile = false
 
     # Enable the asset pipeline
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.logger = Logger.new(STDOUT)
   end
 end
-SITE_NAME = "PERSON LOG"

@@ -5,8 +5,7 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
+gem 'pg'
 gem 'json'
 
 # Gems used only for assets and not required
@@ -59,3 +58,15 @@ gem "quiet_assets", ">= 1.0.1", :group => :development
 gem "hub", ">= 1.10.2", :group => [:development], :require => nil
 
 gem 'bootstrap_helper'
+gem 'kaminari', '~> 0.13.0'
+gem 'errship', '~> 2.2.0'
+gem 'acts-as-taggable-on', '~> 2.2.2'
+gem 'sunspot_rails', '~> 1.3.0'
+gem 'sunspot_test'
+gem 'geocoder', '~> 1.1.1'
+gem 'airbrake'
+gem 'high_voltage'
+gem 'omniauth'
+gem 'carrierwave', '~> 0.6.2'
+gem 'mini_magick'
+gem "twitter-bootstrap-rails"

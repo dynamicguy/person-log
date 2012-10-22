@@ -4,6 +4,8 @@
 /*==================================================
 * commons
 * ===============================================*/
+li.user-container a{padding: 0 0 15px 0;}
+.form-actions, form{margin-bottom: 0;}
 body {
 	background:#343434;
 	margin:0;
@@ -878,7 +880,10 @@ img.thumb, .leftpanel-wrapper .nav > li > a img {
 	margin-bottom:15px;
 }
 .dropdown-menu.dropdown-user-account .account-img {
-	margin:15px 0px 0px 15px;
+    margin:15px 0px 0px 15px;
+
+}
+.account-img {
 	border:1px solid #d3d3d3;
 	padding:4px;
 	background-color:#fefefe;
