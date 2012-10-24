@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   rolify
   mount_uploader :avatar, AvatarUploader
-
+  paginates_per 20
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -10,17 +10,22 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   #attr_protected :role_ids, :as => :admin
-  #attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :avatar, :first_name, :last_name
-  attr_protected :id
-  #def name
-  #  "#{first_name} #{last_name}" unless first_name.nil? and last_name.nil?
-  #end
-  #
-  #def name=(name)
-  #  split = name.split(' ', 2)
-  #  self.first_name = split.first
-  #  self.last_name = split.last
-  #end
-  #
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :avatar, :first_name, :last_name
+  attr_accessible :tag_list, :avatar_cache, :role_ids, :confirmed_at
+
+  acts_as_taggable
+
+  scope :by_join_date, order("created_at DESC")
+
+  searchable do
+    text :name
+    text :email
+    integer :tag_list, :multiple => true
+    time    :created_at
+    time    :updated_at
+    string  :sort_name do
+      name.downcase.gsub(/^(an?|the)/, '')
+    end
+  end
 
 end

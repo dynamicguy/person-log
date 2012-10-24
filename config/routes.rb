@@ -1,4 +1,6 @@
 PersonLog::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -61,5 +63,11 @@ PersonLog::Application.routes.draw do
   end
   root :to => "home#index"
   devise_for :users
-  resources :users
+  resources :users do
+    collection do
+      get :search
+      get :typeahead
+    end
+  end
+  get 'tags/:tag', to: 'users#index', as: :tag
 end

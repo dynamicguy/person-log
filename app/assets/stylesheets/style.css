@@ -1,11 +1,4 @@
 /*@import url(../plugins/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css);*/
-@import url(font-awesome.css);
-@import url(buttons.css);
-/*==================================================
-* commons
-* ===============================================*/
-li.user-container a{padding: 0 0 15px 0;}
-.form-actions, form{margin-bottom: 0;}
 body {
 	background:#343434;
 	margin:0;
@@ -143,12 +136,12 @@ more info: https://github.com/twitter/bootstrap/issues/2410
 }
 /***** right fluid *****/
 .right-sb-fluid .row-fluid.wrapper {
-	background:url('/assets/bg-fluid-right.png') #ddd repeat-y;
+    background:url('/assets/bg-fluid-right.png') #ddd repeat-y;
 	background-position:right;
 	clear:both;
 }
 .right-sb-fluid .contentcolumn {
-	background-color:#ddd;
+	background: url('/assets/bg.jpg') #ddd repeat;
 	min-height:800px;
 	padding:10px;
 }

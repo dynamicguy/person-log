@@ -1,0 +1,41 @@
+/*==================================================
+* commons
+* ===============================================*/
+
+.content {
+  background-color: #eee;
+  padding: 20px;
+  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+li.user-container a{padding: 0 0 15px 0;}
+.form-actions, form{margin-bottom: 0;}
+.pad{padding: 5px;}
+.padding{padding: 10px;}
+.padded{padding: 15px;}
+.typeahead{margin-top: 0;}
+#home-search{margin: 0px auto; text-align: center;margin-top: 15%;}
+.alert-message{letter-spacing: 1px;}
+.alert-message .close {
+  margin-top: -5px;
+  margin-right: -5px;
+}
+h1, h2, h3, h4, h5, h6 {
+  padding-bottom: 5px;
+  color: #454545;
+  line-height: 1em;
+  font-weight: normal;
+}
+#home-logo{
+  font-size: 48px;
+  font-family: 'Goudy Bookletter 1911',Georgia,serif;
+  color: #454545;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}

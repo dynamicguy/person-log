@@ -1,21 +1,9 @@
-<% title "Home" %>
-
-<div class="well">
-
-  <!-- ** widget header ** -->
-  <div class="navbar navbar-heading">
-    <div class="navbar-inner">
-      <div class="container" style="width: auto;">
-        <a class="brand" href="#">Home</a>
-      </div>
+<div id="home-search" class="span12">
+  <h1 id="home-logo">PERSON LOG</h1>
+  <form class="form-search" action="/users/search" method="get" autocomplete="off">
+    <div class="input-append">
+      <input data-provide="typeahead" type="text" class="typeahead search-query" name="q" placeholder="type here..." value="<%= params['q'] %>">
+      <button type="submit" class="btn">Search</button>
     </div>
-  </div>
-  <!-- ** ./ widget header ** -->
-
-  <!-- ** content ** -->
-  <% @users.each do |user| %>
-      <p>User: <%=link_to user.name, user %></p>
-  <% end %>
-  <!-- ** ./ content ** -->
-
+  </form>
 </div>

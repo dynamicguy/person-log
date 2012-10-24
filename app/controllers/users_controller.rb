@@ -1,12 +1,53 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
 
+  # GET /users/search
+  # GET /users/search.json
+  # GET /users/search.xml
+  def search
+    @users = User.search do
+      fulltext params[:q]
+      order_by :updated_at, :desc
+      #paginate :page => 2, :per_page => 15
+    end.results
+
+    respond_to do |format|
+      format.html { render :action => "index" }
+      format.xml { render :xml => @users }
+      format.xml { render :json => @users }
+    end
+  end
+
+
+  # GET /users/typeahead
+  # GET /users/typeahead.json
+  # GET /users/typeahead.xml
+  def typeahead
+    @users = User.search do
+      fulltext params[:query]
+      order_by :updated_at, :desc
+      paginate :page => 1, :per_page => 15
+    end.results.collect { |u| u.name }
+    #raise @users.inspect
+
+    respond_to do |format|
+      format.html #typeahead.html.erb
+      format.xml { render xml: {:options => @users} }
+      format.json { render json: {:options => @users} }
+    end
+  end
+
   # GET /users
   # GET /users.json
+  # GET /users.xml
   def index
     drop_breadcrumb('Users')
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
-    @users = User.all
+    if params[:tag]
+      @users = User.tagged_with(params[:tag])
+    else
+      @users = User.order(:name).page params[:page]
+    end
   end
 
 
@@ -25,7 +66,7 @@ class UsersController < ApplicationController
   def update
     #authorize! :update, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user], :as => :admin)
+    if @user.update_attributes(params[:user])
       redirect_to users_path, :notice => "User updated."
     else
       redirect_to users_path, :alert => "Unable to update user."

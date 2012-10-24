@@ -53,6 +53,10 @@
     %strong= model_class.human_attribute_name(:roles) + ':'
     %br
       = @user.roles.collect { |r| r.name }.join(', ')
+  %p
+    %strong= model_class.human_attribute_name(:tags) + ':'
+    %br
+      = raw @user.tag_list.map { |t| link_to '<i class="icon-tag"></i> '.html_safe+t, tag_path(t), :class => 'btn btn-mini' }.join(' ')
 
   .form-actions
     = link_to t('.back', :default => t("helpers.links.back")), users_path, :class => 'btn'

@@ -24,8 +24,8 @@
         <div class="row-fluid wrapper">
 
           <!-- ** main content ** -->
-          <div class="span9 contentcolumn">
-            <%= render_breadcrumb %>
+          <div class="span12 contentcolumn">
+            <%#= render_breadcrumb %>
             <div class="row-fluid">
               <%= render 'layouts/messages' %>
               <%= yield %>
@@ -33,11 +33,6 @@
 
           </div>
           <!-- ** ./ main content ** -->
-
-          <!-- ** right sidebar ** -->
-          <div class="span3 right-sidebar-fluid">
-            <%= render 'layouts/right-sidebar' %>
-          </div>
         </div>
       </div>
     </div>
@@ -67,7 +62,7 @@
           </li>
 
           <li class="active">
-            <a href="sample-layouts.html">
+            <a href="/users">
               <i class="icon-large icon-user-md"></i>
               Users
             </a>

@@ -40,6 +40,7 @@ gem 'jquery-rails', '~> 2.1'
 gem "unicorn", ">= 4.3.1"
 gem "haml", ">= 3.1.7"
 gem "haml-rails", ">= 0.3.5", :group => :development
+gem "thin", :group => :development
 gem "hpricot", ">= 0.8.6", :group => :development
 gem "ruby_parser", ">= 2.3.1", :group => :development
 gem "rspec-rails", ">= 2.11.0", :group => [:development, :test]
@@ -60,9 +61,8 @@ gem "hub", ">= 1.10.2", :group => [:development], :require => nil
 gem 'bootstrap_helper'
 gem 'kaminari', '~> 0.13.0'
 gem 'errship', '~> 2.2.0'
-gem 'acts-as-taggable-on', '~> 2.2.2'
-gem 'sunspot_rails', '~> 1.3.0'
-gem 'sunspot_test'
+gem 'sunspot_rails', :git => 'git://github.com/sunspot/sunspot.git'
+gem 'sunspot_solr'
 gem 'geocoder', '~> 1.1.1'
 gem 'airbrake'
 gem 'high_voltage'
@@ -70,3 +70,7 @@ gem 'omniauth'
 gem 'carrierwave', '~> 0.6.2'
 gem 'mini_magick'
 gem "twitter-bootstrap-rails"
+gem 'rails_admin', '~> 0.0.4'
+gem 'acts-as-taggable-on', '~> 2.3.1'
+gem 'rails_admin_tag_list', :git => 'https://github.com/kryzhovnik/rails_admin_tag_list.git'
+
