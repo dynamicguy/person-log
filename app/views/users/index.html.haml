@@ -4,9 +4,9 @@
   .span6
     %p= render 'search'
   .span6
-    .pull-right.padded
+    .pull-right.numfound.padded
       %span.badge.badge-success= @search.total
-      rows found
+      persons found
 
 .row-fluid
   %ul.thumbnails
@@ -15,6 +15,7 @@
         .thumbnail
           = image_tag(user.avatar.thumb)
           .caption
-            %h5= user.name
+            %h5= link_to user.name, user
+            = raw user.tag_list.map { |t| link_to '<i class="icon-tag"></i> '.html_safe+t, tag_path(t), :class => '' }.join(' ')
 
   %div= paginate @search.results
