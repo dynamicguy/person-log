@@ -62,7 +62,6 @@ PersonLog::Application.routes.draw do
     root :to => 'home#index'
   end
   root :to => "home#index"
-  devise_for :users
   resources :users do
     collection do
       get :search
@@ -70,4 +69,5 @@ PersonLog::Application.routes.draw do
     end
   end
   get 'tags/:tag', to: 'users#index', as: :tag
+  devise_for :users, :path => "user"
 end

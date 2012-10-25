@@ -1,10 +1,20 @@
-<h2>Sign up</h2>
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
-  <%= f.error_notification %>
-  <%= f.input :name, :autofocus => true %> 
-  <%= f.input :email, :required => true %>
-  <%= f.input :password, :required => true %>
-  <%= f.input :password_confirmation, :required => true %>
-  <%= f.button :submit, 'Sign up', :class => 'btn-primary' %>
-<% end %>
-<%= render "devise/shared/links" %>
+<div class="well">
+  <div class="navbar navbar-heading">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="brand">Sign up</span>
+        <%= link_to '<i class="icon-backward"></i>'.html_safe, :back, :class => 'btn btn-mini pull-right' %>
+      </div>
+    </div>
+  </div>
+
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical'}) do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :name, :autofocus => true %>
+      <%= f.input :email, :required => true %>
+      <%= f.input :password, :required => true %>
+      <%= f.input :password_confirmation, :required => true %>
+      <%= f.button :submit, 'Sign up', :class => 'btn-primary' %>
+  <% end %>
+  <%= render "devise/shared/links" %>
+</div>

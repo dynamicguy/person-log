@@ -36,6 +36,27 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Goudy Bookletter 1911',Georgia,serif;
   color: #454545;
   padding-bottom: 5px;
-  margin-bottom: 20px;
   letter-spacing: 1px;
+}
+.slogan{margin-bottom: 20px;}
+input.typeahead{width: 350px;}
+.thumbnails li{
+  margin: 20px 14px 0 0;
+  background-color: #ffffff;
+}
+abbr[title]{color: red;}
+.navbar-inner .container .btn{margin-right: 10px;}
+#left-bar ul.btn-circle li{margin-right: 0px;}
+
+.circle-container > .active > a:after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 30px;
+  right: -30px;
+  margin-top: -7px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid #3d3d3d;
+  content: ' ';
 }
