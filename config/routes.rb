@@ -70,4 +70,6 @@ PersonLog::Application.routes.draw do
   end
   get 'tags/:tag', to: 'users#index', as: :tag
   devise_for :users, :path => "user"
+  match '/auth/:provider/callback' => 'authentications#create'
+  resources :authentications
 end

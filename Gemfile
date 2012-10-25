@@ -66,7 +66,6 @@ gem 'sunspot_solr'
 gem 'geocoder', '~> 1.1.1'
 gem 'airbrake'
 gem 'high_voltage'
-gem 'omniauth'
 gem 'carrierwave', '~> 0.6.2'
 gem 'mini_magick'
 gem "twitter-bootstrap-rails"
@@ -74,3 +73,7 @@ gem 'rails_admin', '~> 0.0.4'
 gem 'acts-as-taggable-on', '~> 2.3.1'
 gem 'rails_admin_tag_list', :git => 'https://github.com/kryzhovnik/rails_admin_tag_list.git'
 
+
+gem 'omniauth'
+gem 'oauth2'
+gem 'omniauth-facebook'

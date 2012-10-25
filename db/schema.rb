@@ -11,7 +11,42 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023175535) do
+ActiveRecord::Schema.define(:version => 20121025200118) do
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "index"
+    t.string   "create"
+    t.string   "destroy"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "places", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "postal_addresses", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "email"
+    t.string   "url"
+    t.string   "faxNumber"
+    t.string   "telephone"
+    t.string   "country"
+    t.string   "locality"
+    t.string   "region"
+    t.string   "postalCode"
+    t.string   "postOfficeBoxNumber"
+    t.string   "street"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
@@ -74,6 +109,10 @@ ActiveRecord::Schema.define(:version => 20121023175535) do
     t.date     "confirmed_at"
     t.date     "confirmed_send_at"
     t.string   "confirmation_token"
+    t.float    "lat"
+    t.float    "lon"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

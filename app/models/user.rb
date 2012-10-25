@@ -12,8 +12,10 @@ class User < ActiveRecord::Base
   #attr_protected :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :avatar, :first_name, :last_name
   attr_accessible :tag_list, :avatar_cache, :role_ids, :confirmed_at
+  attr_accessible :provider, :uid
 
   acts_as_taggable
+  has_many :authentications
 
   scope :by_join_date, order("created_at DESC")
 
