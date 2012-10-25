@@ -5,36 +5,16 @@
     %p= render 'search'
   .span6
     .pull-right.padded
-      %span.badge.badge-success= @users.size
+      %span.badge.badge-success= @search.total
       rows found
 
+.row-fluid
+  %ul.thumbnails
+    - @search.results.each do |user|
+      %li
+        .thumbnail
+          = image_tag(user.avatar.thumb)
+          .caption
+            %h5= user.name
 
-.well
-  .navbar.navbar-heading
-    .navbar-inner
-      .container
-        %span.brand=t '.title', :default => model_class.model_name.human.pluralize
-        %span.pull-right.widget-btn-holder
-          = link_to t('.new', :default => t("helpers.links.new")), new_user_path, :class => 'btn-mini btn btn-primary'
-
-  %table.table.table-striped.table-hover
-    %thead
-      %tr
-        %th= model_class.human_attribute_name(:email)
-        %th= model_class.human_attribute_name(:name)
-        %th= model_class.human_attribute_name(:role)
-        %th=t '.actions', :default => t("helpers.actions")
-    %tbody
-      - @users.each do |user|
-        %tr
-          %td= link_to user.email, user_path(user)
-          %td= user.name
-          %td= user.roles.collect { |r| r.name }.join(', ')
-          %td=l user.created_at
-          %td
-            = link_to t('.role'), "#role-options-"+user.id.to_s, :class => 'btn btn-mini', "data-toggle" => 'modal'
-            = render user
-            = link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(user), :class => 'btn btn-mini'
-            = link_to t('.destroy', :default => t("helpers.links.destroy")), user_path(user), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger' unless user == current_user
-
-  %div= paginate @users
+  %div= paginate @search.results

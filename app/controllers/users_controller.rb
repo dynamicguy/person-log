@@ -5,16 +5,16 @@ class UsersController < ApplicationController
   # GET /users/search.json
   # GET /users/search.xml
   def search
-    @users = User.search do
+    @search = User.search do
       fulltext params[:q]
       order_by :updated_at, :desc
-      #paginate :page => 2, :per_page => 15
-    end.results
+      paginate :page => params[:page], :per_page => 20
+    end
 
     respond_to do |format|
       format.html { render :action => "index" }
-      format.xml { render :xml => @users }
-      format.xml { render :json => @users }
+      format.xml { render :xml => @search }
+      format.xml { render :json => @search }
     end
   end
 
@@ -44,9 +44,13 @@ class UsersController < ApplicationController
     drop_breadcrumb('Users')
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
     if params[:tag]
-      @users = User.tagged_with(params[:tag])
+      @users = User.tagged_with(params[:tag]).order(:name).page params[:page]
     else
-      @users = User.order(:name).page params[:page]
+      @search = User.search do
+        fulltext params[:q]
+        order_by :updated_at, :desc
+        paginate :page => params[:page], :per_page => 20
+      end
     end
   end
 
