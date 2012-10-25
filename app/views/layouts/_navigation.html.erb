@@ -1,44 +1,6 @@
-<!--
-<%= link_to "PERSON LOG", root_path, :class => 'brand' %>
-<ul class="nav">
-  <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Logout', destroy_user_session_path, :method => 'delete' %>
-    </li>
-  <% else %>
-    <li>
-    <%= link_to 'Login', new_user_session_path %>
-    </li>
-  <% end %>
-<% if user_signed_in? %>
-    <li>
-    <%= link_to 'Edit account', edit_user_registration_path %>
-    </li>
-    <% if current_user.has_role? :admin %>
-      <li>
-      <%= link_to 'Admin', users_path %>
-      </li>
-    <% end %>
-<% else %>
-    <li>
-    <%= link_to 'Sign up', new_user_registration_path %>
-    </li>
-  <% end %>
-</ul>
--->
-
 <div class="navbar-inner">
   <div class="container" style="width: auto;">
     <a class="brand" href="/"><img src="/assets/logo.png"></a>
-
-    <ul class="nav pull-left">
-      <li><a href="#"><i class="icon-xlarge icon-cog"></i></a></li>
-      <li class="divider-vertical"></li>
-      <li><a href="#"><i class="icon-xlarge icon-wrench"></i></a></li>
-      <li class="divider-vertical"></li>
-      <li><a href="#"><i class="icon-xlarge icon-globe"></i></a></li>
-    </ul>
-
     <ul class="nav pull-right">
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-xlarge icon-user"></i>

@@ -45,7 +45,7 @@
         <ul class="nav nav-pills nav-stacked">
           <li class="user-container">
             <% if user_signed_in? %>
-                <a href="/users/<%= current_user.id.to_s %>">
+                <a href="<%= edit_user_registration_path %>">
                   <%= image_tag(current_user.avatar.square, :class => 'thumb account-img') %>
                   <%= current_user.name %>
                 </a>
@@ -67,8 +67,14 @@
             </li>
             <li class="success">
               <a href="/" class="bottom_tooltip" data-original-title="Personal messages">
-                <img src="/assets/icons/personal-messages.png"></a>
+                <img src="/assets/icons/personal-messages.png">
+              </a>
               <span class="badge badge-important">24</span>
+            </li>
+            <li class="success">
+              <a href="<%= edit_user_registration_path %>" class="bottom_tooltip" data-original-title="Edit profile">
+                <img src="/assets/icons/projects.png">
+              </a>
             </li>
           </ul>
         </div>
