@@ -6,4 +6,10 @@ $(document).ready(function () {
             });
         }
     });
+    $(window).resize(); //on page load
+});
+
+$(window).resize(function(){
+    var height = $(this).height() - $(".blue.navbar").height() + $("#footer").height()
+    $('#content').css('min-height', height);
 });

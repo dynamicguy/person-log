@@ -77,3 +77,4 @@ pickle-email-*.html
 **.swp
 public/uploads
 solr
+apache-solr-4.0.0

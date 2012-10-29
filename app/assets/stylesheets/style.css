@@ -87,7 +87,7 @@ more info: https://github.com/twitter/bootstrap/issues/2410
 #leftpanel {
 	float:left;
 	width:110px;
-	background-color: #4d4d4d;
+	/*background-color: #4d4d4d;*/
 }
 #leftsidebar {
 	float:left;

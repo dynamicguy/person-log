@@ -1,0 +1,42 @@
+<!-- ** left panel ** -->
+<div id="leftpanel">
+  <div class="leftpanel-wrapper">
+    <ul class="nav nav-pills nav-stacked">
+      <li class="user-container">
+        <% if user_signed_in? %>
+            <a href="<%= edit_user_registration_path %>">
+              <%= image_tag(current_user.avatar.square, :class => 'thumb account-img') %>
+              <%= current_user.name %>
+            </a>
+        <% else %>
+        <% end %>
+      </li>
+    </ul>
+    <div class="btn-circle-panel small" id="left-bar">
+      <ul class="btn-circle circle-container">
+        <li class="success active">
+          <a href="/" class="top_tooltip" data-original-title="Home">
+            <img src="/assets/icons/home.png">
+          </a>
+        </li>
+        <li class="success">
+          <a href="/users" class="top_tooltip" data-original-title="Home">
+            <img src="/assets/icons/collab.png">
+          </a>
+        </li>
+        <li class="success">
+          <a href="/" class="bottom_tooltip" data-original-title="Personal messages">
+            <img src="/assets/icons/personal-messages.png">
+          </a>
+          <span class="badge badge-important">24</span>
+        </li>
+        <li class="success">
+          <a href="<%= edit_user_registration_path %>" class="bottom_tooltip" data-original-title="Edit profile">
+            <img src="/assets/icons/projects.png">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- ** ./ left panel ** -->
