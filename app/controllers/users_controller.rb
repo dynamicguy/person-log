@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only => [:update, :destroy]
 
   # GET /users/search
   # GET /users/search.json

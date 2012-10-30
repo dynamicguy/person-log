@@ -1,3 +1,8 @@
+require "omniauth-facebook"
+require "omniauth-twitter"
+require "omniauth-github"
+require "omniauth-linkedin"
+require "omniauth-google-oauth2"
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -125,7 +130,7 @@ Devise.setup do |config|
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
   # config.timeout_in = 30.minutes
-  
+
   # If true, expires auth token on session timeout.
   # config.expire_auth_token_on_timeout = false
 
@@ -206,6 +211,12 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
+
+  config.omniauth :facebook, "408333219187655", "1386419fd2a41eef926075d763ee497a", :strategy_class => OmniAuth::Strategies::Facebook
+  config.omniauth :twitter, "KgjC3GYmSLGSm4d9DzQ", "616Bg7OVLtrfVydKI1j8Twkm1bwEA6trlZa99hM7xg", :strategy_class => OmniAuth::Strategies::Twitter
+  config.omniauth :google_oauth2, "KgjC3GYmSLGSm4d9DzQ", "616Bg7OVLtrfVydKI1j8Twkm1bwEA6trlZa99hM7xg", :strategy_class => OmniAuth::Strategies::GoogleOauth2
+  config.omniauth :github, "KgjC3GYmSLGSm4d9DzQ", "616Bg7OVLtrfVydKI1j8Twkm1bwEA6trlZa99hM7xg", :strategy_class => OmniAuth::Strategies::GitHub
+  config.omniauth :linkedin, "KgjC3GYmSLGSm4d9DzQ", "616Bg7OVLtrfVydKI1j8Twkm1bwEA6trlZa99hM7xg", :strategy_class => OmniAuth::Strategies::LinkedIn
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

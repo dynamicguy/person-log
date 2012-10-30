@@ -75,5 +75,10 @@ gem 'rails_admin_tag_list', :git => 'https://github.com/kryzhovnik/rails_admin_t
 
 
 gem 'omniauth'
-gem 'oauth2'
+gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-github'
+gem 'omniauth-linkedin'
+gem 'omniauth-google-oauth2'
+

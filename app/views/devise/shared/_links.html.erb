@@ -20,7 +20,7 @@
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
+    <%#= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), :class=>"auth_provider btn btn-large" %>
   <% end -%>
 <% end -%>
 
@@ -44,19 +44,10 @@
     <p><strong>Sign in through one of these services:</strong></p>
 <% end %>
 
-<a href="/auth/twitter" class="auth_provider btn btn-large">
-  <i class="icon-twitter"></i>
-</a>
-<a href="/auth/facebook" class="auth_provider btn btn-large">
-  <i class="icon-facebook"></i>
-</a>
-<a href="/auth/google_apps" class="auth_provider btn btn-large">
-  <i class="icon-google-plus"></i>
-</a>
-<a href="/auth/linked_in" class="auth_provider btn btn-large">
-  <i class="icon-linkedin-sign"></i>
-</a>
-<a href="/auth/open_id" class="auth_provider btn btn-large">
-  <i class="icon-key"></i>
-</a>
+<%= link_to '<i class="icon-twitter"></i>'.html_safe, user_omniauth_authorize_path(:twitter), :class=>"auth_provider btn btn-large" %>
+<%= link_to '<i class="icon-facebook"></i>'.html_safe, user_omniauth_authorize_path(:facebook), :class=>"auth_provider btn btn-large" %>
+<%= link_to '<i class="icon-google-plus"></i>'.html_safe, user_omniauth_authorize_path(:google_oauth2), :class=>"auth_provider btn btn-large" %>
+<%= link_to '<i class="icon-github"></i>'.html_safe, user_omniauth_authorize_path(:github), :class=>"auth_provider btn btn-large" %>
+<%= link_to '<i class="icon-linkedin"></i>'.html_safe, user_omniauth_authorize_path(:linkedin), :class=>"auth_provider btn btn-large" %>
+
 <div class="clear"></div>
