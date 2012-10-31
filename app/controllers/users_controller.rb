@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :only => [:update, :destroy]
 
-  # GET /users/search
-  # GET /users/search.json
-  # GET /users/search.xml
+  # GET /persons/search
+  # GET /persons/search.json
+  # GET /persons/search.xml
   def search
     @search = User.search do
       fulltext params[:q]
@@ -19,9 +19,9 @@ class UsersController < ApplicationController
   end
 
 
-  # GET /users/typeahead
-  # GET /users/typeahead.json
-  # GET /users/typeahead.xml
+  # GET /persons/typeahead
+  # GET /persons/typeahead.json
+  # GET /persons/typeahead.xml
   def typeahead
     @users = User.search do
       fulltext params[:query]
@@ -37,12 +37,12 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users
-  # GET /users.json
-  # GET /users.xml
+  # GET /persons
+  # GET /persons.json
+  # GET /persons.xml
   def index
     drop_breadcrumb('Users')
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    authorize! :index, @user, :message => 'You are not authorized to perform this operation.'
     if params[:tag]
       @users = User.tagged_with(params[:tag]).order(:name).page params[:page]
     else
@@ -55,9 +55,9 @@ class UsersController < ApplicationController
   end
 
 
-  # GET /users/1
-  # GET /users/1.json
-  # GET /users/1.xml
+  # GET /persons/1
+  # GET /persons/1.json
+  # GET /persons/1.xml
   def show
     drop_breadcrumb("Users", users_path)
     drop_breadcrumb('show')
@@ -65,10 +65,10 @@ class UsersController < ApplicationController
   end
 
 
-  # PUT /users/1
-  # PUT /users/1.json
+  # PUT /persons/1
+  # PUT /persons/1.json
   def update
-    #authorize! :update, @user, :message => 'Not authorized as an administrator.'
+    authorize! :update, @user, :message => 'You are not authorized to perform this operation.'
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       redirect_to users_path, :notice => "User updated."
@@ -77,10 +77,10 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
+  # DELETE /persons/1
+  # DELETE /persons/1.json
   def destroy
-    authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
+    authorize! :destroy, @user, :message => 'You are not authorized to perform this operation.'
     user = User.find(params[:id])
     unless user == current_user
       user.destroy
@@ -90,8 +90,8 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/new
-  # GET /users/new.json
+  # GET /persons/new
+  # GET /persons/new.json
   def new
     @user = User.new
     respond_to do |format|
@@ -100,13 +100,13 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/edit
+  # GET /persons/1/edit
   def edit
     @user = User.find(params[:id])
   end
 
-  # POST /users
-  # POST /users.json
+  # POST /persons
+  # POST /persons.json
   def create
     @user = User.new(params[:user])
     respond_to do |format|

@@ -38,13 +38,9 @@
     %br
     = @user.name
   %p
-    %strong= model_class.human_attribute_name(:first_name) + ':'
+    %strong= model_class.human_attribute_name(:bio) + ':'
     %br
-    = @user.first_name
-  %p
-    %strong= model_class.human_attribute_name(:last_name) + ':'
-    %br
-    = @user.last_name
+    = @user.bio
   %p
     %strong= model_class.human_attribute_name(:avatar) + ':'
     %br

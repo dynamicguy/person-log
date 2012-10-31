@@ -1,44 +1,4 @@
-class AuthenticationsController < ApplicationController
-  # GET /authentications
-  # GET /authentications.json
-  def index
-    @authentications = current_user.authentications if current_user
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @authentications }
-    end
-  end
-
-  # GET /authentications/1
-  # GET /authentications/1.json
-  def show
-    @authentication = Authentication.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @authentication }
-    end
-  end
-
-  # GET /authentications/new
-  # GET /authentications/new.json
-  def new
-    @authentication = Authentication.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @authentication }
-    end
-  end
-
-  # GET /authentications/1/edit
-  def edit
-    @authentication = Authentication.find(params[:id])
-  end
-
-  # POST /authentications
-  # POST /authentications.json
+class SessionsController < Devise::SessionsController
   def create
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
@@ -49,7 +9,7 @@ class AuthenticationsController < ApplicationController
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash.now[:notice] = t(:success)
       redirect_to authentications_url
-    elsif omniauth['provider'] != 'twitter' && omniauth['provider'] != 'linked_in' && user = create_new_omniauth_user(omniauth)
+    elsif omniauth['provider'] != 'twitter' && omniauth['provider'] != 'linked_in'
       user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash.now[:notice] = t(:welcome)
       sign_in_and_redirect(:user, user)
@@ -86,29 +46,8 @@ class AuthenticationsController < ApplicationController
     end
   end
 
-
-  # PUT /authentications/1
-  # PUT /authentications/1.json
-  def update
-    @authentication = Authentication.find(params[:id])
-
-    respond_to do |format|
-      if @authentication.update_attributes(params[:authentication])
-        format.html { redirect_to @authentication, notice: 'Authentication was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @authentication.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /authentications/1
-  # DELETE /authentications/1.json
   def destroy
-    @authentication = current_user.authentications.find(params[:id])
-    @authentication.destroy
-    flash[:notice] = "Successfully destroyed authentication."
-    redirect_to authentications_url
+    session[:user_id] = nil
+    redirect_to root_url, notice: "Signed out!"
   end
 end

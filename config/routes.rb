@@ -58,18 +58,33 @@ PersonLog::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
+  #match 'auth/:provider/callback', to: 'sessions#create'
+  #match 'auth/failure', to: redirect('/')
+
+  get "/users/search"           => "users#search"
+  get "/users/typeahead"           => "users#typeahead"
+  get 'tags/:tag', to: 'users#index', as: :tag
+
+
+  devise_for :users, :path => "persons", controllers: { :registrations => 'registrations',
+      :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_scope :user do
+    get '/sign-in'  => 'sessions#new',     as: :sign_in
+    get '/sign-out' => 'sessions#destroy', as: :sign_out
+  end
+  resources :users, :path => 'persons', only: [:show, :index, :edit, :update]
+  # Redirects after switching users to persons
+  match "/users/sign_up"        => redirect("/persons/sign_up")
+  match "/users/sign_in"        => redirect("/persons/sign_in")
+  match "/users/password/new"   => redirect("/persons/password/new")
+  match "/users/edit"           => redirect("/persons/edit")
+  match "/users"                => redirect("/persons")
+  match "/users/:id/edit"       => redirect("/persons/:id/edit")
+  match "/users/:id"            => redirect("/persons/:id")
+
   authenticated :user do
     root :to => 'home#index'
   end
   root :to => "home#index"
-  resources :users do
-    collection do
-      get :search
-      get :typeahead
-    end
-  end
-  get 'tags/:tag', to: 'users#index', as: :tag
-  devise_for :users, :path => "user"
-  match '/auth/:provider/callback' => 'authentications#create'
   resources :authentications
 end

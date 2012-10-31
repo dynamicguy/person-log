@@ -41,11 +41,12 @@ h1, h2, h3, h4, h5, h6 {
 .slogan{margin-bottom: 20px;}
 input.typeahead{width: 350px;}
 .thumbnails li{
-  margin: 20px 14px 0 0;
+  margin: 20px 20px 0 0;
   background-color: #ffffff;
 }
-.thumbnail img{width: 200px;height: 135px;}
-.thumbnail{height: 190px;width: 200px;}
+.thumbnail .caption h5{font-size: 13px;}
+.thumbnail .caption{padding: 5px 0px;}
+.thumbnail{height: 165px;}
 .caption h5{margin: 0px;}
 abbr[title]{color: red;}
 .navbar-inner .container .btn{margin-right: 10px;}

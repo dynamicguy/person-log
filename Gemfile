@@ -77,8 +77,10 @@ gem 'rails_admin_tag_list', :git => 'https://github.com/kryzhovnik/rails_admin_t
 gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
-gem 'omniauth-twitter'
+gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git', :tag => 'v0.0.13'
 gem 'omniauth-github'
 gem 'omniauth-linkedin'
 gem 'omniauth-google-oauth2'
+
+gem 'paper_trail', '~> 2'
 

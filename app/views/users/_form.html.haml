@@ -1,11 +1,9 @@
-= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f|
+= simple_form_for @user, :html => { :class => 'form-horizontal', :autocomplete => 'off' } do |f|
   = f.input :email
   = f.input :name
-  = f.input :first_name
-  = f.input :last_name
+  = f.input :bio, :as => :text, :input_html => { :cols => 50, :rows => 5 }
   = f.input :avatar, :as => :avatar
   = f.input :avatar_cache, :as => :hidden
-  = f.association :roles
   = f.input :tag_list
   .form-actions
     = f.button :submit, :class => 'btn-primary'

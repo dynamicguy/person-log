@@ -10,6 +10,15 @@ GIT
       sunspot (= 2.0.0.pre.120925)
 
 GIT
+  remote: https://github.com/arunagw/omniauth-twitter.git
+  revision: d48d201ae0718bfe1f50b8472384080b369cd12c
+  tag: v0.0.13
+  specs:
+    omniauth-twitter (0.0.13)
+      multi_json (~> 1.3)
+      omniauth-oauth (~> 1.0)
+
+GIT
   remote: https://github.com/kryzhovnik/rails_admin_tag_list.git
   revision: 1092becaa3b3a19874710910d287541563e9026b
   specs:
@@ -197,10 +206,10 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    omniauth-twitter (0.0.13)
-      multi_json (~> 1.3)
-      omniauth-oauth (~> 1.0)
     orm_adapter (0.4.0)
+    paper_trail (2.6.3)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
     pg (0.14.1)
     polyglot (0.3.3)
     pr_geohash (1.0.0)
@@ -353,7 +362,8 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-linkedin
   omniauth-oauth2
-  omniauth-twitter
+  omniauth-twitter!
+  paper_trail (~> 2)
   pg
   quiet_assets (>= 1.0.1)
   rails (= 3.2.8)

@@ -88,6 +88,7 @@ Devise.setup do |config|
 
   # Setup a pepper to generate the encrypted password.
   # config.pepper = "c3a36dd0f75cf238bb3899558caa45724a3d1eaafa294cff9b7acab4e3445ef099a5fcf11ff99015eed2087d1cc0827614b22e61bdf4c06123e161bacadebaad"
+  config.pepper = "c3a36dd0f75cf238bb3899558caa45724a3d1eaafa294cff9b7acab4e3445ef099a5fcf11ff99015eed2087d1cc0827614b22e61bdf4c06123e161bacadebaad"
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -95,7 +96,7 @@ Devise.setup do |config|
   # able to access the website for two days without confirming his account,
   # access will be blocked just in the third day. Default is 0.days, meaning
   # the user cannot access the website without confirming his account.
-  # config.allow_unconfirmed_access_for = 2.days
+  config.allow_unconfirmed_access_for = 2.days
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
@@ -108,7 +109,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 2.weeks
 
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false
@@ -141,7 +142,7 @@ Devise.setup do |config|
   # config.lock_strategy = :failed_attempts
 
   # Defines which key will be used when locking and unlocking an account
-  # config.unlock_keys = [ :email ]
+  #config.unlock_keys = [ :email ]
 
   # Defines which strategy will be used to unlock an account.
   # :email = Sends an unlock link to the user email
@@ -160,7 +161,7 @@ Devise.setup do |config|
   # ==> Configuration for :recoverable
   #
   # Defines which key will be used when recovering the password for an account
-  # config.reset_password_keys = [ :email ]
+  config.reset_password_keys = [ :email ]
 
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
@@ -173,7 +174,7 @@ Devise.setup do |config|
   # :authlogic_sha512 (then you should set stretches above to 20 for default behavior)
   # and :restful_authentication_sha1 (then you should set stretches to 10, and copy
   # REST_AUTH_SITE_KEY to pepper)
-  # config.encryptor = :sha512
+  #config.encryptor = :sha512
 
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
@@ -213,7 +214,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
   config.omniauth :facebook, "408333219187655", "1386419fd2a41eef926075d763ee497a", :strategy_class => OmniAuth::Strategies::Facebook
-  config.omniauth :twitter, "KgjC3GYmSLGSm4d9DzQ", "616Bg7OVLtrfVydKI1j8Twkm1bwEA6trlZa99hM7xg", :strategy_class => OmniAuth::Strategies::Twitter
+  config.omniauth :twitter, "VnPUADgpvfApOAy5oNgJYw", "rPmNYpqiqrI3mnfISKqx7lnm6vQ5qLSQWZW3Ej8cTrU", :strategy_class => OmniAuth::Strategies::Twitter
   config.omniauth :google_oauth2, "KgjC3GYmSLGSm4d9DzQ", "616Bg7OVLtrfVydKI1j8Twkm1bwEA6trlZa99hM7xg", :strategy_class => OmniAuth::Strategies::GoogleOauth2
   config.omniauth :github, "KgjC3GYmSLGSm4d9DzQ", "616Bg7OVLtrfVydKI1j8Twkm1bwEA6trlZa99hM7xg", :strategy_class => OmniAuth::Strategies::GitHub
   config.omniauth :linkedin, "KgjC3GYmSLGSm4d9DzQ", "616Bg7OVLtrfVydKI1j8Twkm1bwEA6trlZa99hM7xg", :strategy_class => OmniAuth::Strategies::LinkedIn

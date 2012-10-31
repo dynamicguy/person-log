@@ -13,7 +13,7 @@
     - @search.results.each do |user|
       %li
         .thumbnail
-          = image_tag(user.avatar.thumb)
+          = link_to image_tag(user.avatar.thumb), user
           .caption
             %h5= link_to user.name, user
             = raw user.tag_list.map { |t| link_to '<i class="icon-tag"></i> '.html_safe+t, tag_path(t), :class => '' }.join(' ')
