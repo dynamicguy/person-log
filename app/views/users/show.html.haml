@@ -5,6 +5,7 @@
     .navbar-inner
       .container
         %span.brand=t '.title', :default => model_class.model_name.human.pluralize
+        = link_to '<i class="icon-backward"></i>'.html_safe, :back, :class => 'btn btn-mini pull-right'
   %p
     %strong= model_class.human_attribute_name(:email) + ':'
     %br
@@ -38,6 +39,18 @@
     %br
     = @user.name
   %p
+    %strong= model_class.human_attribute_name(:location) + ':'
+    %br
+    = @user.location
+  %p
+    %strong= model_class.human_attribute_name(:gender) + ':'
+    %br
+    = @user.gender
+  %p
+    %strong= model_class.human_attribute_name(:phone) + ':'
+    %br
+    = @user.phone
+  %p
     %strong= model_class.human_attribute_name(:bio) + ':'
     %br
     = @user.bio
@@ -54,7 +67,8 @@
     %br
       = raw @user.tag_list.map { |t| link_to '<i class="icon-tag"></i> '.html_safe+t, tag_path(t), :class => 'btn btn-mini' }.join(' ')
 
-  .form-actions
-    = link_to t('.back', :default => t("helpers.links.back")), users_path, :class => 'btn'
-    = link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(@user), :class => 'btn' if can? :update, model_class
-    = link_to t('.destroy', :default => t("helpers.links.destroy")), user_path(@user), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger' if can? :destroy, model_class
+  - if can? :update, model_class
+    .form-actions
+      = link_to t('.back', :default => t("helpers.links.back")), users_path, :class => 'btn'
+      = link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(@user), :class => 'btn' if can? :update, model_class
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), user_path(@user), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger' if can? :destroy, model_class

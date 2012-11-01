@@ -285,7 +285,7 @@
 }
 	
 /**** danger *****/
-.btn-circle.danger a,.btn-rounded.danger a,.btn-boxed.danger a,  li.danger a {
+.btn-circle .success.active, .btn-circle.danger a,.btn-rounded.danger a,.btn-boxed.danger a,  li.danger a {
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffcac7));
 	background-image: -webkit-linear-gradient(top, #ffffff, #ffcac7); 
 	background-image: -moz-linear-gradient(top, #ffffff, #ffcac7); 

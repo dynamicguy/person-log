@@ -213,7 +213,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
-  config.omniauth :facebook, "408333219187655", "1386419fd2a41eef926075d763ee497a", :strategy_class => OmniAuth::Strategies::Facebook
+  config.omniauth :facebook, "301938569919459", "a8861de755f2ea0b6ac4865b3a6bdbdc", :strategy_class => OmniAuth::Strategies::Facebook
   config.omniauth :twitter, "VnPUADgpvfApOAy5oNgJYw", "rPmNYpqiqrI3mnfISKqx7lnm6vQ5qLSQWZW3Ej8cTrU", :strategy_class => OmniAuth::Strategies::Twitter
   config.omniauth :google_oauth2, "KgjC3GYmSLGSm4d9DzQ", "616Bg7OVLtrfVydKI1j8Twkm1bwEA6trlZa99hM7xg", :strategy_class => OmniAuth::Strategies::GoogleOauth2
   config.omniauth :github, "KgjC3GYmSLGSm4d9DzQ", "616Bg7OVLtrfVydKI1j8Twkm1bwEA6trlZa99hM7xg", :strategy_class => OmniAuth::Strategies::GitHub

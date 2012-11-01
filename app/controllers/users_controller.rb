@@ -44,7 +44,12 @@ class UsersController < ApplicationController
     drop_breadcrumb('Users')
     authorize! :index, @user, :message => 'You are not authorized to perform this operation.'
     if params[:tag]
-      @users = User.tagged_with(params[:tag]).order(:name).page params[:page]
+      users = User.tagged_with(params[:tag]).order(:name).page params[:page]
+      @search = User.search do
+        with(:email, users.collect { |u| u.email })
+        order_by :updated_at, :desc
+        paginate :page => params[:page], :per_page => 20
+      end
     else
       @search = User.search do
         fulltext params[:q]

@@ -5,17 +5,19 @@
     %p= render 'search'
   .span6
     .pull-right.numfound.padded
-      %span.badge.badge-success= @search.total
+      %span.badge.badge-success= @search.total if @search.total.present?
       persons found
 
 .row-fluid
   %ul.thumbnails
     - @search.results.each do |user|
-      %li
+      %li.span4
         .thumbnail
-          = link_to image_tag(user.avatar.thumb), user
+          = link_to image_tag(user.avatar.thumb), user, :class => 'pull-left'
           .caption
-            %h5= link_to user.name, user
+            %h4= link_to user.name, user
             = raw user.tag_list.map { |t| link_to '<i class="icon-tag"></i> '.html_safe+t, tag_path(t), :class => '' }.join(' ')
+            .desc= truncate(user.bio, :length => 110, :omission => '... (continued)')
+
 
   %div= paginate @search.results

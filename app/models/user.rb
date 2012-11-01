@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   attr_protected :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
   attr_accessible :tag_list, :avatar, :avatar_cache, :remove_avatar, :remote_avatar_url, :role_ids, :confirmed_at
-  attr_accessible :provider, :uid, :bio
+  attr_accessible :provider, :uid, :bio, :gender, :location, :phone
 
   acts_as_taggable
   has_many :authentications
@@ -22,7 +22,8 @@ class User < ActiveRecord::Base
 
   searchable do
     text :name
-    text :email
+    text :bio
+    string :email
     integer :tag_list, :multiple => true
     time :created_at
     time :updated_at
@@ -30,6 +31,9 @@ class User < ActiveRecord::Base
       name.downcase.gsub(/^(an?|the)/, '')
     end
   end
+
+  validates :name, :presence => true
+  validates :email, :presence => true
 
   # ==========  USER METHODS  =========== #
   def apply_omniauth(omniauth, confirmation)
@@ -70,28 +74,36 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    user = User.where(:email => auth.info.email).first
     unless user
-      user = User.create(name: auth.extra.raw_info.name,
+      user = User.create(name: auth.info.name,
                          provider: auth.provider,
                          uid: auth.uid,
                          email: auth.info.email,
-                         password: Devise.friendly_token[0, 20]
+                         bio: auth.info.description,
+                         remote_avatar_url: auth.info.image.to_s.gsub("square", "large"),
+                         password: Devise.friendly_token[0, 20],
+                         phone: auth.info.phone,
+                         location: auth.info.location,
+                         gender: auth.extra.raw_info.gender,
+                         confirmed_at: Time.now
       )
     end
     user
   end
 
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
-    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    user = User.where(:email => auth.info.nickname + '@personlog.com').first
     unless user
-      user = User.create(name: auth.extra.raw_info.name,
+      user = User.create(name: auth.info.name,
                          provider: auth.provider,
                          uid: auth.uid,
                          bio: auth.info.description,
-                         remote_avatar_url: auth.extra.raw_info.profile_image_url.to_s.gsub("_normal", ""),
-                         email: auth.extra.raw_info.screen_name + '@personlog.com',
+                         remote_avatar_url: auth.info.image.to_s.gsub("_normal", ""),
+                         email: auth.info.nickname + '@personlog.com',
                          password: Devise.friendly_token[0, 20],
+                         phone: auth.info.phone,
+                         location: auth.info.location,
                          confirmed_at: Time.now
       )
     end
