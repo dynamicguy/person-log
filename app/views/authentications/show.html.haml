@@ -1,24 +1,30 @@
-%p#notice= notice
+- model_class = User
 
-%p
-  %b User:
-  = @authentication.user_id
-%p
-  %b Provider:
-  = @authentication.provider
-%p
-  %b Uid:
-  = @authentication.uid
-%p
-  %b Index:
-  = @authentication.index
-%p
-  %b Create:
-  = @authentication.create
-%p
-  %b Destroy:
-  = @authentication.destroy
+.well
+  .navbar.navbar-heading
+    .navbar-inner
+      .container
+        %span.brand=t '.title', :default => model_class.model_name.human.pluralize
+        = link_to '<i class="icon-backward"></i>'.html_safe, :back, :class => 'btn btn-mini pull-right'
 
-= link_to 'Edit', edit_authentication_path(@authentication)
-\|
-= link_to 'Back', authentications_path
+  %p
+    %b User:
+    = link_to @authentication.user.name, @authentication.user
+  %p
+    %b Provider:
+    = @authentication.provider
+  %p
+    %b Uid:
+    = @authentication.uid
+  %p
+    %b Credentials:
+    = @authentication.credentials
+  %p
+    %b info:
+    = debug ActiveSupport::JSON.decode( @authentication.info)
+
+
+  - if can? :update, model_class
+    .form-actions
+      = link_to 'Edit', edit_authentication_path(@authentication), :class => 'btn btn-af'
+      = link_to 'Back', authentications_path, :class => 'btn'

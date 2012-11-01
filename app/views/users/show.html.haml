@@ -7,65 +7,53 @@
         %span.brand=t '.title', :default => model_class.model_name.human.pluralize
         = link_to '<i class="icon-backward"></i>'.html_safe, :back, :class => 'btn btn-mini pull-right'
   %p
-    %strong= model_class.human_attribute_name(:email) + ':'
-    %br
+    %b= model_class.human_attribute_name(:email) + ':'
     = @user.email
   %p
-    %strong= model_class.human_attribute_name(:remember_created_at) + ':'
-    %br
-    = @user.remember_created_at
-  %p
-    %strong= model_class.human_attribute_name(:sign_in_count) + ':'
-    %br
+    %b= model_class.human_attribute_name(:sign_in_count) + ':'
     = @user.sign_in_count
   %p
-    %strong= model_class.human_attribute_name(:current_sign_in_at) + ':'
-    %br
+    %b= model_class.human_attribute_name(:current_sign_in_at) + ':'
     = @user.current_sign_in_at
   %p
-    %strong= model_class.human_attribute_name(:last_sign_in_at) + ':'
-    %br
+    %b= model_class.human_attribute_name(:last_sign_in_at) + ':'
     = @user.last_sign_in_at
   %p
-    %strong= model_class.human_attribute_name(:current_sign_in_ip) + ':'
-    %br
+    %b= model_class.human_attribute_name(:current_sign_in_ip) + ':'
     = @user.current_sign_in_ip
   %p
-    %strong= model_class.human_attribute_name(:last_sign_in_ip) + ':'
-    %br
+    %b= model_class.human_attribute_name(:last_sign_in_ip) + ':'
     = @user.last_sign_in_ip
   %p
-    %strong= model_class.human_attribute_name(:name) + ':'
-    %br
+    %b= model_class.human_attribute_name(:name) + ':'
     = @user.name
   %p
-    %strong= model_class.human_attribute_name(:location) + ':'
-    %br
+    %b= model_class.human_attribute_name(:location) + ':'
     = @user.location
   %p
-    %strong= model_class.human_attribute_name(:gender) + ':'
-    %br
+    %b= model_class.human_attribute_name(:gender) + ':'
     = @user.gender
   %p
-    %strong= model_class.human_attribute_name(:phone) + ':'
-    %br
+    %b= model_class.human_attribute_name(:phone) + ':'
     = @user.phone
   %p
-    %strong= model_class.human_attribute_name(:bio) + ':'
-    %br
+    %b= model_class.human_attribute_name(:bio) + ':'
     = @user.bio
   %p
-    %strong= model_class.human_attribute_name(:avatar) + ':'
+    %b= model_class.human_attribute_name(:avatar) + ':'
     %br
-      = image_tag(@user.avatar.thumb, :class => 'thumb account-img')
+    = image_tag(@user.avatar.thumb, :class => 'thumb account-img')
   %p
-    %strong= model_class.human_attribute_name(:roles) + ':'
-    %br
-      = @user.roles.collect { |r| r.name }.join(', ')
+    %b= model_class.human_attribute_name(:roles) + ':'
+    = @user.roles.collect { |r| r.name }.join(', ')
   %p
-    %strong= model_class.human_attribute_name(:tags) + ':'
-    %br
-      = raw @user.tag_list.map { |t| link_to '<i class="icon-tag"></i> '.html_safe+t, tag_path(t), :class => 'btn btn-mini' }.join(' ')
+    %b= model_class.human_attribute_name(:tags) + ':'
+    = raw @user.tag_list.map { |t| link_to '<i class="icon-tag"></i> '.html_safe+t, tag_path(t), :class => 'btn btn-mini' }.join(' ')
+  %p
+    %b= model_class.human_attribute_name(:authentications) + ':'
+    = raw @user.authentications.map { |a| link_to "<i class=\"icon-#{a.provider}\"></i> ".html_safe + a.provider,
+    authentication_path(a),
+    :class => 'btn btn-mini' }.join(' ')
 
   - if can? :update, model_class
     .form-actions

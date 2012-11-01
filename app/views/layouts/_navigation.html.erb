@@ -14,22 +14,18 @@
               <li class="account-info">
                 <h3><%= current_user.name %></h3>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                  et
-                  dolore magna aliqua.</p>
-
-                <p><%= link_to 'Edit', edit_user_registration_path %> | <%= link_to 'Change password', edit_user_password_path %>
+                <p><%= current_user.bio %></p>
               </li>
               <li class="account-footer">
                 <div class="row-fluid">
-                  <div class="span8">
-                    <a class="btn btn-primary btn-small" href="#">Change avatar</a>
+                  <div class="span12">
+                    <%= link_to 'Edit profile', edit_user_registration_path, :class => "btn btn-primary btn-small" %>
                     <%= link_to 'View profile', current_user, :class => 'btn btn-primary btn-small' %>
-                  </div>
-                  <div class="span4 align-right">
-                    <%= link_to 'Logout', destroy_user_session_path, :method => 'delete', :class => 'btn btn-danger btn-small' %>
+                    <%= link_to 'Logout', destroy_user_session_path, :method => 'delete',
+                                :class => 'btn btn-danger btn-small' %>
                   </div>
                 </div>
+                <div class="clearfix"></div>
               </li>
           <% else %>
               <li>
@@ -38,7 +34,7 @@
               <li>
                 <%= link_to 'Sign up', new_user_registration_path %>
               </li>
-        <% end %>
+          <% end %>
         </ul>
 
       </li>
