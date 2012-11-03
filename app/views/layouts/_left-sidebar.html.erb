@@ -14,23 +14,28 @@
     </ul>
     <div class="btn-circle-panel small" id="left-bar">
       <ul class="btn-circle circle-container">
-        <li class="success active">
+        <li class="success<%= params[:controller] == 'home' ? ' active' : '' %>">
           <a href="/" class="top_tooltip" data-original-title="Home">
             <img src="/assets/icons/home.png">
           </a>
         </li>
-        <li class="success">
-          <a href="<%= users_path %>" class="top_tooltip" data-original-title="Home">
+        <li class="success<%= params[:controller] == 'users' ? ' active' : '' %>">
+          <a href="<%= users_path %>" class="top_tooltip" data-original-title="All Persons">
             <img src="/assets/icons/collab.png">
           </a>
         </li>
-        <li class="success">
+        <li class="success<%= params[:controller] == 'authentications' ? ' active' : '' %>">
+          <a href="<%= authentications_path %>" class="top_tooltip" data-original-title="My Social Profiles">
+            <img src="/assets/icons/add-user.png">
+          </a>
+        </li>
+        <li class="success<%= params[:controller] == 'messages' ? ' active' : '' %>">
           <a href="<%= new_user_session_path %>" class="bottom_tooltip" data-original-title="Personal messages">
             <img src="/assets/icons/personal-messages.png">
           </a>
           <span class="badge badge-important">24</span>
         </li>
-        <li class="success">
+        <li class="success<%= params[:controller] == 'edits' ? ' active' : '' %>">
           <a href="<%= destroy_user_session_path %>" data-method="delete" class="bottom_tooltip"
              data-original-title="Edit
           profile">

@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
       self.name = user_info['name'] unless user_info['name'].blank?
       self.name ||= user_info['nickname'] unless user_info['nickname'].blank?
       self.name ||= (user_info['first_name']+" "+user_info['last_name']) unless \
-                                                user_info['first_name'].blank? || user_info['last_name'].blank?
+                                                    user_info['first_name'].blank? || user_info['last_name'].blank?
     end
     if self.email.blank?
       self.email = user_info['email'] unless user_info['email'].blank?
@@ -74,38 +74,46 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    user = User.where(:email => auth.info.email).first
-    unless user
-      user = User.create(name: auth.info.name,
-                         provider: auth.provider,
-                         uid: auth.uid,
-                         email: auth.info.email,
-                         bio: auth.info.description,
-                         remote_avatar_url: auth.info.image.to_s.gsub("square", "large"),
-                         password: Devise.friendly_token[0, 20],
-                         phone: auth.info.phone,
-                         location: auth.info.location,
-                         gender: auth.extra.raw_info.gender,
-                         confirmed_at: Time.now
-      )
+    if signed_in_resource
+      user = User.find(signed_in_resource.id)
+    else
+      user = User.where(:email => auth.info.email).first
+      unless user
+        user = User.create(name: auth.info.name,
+                           provider: auth.provider,
+                           uid: auth.uid,
+                           email: auth.info.email,
+                           bio: auth.info.description,
+                           remote_avatar_url: auth.info.image.to_s.gsub("square", "large"),
+                           password: Devise.friendly_token[0, 20],
+                           phone: auth.info.phone,
+                           location: auth.info.location,
+                           gender: auth.extra.raw_info.gender,
+                           confirmed_at: Time.now
+        )
+      end
     end
     user
   end
 
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
-    user = User.where(:email => auth.info.nickname + '@personlog.com').first
-    unless user
-      user = User.create(name: auth.info.name,
-                         provider: auth.provider,
-                         uid: auth.uid,
-                         bio: auth.info.description,
-                         remote_avatar_url: auth.info.image.to_s.gsub("_normal", ""),
-                         email: auth.info.nickname + '@personlog.com',
-                         password: Devise.friendly_token[0, 20],
-                         phone: auth.info.phone,
-                         location: auth.info.location,
-                         confirmed_at: Time.now
-      )
+    if signed_in_resource
+      user = User.find(signed_in_resource.id)
+    else
+      user = User.where(:email => auth.info.nickname + '@personlog.com').first
+      unless user
+        user = User.create(name: auth.info.name,
+                           provider: auth.provider,
+                           uid: auth.uid,
+                           bio: auth.info.description,
+                           remote_avatar_url: auth.info.image.to_s.gsub("_normal", ""),
+                           email: auth.info.nickname + '@personlog.com',
+                           password: Devise.friendly_token[0, 20],
+                           phone: auth.info.phone,
+                           location: auth.info.location,
+                           confirmed_at: Time.now
+        )
+      end
     end
     user
   end

@@ -7,6 +7,17 @@ $(document).ready(function () {
         }
     });
     $(window).resize(); //on page load
+
+    $('.bottom_tooltip').tooltip({
+        placement: 'bottom'
+    });
+    $('.left_tooltip').tooltip({
+        placement: 'left'
+    });
+    $('.right_tooltip').tooltip({
+        placement: 'right'
+    });
+    $('.top_tooltip').tooltip();
 });
 
 $(window).resize(function(){

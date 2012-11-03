@@ -4,14 +4,14 @@
   <div class="navbar navbar-heading">
     <div class="navbar-inner">
       <div class="container">
-        <span class="brand">My Social Profiles</span>
+        <span class="brand">My Connected Social Profiles</span>
         <a href="http://localhost:3000/persons" class="btn btn-mini pull-right"><i class="icon-backward"></i></a>
       </div>
     </div>
   </div>
   <% if @authentications %>
       <% unless @authentications.empty? %>
-          <div class="authentications">
+          <div class="authentications btn-toolbar">
             <% for authentication in @authentications %>
                 <div class="authentication btn-group">
                   <%= link_to "<i class=\"icon-#{authentication.provider}\"></i> ".html_safe + authentication.provider.titleize,
@@ -23,39 +23,42 @@
             <div class="clear"></div>
           </div>
       <% end %>
-      <h3>Add another service to sign in with:</h3>
   <% else %>
-      <h3>Sign in through one of these services:</h3>
   <% end %>
+</div>
 
+<div class="well">
+  <div class="navbar navbar-heading">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="brand">Add another Social Profile to sign in with:</span>
+        <a href="http://localhost:3000/persons" class="btn btn-mini pull-right"><i class="icon-backward"></i></a>
+      </div>
+    </div>
+  </div>
   <% if not @authentications.collect { |a| a.provider }.include?('twitter') %>
-      <a href="/auth/twitter" class="auth_provider btn btn-large">
-        <i class="icon-twitter"></i> Twitter
-      </a>
+      <%= link_to '<i class="icon-twitter"></i> Twitter'.html_safe, user_omniauth_authorize_path(:twitter),
+                  :class => "auth_provider btn btn-large" %>
   <% end %>
 
   <% if not @authentications.collect { |a| a.provider }.include?('facebook') %>
-      <a href="/auth/facebook" class="auth_provider btn btn-large">
-        <i class="icon-facebook-sign"></i> Facebook
-      </a>
+      <%= link_to '<i class="icon-facebook"></i> Facebook'.html_safe, user_omniauth_authorize_path(:facebook),
+                  :class => "auth_provider btn btn-large" %>
   <% end %>
 
   <% if not @authentications.collect { |a| a.provider }.include?('google_apps') %>
-      <a href="/auth/google_apps" class="auth_provider btn btn-large">
-        <i class="icon-google-plus-sign"></i> Google Plus
-      </a>
+      <%= link_to '<i class="icon-google-plus"></i> Google Plus'.html_safe,
+                  user_omniauth_authorize_path(:google_oauth2), :class => "auth_provider btn btn-large" %>
   <% end %>
 
   <% if not @authentications.collect { |a| a.provider }.include?('linked_in') %>
-      <a href="/auth/linked_in" class="auth_provider btn btn-large">
-        <i class="icon-linkedin-sign"></i> Linked In
-      </a>
+      <%= link_to '<i class="icon-github"></i> Github'.html_safe, user_omniauth_authorize_path(:github),
+                  :class => "auth_provider btn btn-large" %>
   <% end %>
 
   <% if not @authentications.collect { |a| a.provider }.include?('github') %>
-      <a href="/auth/github" class="auth_provider btn btn-large">
-        <i class="icon-github-sign"></i> Github
-      </a>
+      <%= link_to '<i class="icon-linkedin"></i> LinkedIn'.html_safe, user_omniauth_authorize_path(:linkedin),
+                  :class => "auth_provider btn btn-large" %>
   <% end %>
 
   <div class="clear"></div>

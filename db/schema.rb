@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20121031175024) do
     t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
-    t.text     "info"
+    t.text     "raw"
     t.text     "credentials"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

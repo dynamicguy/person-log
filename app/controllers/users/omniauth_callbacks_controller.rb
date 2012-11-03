@@ -3,14 +3,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def twitter
     auth = request.env["omniauth.auth"]
     @user = User.find_for_twitter_oauth(auth, current_user)
+    authentication = Authentication.where(:provider => auth.provider, :uid => auth.uid).first
+    if not authentication.present?
+      @user.authentications.create!(:raw => auth.extra.raw_info.to_json, :provider => auth.provider,
+                                    :uid => auth.uid,
+                                    :credentials => auth.credentials.token.to_s + ' ' + auth.credentials.secret.to_s)
+    end
     if @user.persisted?
       @user.add_role :user
-      authentication = Authentication.where(:provider => auth.provider, :uid => auth.uid).first
-      if not authentication.present?
-        @user.authentications.create!(:info => auth.info.to_json, :provider => auth.provider,
-                                      :uid => auth.uid,
-                                      :credentials => auth.credentials.token.to_s + ' ' + auth.credentials.secret.to_s)
-      end
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Twitter"
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
       #set_flash_message(:notice, :success, :kind => "Twitter") if is_navigational_format?
@@ -22,15 +22,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
     auth = request.env["omniauth.auth"]
-    @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)
+    @user = User.find_for_facebook_oauth(auth, current_user)
+    authentication = Authentication.where(:provider => auth.provider, :uid => auth.uid).first
+    if not authentication.present?
+      @user.authentications.create!(:raw => auth.extra.raw_info.to_json, :provider => auth.provider,
+                                    :uid => auth.uid,
+                                    :credentials => auth.credentials.token.to_s + ' ' + auth.credentials.secret.to_s)
+    end
     if @user.persisted?
       @user.add_role :user
-      authentication = Authentication.where(:provider => auth.provider, :uid => auth.uid).first
-      if not authentication.present?
-        @user.authentications.create!(:info => auth.info.to_json, :provider => auth.provider,
-                                      :uid => auth.uid,
-                                      :credentials => auth.credentials.token.to_s + ' ' + auth.credentials.secret.to_s)
-      end
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else

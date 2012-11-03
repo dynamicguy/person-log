@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /persons/search.json
   # GET /persons/search.xml
   def search
+    @start = Time.now
     @search = User.search do
       fulltext params[:q]
       order_by :updated_at, :desc
@@ -41,6 +42,7 @@ class UsersController < ApplicationController
   # GET /persons.json
   # GET /persons.xml
   def index
+    @start = Time.now
     drop_breadcrumb('Users')
     authorize! :index, @user, :message => 'You are not authorized to perform this operation.'
     if params[:tag]

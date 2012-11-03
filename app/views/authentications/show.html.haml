@@ -6,7 +6,6 @@
       .container
         %span.brand=t '.title', :default => model_class.model_name.human.pluralize
         = link_to '<i class="icon-backward"></i>'.html_safe, :back, :class => 'btn btn-mini pull-right'
-
   %p
     %b User:
     = link_to @authentication.user.name, @authentication.user
@@ -20,8 +19,8 @@
     %b Credentials:
     = @authentication.credentials
   %p
-    %b info:
-    = debug ActiveSupport::JSON.decode( @authentication.info)
+    %b raw:
+    = debug ActiveSupport::JSON.decode( @authentication.raw)
 
 
   - if can? :update, model_class

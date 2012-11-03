@@ -4,7 +4,7 @@
   .navbar.navbar-heading
     .navbar-inner
       .container
-        %span.brand=t '.title', :default => model_class.model_name.human.pluralize
+        %span.brand=t '.title', :default => model_class.model_name.human + ' Details'
         = link_to '<i class="icon-backward"></i>'.html_safe, :back, :class => 'btn btn-mini pull-right'
   %p
     %b= model_class.human_attribute_name(:email) + ':'
