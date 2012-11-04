@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
       self.name = user_info['name'] unless user_info['name'].blank?
       self.name ||= user_info['nickname'] unless user_info['nickname'].blank?
       self.name ||= (user_info['first_name']+" "+user_info['last_name']) unless \
-                                                    user_info['first_name'].blank? || user_info['last_name'].blank?
+                                                       user_info['first_name'].blank? || user_info['last_name'].blank?
     end
     if self.email.blank?
       self.email = user_info['email'] unless user_info['email'].blank?
@@ -118,15 +118,68 @@ class User < ActiveRecord::Base
     user
   end
 
-  def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
-    data = access_token.info
-    user = User.where(:email => data["email"]).first
+  def self.find_for_linkedin_oauth(auth, signed_in_resource=nil)
+    if signed_in_resource
+      user = User.find(signed_in_resource.id)
+    else
+      user = User.where(:email => auth.info.email).first
+      unless user
+        user = User.create(name: auth.info.name,
+                           provider: auth.provider,
+                           uid: auth.uid,
+                           bio: auth.info.description + ' in ' + auth.info.industry + ' industry',
+                           remote_avatar_url: auth.info.image.to_s.gsub("_normal", ""),
+                           email: auth.info.email,
+                           password: Devise.friendly_token[0, 20],
+                           phone: auth.info.phone,
+                           location: auth.extra.raw_info.location.name,
+                           confirmed_at: Time.now
+        )
+      end
+    end
+    user
+  end
 
-    unless user
-      user = User.create(name: data["name"],
-                         email: data["email"],
-                         password: Devise.friendly_token[0, 20]
-      )
+  def self.find_for_github_oauth(auth, signed_in_resource=nil)
+    if signed_in_resource
+      user = User.find(signed_in_resource.id)
+    else
+      user = User.where(:email => auth.info.email).first
+      unless user
+        user = User.create(name: auth.info.name,
+                           provider: auth.provider,
+                           uid: auth.uid,
+                           bio: auth.extra.raw_info.bio,
+                           remote_avatar_url: auth.info.image,
+                           email: auth.info.email,
+                           password: Devise.friendly_token[0, 20],
+                           phone: auth.info.phone,
+                           location: auth.extra.raw_info.location,
+                           confirmed_at: Time.now
+        )
+      end
+    end
+    user
+  end
+
+  def self.find_for_google_oauth(auth, signed_in_resource=nil)
+    if signed_in_resource
+      user = User.find(signed_in_resource.id)
+    else
+      user = User.where(:email => auth.info.email).first
+      unless user
+        user = User.create(name: auth.info.name,
+                           provider: auth.provider,
+                           uid: auth.uid,
+                           bio: auth.info.description || '',
+                           remote_avatar_url: auth.info.image,
+                           email: auth.info.email,
+                           password: Devise.friendly_token[0, 20],
+                           phone: auth.info.phone || '',
+                           location: auth.extra.raw_info.location || '',
+                           confirmed_at: Time.now
+        )
+      end
     end
     user
   end

@@ -46,17 +46,17 @@
                   :class => "auth_provider btn btn-large" %>
   <% end %>
 
-  <% if not @authentications.collect { |a| a.provider }.include?('google_apps') %>
-      <%= link_to '<i class="icon-google-plus"></i> Google Plus'.html_safe,
+  <% if not @authentications.collect { |a| a.provider }.include?('google_oauth2') %>
+      <%= link_to '<i class="icon-google-plus"></i> Google Oauth2'.html_safe,
                   user_omniauth_authorize_path(:google_oauth2), :class => "auth_provider btn btn-large" %>
   <% end %>
 
-  <% if not @authentications.collect { |a| a.provider }.include?('linked_in') %>
+  <% if not @authentications.collect { |a| a.provider }.include?('github') %>
       <%= link_to '<i class="icon-github"></i> Github'.html_safe, user_omniauth_authorize_path(:github),
                   :class => "auth_provider btn btn-large" %>
   <% end %>
 
-  <% if not @authentications.collect { |a| a.provider }.include?('github') %>
+  <% if not @authentications.collect { |a| a.provider }.include?('linkedin') %>
       <%= link_to '<i class="icon-linkedin"></i> LinkedIn'.html_safe, user_omniauth_authorize_path(:linkedin),
                   :class => "auth_provider btn btn-large" %>
   <% end %>

@@ -215,9 +215,10 @@ Devise.setup do |config|
 
   config.omniauth :facebook, "301938569919459", "a8861de755f2ea0b6ac4865b3a6bdbdc", :strategy_class => OmniAuth::Strategies::Facebook
   config.omniauth :twitter, "VnPUADgpvfApOAy5oNgJYw", "rPmNYpqiqrI3mnfISKqx7lnm6vQ5qLSQWZW3Ej8cTrU", :strategy_class => OmniAuth::Strategies::Twitter
-  config.omniauth :google_oauth2, "KgjC3GYmSLGSm4d9DzQ", "616Bg7OVLtrfVydKI1j8Twkm1bwEA6trlZa99hM7xg", :strategy_class => OmniAuth::Strategies::GoogleOauth2
-  config.omniauth :github, "KgjC3GYmSLGSm4d9DzQ", "616Bg7OVLtrfVydKI1j8Twkm1bwEA6trlZa99hM7xg", :strategy_class => OmniAuth::Strategies::GitHub
-  config.omniauth :linkedin, "KgjC3GYmSLGSm4d9DzQ", "616Bg7OVLtrfVydKI1j8Twkm1bwEA6trlZa99hM7xg", :strategy_class => OmniAuth::Strategies::LinkedIn
+  config.omniauth :github, "7d7461a1e35065628d4c", "e092243a9cef0c99ad234a3ba3e2e55fbb5f32f5", :strategy_class => OmniAuth::Strategies::GitHub, scope: "user,repo,gist"
+  config.omniauth :linkedin, "5tcdejy8tca8", "1YcYOSs2LKzxHuiD", :strategy_class => OmniAuth::Strategies::LinkedIn
+  config.omniauth :google_oauth2, "526853352901.apps.googleusercontent.com", "zUdPIAOA25L3zrzRJg8yLyAb",
+                  :strategy_class => OmniAuth::Strategies::GoogleOauth2, :scope => 'userinfo.email,userinfo.profile,plus.me', :access_type => 'online'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
