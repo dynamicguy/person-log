@@ -1,0 +1,751 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset='UTF-8' />
+    <title>Output of rails_best_practices</title>
+    <style type='text/css'>
+      /*<![CDATA[*/
+        body {
+          color: #333;
+          background: #eee;
+          padding: 0 20px;
+        }
+        h1 {
+          color: ##4E4E4E;
+        }
+        table {
+          background: white;
+          border: 1px solid #666;
+          border-collapse: collapse;
+          margin: 20px 0;
+          font-size: 14px;
+        }
+        table th, table td {
+          padding: 4px;
+          border: 1px solid #D0D0D0;
+        }
+        table th {
+          background-color: #DFC;
+          color: #337022;
+        }
+        table td.filename {
+          color: #ED1556;
+        }
+        table tr:hover {
+          background-color: #FFFFC0;
+        }
+      /*]]>*/
+    </style>
+  </head>
+  <body>
+    <h1>rails_best_practices output</h1>
+    <h2>
+      Please go to
+      <a href='http://rails-bestpractices.com' target='_blank'>http://rails-bestpractices.com</a>
+      to see more useful Rails Best Practices.
+    </h2>
+    <h2>
+      Found 77 errors.
+    </h2>
+    <table>
+      <tr>
+        <th>Filename</th>
+        <th>Line Number</th>
+        <th>Error Message</th>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/controllers/confirmations_controller.rb&amp;line=18'>./app/controllers/confirmations_controller.rb</a>
+        </td>
+        <td class='line-number'>18</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@confirmable use_count > 4)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/controllers/versions_controller.rb&amp;line=12'>./app/controllers/versions_controller.rb</a>
+        </td>
+        <td class='line-number'>12</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@version use_count > 4)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/authentications/show.html.haml&amp;line=11'>./app/views/authentications/show.html.haml</a>
+        </td>
+        <td class='line-number'>11</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/educations/show.html.haml&amp;line=32'>./app/views/educations/show.html.haml</a>
+        </td>
+        <td class='line-number'>32</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/positions/index.html.haml&amp;line=25'>./app/views/positions/index.html.haml</a>
+        </td>
+        <td class='line-number'>25</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/positions/show.html.haml&amp;line=34'>./app/views/positions/show.html.haml</a>
+        </td>
+        <td class='line-number'>34</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/positions/show.html.haml&amp;line=38'>./app/views/positions/show.html.haml</a>
+        </td>
+        <td class='line-number'>38</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/queries/show.html.haml&amp;line=18'>./app/views/queries/show.html.haml</a>
+        </td>
+        <td class='line-number'>18</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/visits/show.html.haml&amp;line=13'>./app/views/visits/show.html.haml</a>
+        </td>
+        <td class='line-number'>13</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/db/schema.rb&amp;line=16'>./db/schema.rb</a>
+        </td>
+        <td class='line-number'>16</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (authentications => [user_id])</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/db/schema.rb&amp;line=37'>./db/schema.rb</a>
+        </td>
+        <td class='line-number'>37</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (educations => [user_id])</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/db/schema.rb&amp;line=64'>./db/schema.rb</a>
+        </td>
+        <td class='line-number'>64</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (positions => [company_id])</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/db/schema.rb&amp;line=64'>./db/schema.rb</a>
+        </td>
+        <td class='line-number'>64</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (positions => [user_id])</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/db/schema.rb&amp;line=93'>./db/schema.rb</a>
+        </td>
+        <td class='line-number'>93</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (queries => [user_id])</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/db/schema.rb&amp;line=145'>./db/schema.rb</a>
+        </td>
+        <td class='line-number'>145</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (taggings => [tagger_id, tagger_type])</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/db/schema.rb&amp;line=162'>./db/schema.rb</a>
+        </td>
+        <td class='line-number'>162</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (urls => [user_id])</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/db/schema.rb&amp;line=170'>./db/schema.rb</a>
+        </td>
+        <td class='line-number'>170</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (users => [invited_by_id, invited_by_type])</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/db/schema.rb&amp;line=221'>./db/schema.rb</a>
+        </td>
+        <td class='line-number'>221</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (users_friends => [user_id])</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/db/schema.rb&amp;line=221'>./db/schema.rb</a>
+        </td>
+        <td class='line-number'>221</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (users_friends => [friend_id])</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/db/schema.rb&amp;line=244'>./db/schema.rb</a>
+        </td>
+        <td class='line-number'>244</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (visits => [user_id])</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/controllers/registrations_controller.rb&amp;line=3,21'>./app/controllers/registrations_controller.rb</a>
+        </td>
+        <td class='line-number'>3,21</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/22-use-before_filter' target='_blank'>use before_filter for create,new</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/controllers/versions_controller.rb&amp;line=8,12'>./app/controllers/versions_controller.rb</a>
+        </td>
+        <td class='line-number'>8,12</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/22-use-before_filter' target='_blank'>use before_filter for show,revert</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/kaminari/_paginator.html.haml&amp;line=14'>./app/views/kaminari/_paginator.html.haml</a>
+        </td>
+        <td class='line-number'>14</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/25-move-code-into-model' target='_blank'>move code into model (page use_count > 2)</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/devise/registrations/_thankyou.html.erb&amp;line=1'>./app/views/devise/registrations/_thankyou.html.erb</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/devise/shared/_links.html.erb&amp;line=28'>./app/views/devise/shared/_links.html.erb</a>
+        </td>
+        <td class='line-number'>28</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/devise/shared/_links.html.erb&amp;line=28'>./app/views/devise/shared/_links.html.erb</a>
+        </td>
+        <td class='line-number'>28</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/devise/shared/_links.html.erb&amp;line=32'>./app/views/devise/shared/_links.html.erb</a>
+        </td>
+        <td class='line-number'>32</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/authentications/_form.html.haml&amp;line=1'>./app/views/authentications/_form.html.haml</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/authentications/_form.html.haml&amp;line=2'>./app/views/authentications/_form.html.haml</a>
+        </td>
+        <td class='line-number'>2</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/authentications/_form.html.haml&amp;line=4'>./app/views/authentications/_form.html.haml</a>
+        </td>
+        <td class='line-number'>4</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/authentications/_form.html.haml&amp;line=6'>./app/views/authentications/_form.html.haml</a>
+        </td>
+        <td class='line-number'>6</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/companies/_form.html.haml&amp;line=1'>./app/views/companies/_form.html.haml</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/educations/_form.html.haml&amp;line=1'>./app/views/educations/_form.html.haml</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/newsletters/_form.html.haml&amp;line=1'>./app/views/newsletters/_form.html.haml</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/queries/_form.html.haml&amp;line=1'>./app/views/queries/_form.html.haml</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/urls/_form.html.haml&amp;line=1'>./app/views/urls/_form.html.haml</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/users/_marker_template.html.haml&amp;line=4'>./app/views/users/_marker_template.html.haml</a>
+        </td>
+        <td class='line-number'>4</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/users/_marker_template.html.haml&amp;line=4'>./app/views/users/_marker_template.html.haml</a>
+        </td>
+        <td class='line-number'>4</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/users/_marker_template.html.haml&amp;line=6'>./app/views/users/_marker_template.html.haml</a>
+        </td>
+        <td class='line-number'>6</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/users/_marker_template.html.haml&amp;line=7'>./app/views/users/_marker_template.html.haml</a>
+        </td>
+        <td class='line-number'>7</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/users/_marker_template.html.haml&amp;line=7'>./app/views/users/_marker_template.html.haml</a>
+        </td>
+        <td class='line-number'>7</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/users/_marker_template.html.haml&amp;line=9'>./app/views/users/_marker_template.html.haml</a>
+        </td>
+        <td class='line-number'>9</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/users/_marker_template.html.haml&amp;line=10'>./app/views/users/_marker_template.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/visits/_form.html.haml&amp;line=1'>./app/views/visits/_form.html.haml</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/authentications/edit.html.haml&amp;line=10'>./app/views/authentications/edit.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/companies/edit.html.haml&amp;line=10'>./app/views/companies/edit.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/companies/new.html.haml&amp;line=10'>./app/views/companies/new.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/educations/edit.html.haml&amp;line=10'>./app/views/educations/edit.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/educations/new.html.haml&amp;line=10'>./app/views/educations/new.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/newsletters/edit.html.haml&amp;line=12'>./app/views/newsletters/edit.html.haml</a>
+        </td>
+        <td class='line-number'>12</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/newsletters/new.html.haml&amp;line=11'>./app/views/newsletters/new.html.haml</a>
+        </td>
+        <td class='line-number'>11</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/positions/edit.html.haml&amp;line=10'>./app/views/positions/edit.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/positions/new.html.haml&amp;line=10'>./app/views/positions/new.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/queries/edit.html.haml&amp;line=10'>./app/views/queries/edit.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/queries/new.html.haml&amp;line=10'>./app/views/queries/new.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/urls/edit.html.haml&amp;line=10'>./app/views/urls/edit.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/urls/new.html.haml&amp;line=10'>./app/views/urls/new.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/users/new.html.haml&amp;line=10'>./app/views/users/new.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/visits/edit.html.haml&amp;line=10'>./app/views/visits/edit.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/views/visits/new.html.haml&amp;line=10'>./app/views/visits/new.html.haml</a>
+        </td>
+        <td class='line-number'>10</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/controllers/registrations_controller.rb&amp;line=18'>./app/controllers/registrations_controller.rb</a>
+        </td>
+        <td class='line-number'>18</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/helpers/authentications_helper.rb&amp;line=1'>./app/helpers/authentications_helper.rb</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/helpers/companies_helper.rb&amp;line=1'>./app/helpers/companies_helper.rb</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/helpers/educations_helper.rb&amp;line=1'>./app/helpers/educations_helper.rb</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/helpers/home_helper.rb&amp;line=1'>./app/helpers/home_helper.rb</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/helpers/import_helper.rb&amp;line=1'>./app/helpers/import_helper.rb</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/helpers/moderator_helper.rb&amp;line=1'>./app/helpers/moderator_helper.rb</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/helpers/newsletters_helper.rb&amp;line=1'>./app/helpers/newsletters_helper.rb</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/helpers/positions_helper.rb&amp;line=1'>./app/helpers/positions_helper.rb</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/helpers/queries_helper.rb&amp;line=1'>./app/helpers/queries_helper.rb</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/helpers/registrations_helper.rb&amp;line=1'>./app/helpers/registrations_helper.rb</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/helpers/urls_helper.rb&amp;line=1'>./app/helpers/urls_helper.rb</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/helpers/visits_helper.rb&amp;line=1'>./app/helpers/visits_helper.rb</a>
+        </td>
+        <td class='line-number'>1</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/mailers/user_mailer.rb&amp;line=3'>./app/mailers/user_mailer.rb</a>
+        </td>
+        <td class='line-number'>3</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/app/controllers/confirmations_controller.rb&amp;line=16'>./app/controllers/confirmations_controller.rb</a>
+        </td>
+        <td class='line-number'>16</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/config/initializers/1_app.rb&amp;line=6'>./config/initializers/1_app.rb</a>
+        </td>
+        <td class='line-number'>6</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+        </td>
+      </tr>
+      <tr>
+        <td class='filename'>
+          <a href='txmt://open/?url=file:///Users/ferdous/projects/dynamicguy/person-log/config/initializers/rolify.rb&amp;line=4'>./config/initializers/rolify.rb</a>
+        </td>
+        <td class='line-number'>4</td>
+        <td class='message'>
+          <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
