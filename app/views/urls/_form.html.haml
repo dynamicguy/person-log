@@ -1,0 +1,8 @@
+= simple_form_for @url, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :title, :autofocus => true
+  = f.input :value
+  = f.input :user_id, :input_html => {:value => current_user.id.to_i}, :as => :hidden unless current_user.has_role(:admin)
+  = f.association :user, :prompt => 'Select an user' if current_user.has_role(:admin)
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), urls_path, :class => 'btn'

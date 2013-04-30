@@ -1,0 +1,10 @@
+%table.datatable.ajaxed.table.table-striped.table-bordered{"data-source"=> versions_url(format: "json")}
+  %thead
+    %tr
+      %th{:width => 10}= '<input type="checkbox" class="toggle">'.html_safe
+      %th= 'id'
+      %th= 'item type'
+      %th= 'event'
+      %th= 'created at'
+      %th=t '.actions', :default => t("helpers.actions.actions")
+  %tbody

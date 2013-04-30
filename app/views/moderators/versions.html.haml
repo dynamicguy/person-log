@@ -1,0 +1,28 @@
+.span9
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= 'Older Versions'
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= 'ID'
+          %th= 'Who'
+          %th= 'Type'
+          %th= 'Created'
+          %th=t '.actions', :default => t("helpers.actions")
+      %tbody
+      - @versions.each do |version|
+        %tr
+          %td= link_to version.id, version
+          %td= link_to version.whodunnit, user_path(version.whodunnit) if version.whodunnit
+          %td= version.item_type
+          %td= l version.created_at, format: :long
+          %td
+            = link_to t('.edit', :default => t("helpers.links.edit")), nil, :class => 'btn btn-mini'
+            = link_to t('.destroy', :default => t("helpers.links.destroy")), nil, :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+    = paginate @versions
+
+.span3.right-sidebar-fluid
+  = render 'versions/sidebar'

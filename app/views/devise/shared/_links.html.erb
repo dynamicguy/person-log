@@ -1,5 +1,5 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Sign in", new_session_path(resource_name) %><br />
+  <%= link_to "Sign in", new_session_path(resource_name), 'data-no-turbolink' => true %><br />
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
@@ -39,15 +39,15 @@
           <div class="clear"></div>
         </div>
     <% end %>
-    <p><strong>Add another service to sign in with:</strong></p>
+    <h5>Add another service to sign in with:</h5>
 <% else %>
-    <p><strong>Sign in through one of these services:</strong></p>
+    <h5>Sign in through one of these services:</h5>
 <% end %>
 
-<%= link_to '<i class="icon-twitter"></i>'.html_safe, user_omniauth_authorize_path(:twitter), :class=>"auth_provider btn btn-large" %>
-<%= link_to '<i class="icon-facebook"></i>'.html_safe, user_omniauth_authorize_path(:facebook), :class=>"auth_provider btn btn-large" %>
-<%= link_to '<i class="icon-google-plus"></i>'.html_safe, user_omniauth_authorize_path(:google_oauth2), :class=>"auth_provider btn btn-large" %>
-<%= link_to '<i class="icon-github"></i>'.html_safe, user_omniauth_authorize_path(:github), :class=>"auth_provider btn btn-large" %>
-<%= link_to '<i class="icon-linkedin"></i>'.html_safe, user_omniauth_authorize_path(:linkedin), :class=>"auth_provider btn btn-large" %>
+<%= link_to '<i class="icon-twitter"></i>'.html_safe, user_omniauth_authorize_path(:twitter), :class=>"auth_provider btn btn-large", 'data-no-turbolink' => true %>
+<%= link_to '<i class="icon-facebook"></i>'.html_safe, user_omniauth_authorize_path(:facebook), :class=>"auth_provider btn btn-large", 'data-no-turbolink' => true %>
+<%= link_to '<i class="icon-google-plus"></i>'.html_safe, user_omniauth_authorize_path(:google_oauth2), :class=>"auth_provider btn btn-large", 'data-no-turbolink' => true %>
+<%= link_to '<i class="icon-github"></i>'.html_safe, user_omniauth_authorize_path(:github), :class=>"auth_provider btn btn-large", 'data-no-turbolink' => true %>
+<%= link_to '<i class="icon-linkedin"></i>'.html_safe, user_omniauth_authorize_path(:linkedin), :class=>"auth_provider btn btn-large", 'data-no-turbolink' => true %>
 
 <div class="clear"></div>

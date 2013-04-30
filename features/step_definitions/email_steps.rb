@@ -56,13 +56,13 @@ Then /^(?:I|they|"([^"]*?)") should have (an|no|\d+) emails?$/ do |address, amou
   mailbox_for(address).size.should == parse_email_count(amount)
 end
 
-Then /^(?:I|they|"([^"]*?)") should receive (an|no|\d+) emails? with subject "([^"]*?)"$/ do |address, amount, subject|
-  unread_emails_for(address).select { |m| m.subject =~ Regexp.new(Regexp.escape(subject)) }.size.should == parse_email_count(amount)
-end
-
-Then /^(?:I|they|"([^"]*?)") should receive (an|no|\d+) emails? with subject \/([^"]*?)\/$/ do |address, amount, subject|
-  unread_emails_for(address).select { |m| m.subject =~ Regexp.new(subject) }.size.should == parse_email_count(amount)
-end
+#Then /^(?:I|they|"([^"]*?)") should receive (an|no|\d+) emails? with subject "([^"]*?)"$/ do |address, amount, subject|
+#  unread_emails_for(address).select { |m| m.subject =~ Regexp.new(Regexp.escape(subject)) }.size.should == parse_email_count(amount)
+#end
+#
+#Then /^(?:I|they|"([^"]*?)") should receive (an|no|\d+) emails? with subject \/([^"]*?)\/$/ do |address, amount, subject|
+#  unread_emails_for(address).select { |m| m.subject =~ Regexp.new(subject) }.size.should == parse_email_count(amount)
+#end
 
 Then /^(?:I|they|"([^"]*?)") should receive an email with the following body:$/ do |address, expected_body|
   open_email(address, :with_text => expected_body)
@@ -126,15 +126,15 @@ Then /^(?:I|they) should see \/([^\"]*)\/ in the email "([^"]*?)" header$/ do |t
 end
 
 Then /^I should see it is a multi\-part email$/ do
-    current_email.should be_multipart
+  current_email.should be_multipart
 end
 
 Then /^(?:I|they) should see "([^"]*?)" in the email html part body$/ do |text|
-    current_email.html_part.body.to_s.should include(text)
+  current_email.html_part.body.to_s.should include(text)
 end
 
 Then /^(?:I|they) should see "([^"]*?)" in the email text part body$/ do |text|
-    current_email.text_part.body.to_s.should include(text)
+  current_email.text_part.body.to_s.should include(text)
 end
 
 #

@@ -1,6 +1,8 @@
-<form class="form-search" action="/users/search" method="get" autocomplete="off">
+<form class="form-search" action="<%= users_path %>" method="get" autocomplete="off" id="search-form">
   <div class="input-append">
     <input data-provide="typeahead" type="text" class="typeahead search-query" name="q" placeholder="type here..." value="<%= params['q'] %>">
     <button type="submit" class="btn">Search</button>
   </div>
+  <%= hidden_field_tag :direction, params[:direction] %>
+  <%= hidden_field_tag :sort, params[:sort] %>
 </form>

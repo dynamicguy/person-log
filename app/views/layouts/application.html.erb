@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html>
+<!doctype html public "lice">
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= content_for?(:title) ? yield(:title) : "Home" %> &raquo; PERSON LOG</title>
-  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "PERSON LOG" %>">
-  <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <%= yield(:head) %>
+    <%= render 'layouts/head' %>
 </head>
-<body>
+<body class="<%= controller_name %> <%= action_name %>">
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
 <div id="maincontainer" class="right-sb-fluid">
-  <!---- ************* ./ CLASS FOR RIGHT SIDEBAR FLUID ********* -->
   <div id="contentwrapper">
     <div id="contentcolumn">
       <!-- ** top navbar ** -->
@@ -26,11 +23,11 @@
           <!-- ** main content ** -->
           <div id="content" class="span12 contentcolumn">
             <%#= render_breadcrumb %>
+            <%= render 'layouts/messages' %>
             <div class="row-fluid">
-              <%= render 'layouts/messages' %>
               <%= yield %>
             </div>
-
+            <%= render 'layouts/foot-links' %>
           </div>
           <!-- ** ./ main content ** -->
         </div>
@@ -41,9 +38,7 @@
   <div id="leftcolumn">
     <%= render 'layouts/left-sidebar' %>
   </div>
-  <div id="footer">
-  </div>
-  <div class="clearfix"></div>
 </div>
+<%= render 'layouts/foot_js' %>
 </body>
 </html>

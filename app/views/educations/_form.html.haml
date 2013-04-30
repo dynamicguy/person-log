@@ -1,0 +1,21 @@
+= simple_form_for @education, :html => { :class => 'form-vertical' } do |f|
+  = f.input :school
+  = f.input :degree
+  = f.input :field_of_study
+
+  .input-append.date.datepicker{'data-date-format' => 'yyyy-mm-dd'}
+    = f.label :start_date
+    = f.text_field :start_date, :class => ''
+    %span.add-on
+      %i.icon-calendar
+
+  .input-append.date.datepicker{'data-date-format' => 'yyyy-mm-dd'}
+    = f.label :end_date
+    = f.text_field :end_date, :class => ''
+    %span.add-on
+      %i.icon-calendar
+
+  = f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id}
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), educations_path, :class => 'btn'

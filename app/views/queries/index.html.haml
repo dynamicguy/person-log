@@ -1,0 +1,13 @@
+- model_class = Query
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand=t '.title', :default => model_class.model_name.human.pluralize + ' Listing'
+    = render 'queries'
+
+.span3.right-sidebar-fluid
+  = render 'queries/sidebar'

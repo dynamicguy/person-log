@@ -1,0 +1,33 @@
+- model_class = Permission
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand=t '.title', :default => model_class.model_name.human.pluralize + ' Listing'
+          = link_to t('.new', :default => t("helpers.links.new")), new_permission_path, :class => 'btn btn-af btn-mini pull-right'
+
+    %table.table.table-striped.datatable.table-bordered
+      %thead
+        %tr
+          %th{:width => 10} <input type="checkbox" class="toggle"/>
+          %th= model_class.human_attribute_name(:action)
+          %th= model_class.human_attribute_name(:subject_class)
+          %th= model_class.human_attribute_name(:role_id)
+          %th= model_class.human_attribute_name(:created_at)
+          %th=t '.actions', :default => t("helpers.actions")
+      %tbody
+        - @permissions.each do |permission|
+          %tr
+            %td <input id="bulk_ids_" name="bulk_ids[]" type="checkbox" value="#{permission.id.to_s}">
+            %td= link_to permission.action, permission_path(permission)
+            %td= permission.subject_class
+            %td= permission.role.name
+            %td=l permission.created_at, :format => :long
+            %td
+              = link_to t('.edit', :default => t("helpers.links.edit")), edit_permission_path(permission), :class => 'btn btn-mini'
+
+.span3.right-sidebar-fluid
+  = render 'permissions/sidebar'

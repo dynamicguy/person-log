@@ -1,0 +1,30 @@
+- model_class = Query
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= t '.title', :default => model_class.model_name.human
+
+    %p
+      %strong= model_class.human_attribute_name(:q) + ':'
+      %br
+      = @query.q
+    %p
+      %strong= model_class.human_attribute_name(:user_id) + ':'
+      %br
+      = link_to @query.user.name, @query.user
+    %p
+      %strong= model_class.human_attribute_name(:ua) + ':'
+      %br
+      = [UserAgent.parse(@query.ua).os, UserAgent.parse(@query.ua).browser, UserAgent.parse(@query.ua).version].join(', ')
+
+    .form-actions
+      = link_to t('.back', :default => t("helpers.links.back")), queries_path, :class => 'btn'
+      = link_to t('.edit', :default => t("helpers.links.edit")), edit_query_path(@query), :class => 'btn'
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), query_path(@query), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+
+.span3.right-sidebar-fluid
+  = render 'queries/sidebar'

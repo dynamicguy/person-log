@@ -1,4 +1,4 @@
-= simple_form_for @authentication, :html => { :class => 'form-horizontal', :autocomplete => 'off' } do |f|
+= simple_form_for @authentication, :html => { :class => 'form-vertical', :autocomplete => 'off' } do |f|
   - if @authentication.errors.any?
     #error_explanation
       %h2= "#{pluralize(@authentication.errors.count, "error")} prohibited this authentication from being saved:"
@@ -9,7 +9,7 @@
   = f.association :user
   = f.input :provider
   = f.input :uid
-  = f.input :raw, :as => :text, :input_html => { :cols => 50, :rows => 5 }
+  = f.input :raw, :as => :text, :input_html => { :cols => 50, :rows => 5, :style => 'width: 635px; height: 200px;' }
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'

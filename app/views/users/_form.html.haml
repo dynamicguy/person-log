@@ -1,13 +1,29 @@
-= simple_form_for @user, :html => { :class => 'form-horizontal', :autocomplete => 'off' } do |f|
+= simple_form_for @user, :html => { :class => 'form-vertical', :autocomplete => 'on' } do |f|
   = f.input :email
-  = f.input :name
-  = f.input :bio, :as => :text, :input_html => { :cols => 50, :rows => 5 }
+  = f.input :name, :required => true
+  = f.input :address
+  = f.input :marital_status, :as => :radio_buttons, :collection => [:single, :married, :separated, :widowed, :divorced, 'declined to state']
+  = f.input :bio, :as => :text, :input_html => { :cols => 50, :rows => 5, :style => 'width: 635px; height: 200px;' }
   = f.input :avatar, :as => :avatar
   = f.input :avatar_cache, :as => :hidden
-  = f.input :location
   = f.input :phone
+  .input-append.date.datepicker{'data-date-format' => 'yyyy-mm-dd'}
+    = f.label :birthday
+    = f.text_field :birthday, :class => ''
+    %span.add-on
+      %i.icon-calendar
   = f.input :gender,:as => :radio_buttons, collection: ['male', 'female', 'other']
-  = f.input :tag_list
+  = f.input :published, :as => :boolean if current_user.has_role?(:moderator)
+  = f.input :featured if current_user.has_role?(:moderator)
+  = f.input :tag_list, :as => :select, :input_html => {:class => 'chzn-select span12', :multiple => true}, :collection => User.tag_counts_on(:tags, :limit => 5).collect {|t| [ t.name, t.name ] } + @user.tag_list.collect {|i| [i, i]}, :selected => @user.tag_list
+
   .form-actions
-    = f.button :submit, :class => 'btn-primary'
+    = f.button :submit, :class => 'btn-primary btn-af'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'
+
+- content_for :scripts do
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+  :javascript
+    var input = document.getElementById('user_address');
+    var options = {types:['(cities)']};
+    autocomplete = new google.maps.places.Autocomplete(input, options);

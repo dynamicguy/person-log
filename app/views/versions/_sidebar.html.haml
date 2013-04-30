@@ -1,0 +1,28 @@
+- if user_signed_in?
+  .row-fluid
+    .span12
+      .well
+        .navbar.navbar-heading
+          .navbar-inner
+            .container
+              %span.brand= "Import Friends"
+        %ul.nav.nav-tabs.nav-stacked
+          %li= link_to 'Facebook <i class="icon-facebook float-right"></i>'.html_safe, import_facebook_path
+          %li= link_to 'LinkedIn <i class="icon-linkedin float-right"></i>'.html_safe, import_linkedin_path
+          %li= link_to 'GitHub <i class="icon-github float-right"></i>'.html_safe, import_github_path
+          %li= link_to 'Twitter <i class="icon-twitter float-right"></i>'.html_safe, import_twitter_path
+  %br.clearfix
+  .row-fluid
+    .span12
+      .well
+        .navbar.navbar-heading
+          .navbar-inner
+            .container
+              %span.brand= 'Navigation'
+        %ul.nav.nav-tabs.nav-stacked
+          %li= link_to 'My Profile <i class="icon-user float-right"></i>'.html_safe, edit_user_registration_path
+          %li= link_to 'My Educations <i class="icon-book float-right"></i>'.html_safe, educations_path
+          %li= link_to 'My Positions <i class="icon-user-md float-right"></i>'.html_safe, positions_path
+          %li= link_to 'My Search history <i class="icon-time float-right"></i>'.html_safe, queries_path
+          %li= link_to 'My URLs <i class="icon-globe float-right"></i>'.html_safe, urls_path
+  %br.clearfix

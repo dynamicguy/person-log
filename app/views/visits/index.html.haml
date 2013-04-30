@@ -1,0 +1,13 @@
+- model_class = Visit
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= params[:type].present?? 'people I viewed' : 'who viewed my profile'
+    = render 'visits'
+
+.span3.right-sidebar-fluid
+  = render 'visits/sidebar'

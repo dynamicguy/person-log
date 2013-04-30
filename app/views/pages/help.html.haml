@@ -1,0 +1,49 @@
+= content_for :title do 'Help & Services' end
+.span12
+  #help-accordion.accordion.acc-custom
+    .accordion-group
+      .accordion-heading
+        = link_to 'Sentiment Analysis', '#sentiment', 'data-toggle' => 'collapse', :class => 'accordion-toggle', 'data-parent' => '#help-accordion'
+      #sentiment.accordion-body.collapse.in
+        .accordion-inner
+          %p
+            Take a look at someone's stream of social media updates. Can you determine what they really want
+            out of life? Now ask them point blank about their aspirations. Will you get the same answers? Maybe not...
+          %p
+            Sentiment analysis involves classifying opinions in text into categories like "positive" or "negative"
+            often with an implicit category of "neutral". A classic sentiment application would be tracking what bloggers are
+            saying about a Person like Obama. Sentiment analysis is also called opinion mining or voice of the customer.
+
+
+
+    .accordion-group
+      .accordion-heading
+        = link_to 'Background Check', '#background', 'data-toggle' => 'collapse', :class => 'accordion-toggle', 'data-parent' => '#help-accordion'
+      #background.accordion-body.collapse
+        .accordion-inner
+          %p
+            When background report is available, it includes a criminal check, lawsuits, judgments, liens,
+            bankruptcies, property ownership, address history, phone numbers, relatives & associates,
+            neighbors, marriage/divorce records and more.
+
+    .accordion-group
+      .accordion-heading
+        = link_to 'Singularity Check', '#singularity', 'data-toggle' => 'collapse', :class => 'accordion-toggle', 'data-parent' => '#help-accordion'
+      #singularity.accordion-body.collapse
+        .accordion-inner
+          A singularity check includes the person's marriage records history.
+
+    .accordion-group
+      .accordion-heading
+        = link_to 'Criminal Records', '#criminal', 'data-toggle' => 'collapse', :class => 'accordion-toggle', 'data-parent' => '#help-accordion'
+      #criminal.accordion-body.collapse
+        .accordion-inner
+          A Criminal Report includes instant access to records of criminal convictions, felonies,
+          misdemeanors, and other criminal offenses associated with a name.
+
+    .accordion-group
+      .accordion-heading
+        = link_to 'Employee Screening', '#employee', 'data-toggle' => 'collapse', :class => 'accordion-toggle', 'data-parent' => '#help-accordion'
+      #employee.accordion-body.collapse
+        .accordion-inner
+          protect yourself with our comprehensive and compliant applicant screening products.

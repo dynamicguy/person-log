@@ -1,0 +1,4 @@
+## line fix
+en:
+  alerts:
+    no_social: "You don't have any %{kind} profile associated with this account. Please add your %{kind} account"

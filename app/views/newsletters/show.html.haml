@@ -1,0 +1,26 @@
+- model_class = Newsletter
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= t '.title', :default => model_class.model_name.human
+
+    %p
+      %strong= model_class.human_attribute_name(:subject) + ':'
+      %br
+      = @newsletter.subject
+    %p
+      %strong= model_class.human_attribute_name(:delivered_at) + ':'
+      %br
+      = @newsletter.delivered_at
+
+    .form-actions
+      = link_to t('.back', :default => t("helpers.links.back")), newsletters_path, :class => 'btn'
+      = link_to t('.edit', :default => t("helpers.links.edit")), edit_newsletter_path(@newsletter), :class => 'btn'
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), newsletter_path(@newsletter), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+
+.span3
+  = render 'newsletters/sidebar'

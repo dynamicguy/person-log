@@ -1,7 +1,13 @@
-%h1 Editing authentication
+- model_class = Authentication
 
-= render 'form'
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human, :default => "Edit #{model_class.model_name.human}")
+    = render :partial => "form"
 
-= link_to 'Show', @authentication
-\|
-= link_to 'Back', authentications_path
+.span3.right-sidebar-fluid
+  = render 'authentications/sidebar'

@@ -1,0 +1,29 @@
+<% content_for :title do t "errship3.#{status_code}.title" end %>
+<div class="span9">
+  <div class="well">
+    <div class="navbar navbar-heading">
+      <div class="navbar-inner">
+        <div class="container">
+          <span class="brand">[<%= status_code %>] <%= t "errship3.#{status_code}.title" %></span>
+          <%= link_to '<i class="icon-backward"></i> back'.html_safe, :back, :class => 'btn btn-mini pull-right' %>
+        </div>
+      </div>
+    </div>
+    <h2>Grats. Your broke it.</h2>
+    <% if errship3_scope %>
+        <p><%= t "errship3.#{status_code}.#{errship3_scope}.description" %></p>
+    <% else %>
+        <p><%= t "errship3.#{status_code}.description" %></p>
+    <% end %>
+
+    <h3>Why not try going:</h3>
+    <ul>
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'Back to previous', :back %></li>
+      <li><%= link_to 'Contact Us', root_path %></li>
+    </ul>
+  </div>
+</div>
+<div class="span3 right-sidebar-fluid">
+  <%= render 'moderators/sidebar' %>
+</div>

@@ -1,0 +1,19 @@
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= 'version details'
+
+    - data = YAML::load(@version.object)
+    %table.display.table.table-striped.table-bordered
+      - data.keys.each do |key|
+        - if data[key] and key != "encrypted_password"
+          %tr
+            %th= key
+            %td= data[key]
+
+
+.span3.right-sidebar-fluid
+  = render 'versions/sidebar'

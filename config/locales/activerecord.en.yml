@@ -1,0 +1,15 @@
+## link fix
+
+en:
+  activerecord:
+    models:
+      user: "Person"
+
+    attributes:
+      user:
+        educations: "Educations"
+        positions: "Positions"
+        tags: "Skills"
+        authentications: "Social profile"
+        friends: "Friends"
+        urls: "URLs"

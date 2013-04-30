@@ -1,0 +1,22 @@
+- if params[:type]
+  %table.datatable.ajaxed.display.table.table-striped.table-bordered{"data-source"=> visits_url(format: "json", type: "my")}
+    %thead
+      %tr
+        %th{:width => 10}= '<input type="checkbox" class="toggle">'.html_safe
+        %th= "IP Address"
+        %th= "Person"
+        %th= "Browser and OS"
+        %th= "created"
+        %th= t '.actions', :default => t("helpers.actions.actions")
+    %tbody
+- else
+  %table.datatable.ajaxed.display.table.table-striped.table-bordered{"data-source"=> visits_url(format: "json")}
+    %thead
+      %tr
+        %th{:width => 10}= '<input type="checkbox" class="toggle">'.html_safe
+        %th= "IP Address"
+        %th= "visitor"
+        %th= "Browser and OS"
+        %th= "created"
+        %th= t '.actions', :default => t("helpers.actions.actions")
+    %tbody

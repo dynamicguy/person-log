@@ -1,0 +1,10 @@
+- @user = usr
+
+.thumbnail{:style=>"border:none;"}
+  = link_to raw("<img src=\"#{@user.avatar.thumb}\">"), @user, :class => 'pull-left'
+  .caption{:style=>"width:200px;"}
+    %h3{:style=>'margin:0 0 5px;padding:0px;font-size:18px;'}= link_to @user.name, @user
+    %p{:style=>'margin:0px;padding:0px;'}= raw @user.tags.limit(3).map { |t| link_to '<i class="icon-tags"></i> '.html_safe + truncate(strip_tags(t.name), :length => 8), tag_path(t.name), :class => '' }.join(' ')
+    .desc
+      %address{:style=> 'margin-bottom:0px;color:#666;'}= truncate(@user.address, :length => 60)
+      %p= truncate(@user.bio, :length => 60)

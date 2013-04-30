@@ -1,0 +1,30 @@
+- model_class = Url
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= t '.title', :default => model_class.model_name.human
+    %p
+      %strong= model_class.human_attribute_name(:title) + ':'
+      %br
+      = @url.title
+    %p
+      %strong= model_class.human_attribute_name(:value) + ':'
+      %br
+      = @url.value
+    %p
+      %strong= model_class.human_attribute_name(:user_id) + ':'
+      %br
+      = link_to @url.user.name, @url.user
+
+    .form-actions
+      = link_to t('.back', :default => t("helpers.links.back")), urls_path, :class => 'btn'
+      = link_to t('.edit', :default => t("helpers.links.edit")), edit_url_path(@url), :class => 'btn'
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), url_path(@url), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+
+
+.span3.right-sidebar-fluid
+  = render 'urls/sidebar'

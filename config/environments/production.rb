@@ -5,20 +5,22 @@ PersonLog::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
+  config.cache_store = :file_store, "./tmp"
 
-  # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
-
-  # Compress JavaScripts and CSS
   config.assets.compress = true
-
-  # Don't fallback to assets pipeline if a precompiled asset is missed
+  #config.assets.js_compressor = :uglifier
+  #config.assets.css_compressor = :yui
   config.assets.compile = false
-
-  # Generate digests for assets URLs
   config.assets.digest = true
+  config.serve_static_assets = true
+
+  # Defaults to Rails.root.join("public/assets")
+  # config.assets.manifest = YOUR_PATH
+
+  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+  # config.assets.precompile += %w( search.js )
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
@@ -64,4 +66,22 @@ PersonLog::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  config.action_mailer.default_url_options = {:host => 'personlog.com'}
+  #config.action_mailer.default_url_options = {:host => 'http://localhost:3000'}
+  # Setup for production - deliveries, no errors raised
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+
+  config.action_mailer.smtp_settings = {
+      address: "smtp.gmail.com",
+      port: 587,
+      domain: "personlog.com",
+      authentication: "plain",
+      enable_starttls_auto: true,
+      user_name: ENV["GMAIL_USERNAME"],
+      password: ENV["GMAIL_PASSWORD"]
+  }
+  config.log_level = :warn
 end

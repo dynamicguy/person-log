@@ -1,0 +1,46 @@
+- model_class = User
+
+.row-fluid
+  = render_breadcrumbs
+  .span6
+    = render 'search'
+  .span6
+    .pull-right
+      %h5.pad
+        - if current_user
+          =link_to current_user.name, current_user if current_user
+        - else
+          =link_to 'Login', new_user_registration_path
+
+
+.row-fluid
+  .well.alert-message.notice
+    .span6
+      %span.badge.badge-success= @users.present?? @users.total_entries : 0
+      persons found in #{Time.now - @start} seconds
+    .span6
+      .pull-right.dropdown
+        =link_to '<i class="icon-cogs"></i>'.html_safe, '#',
+        :class => 'dropdown-toggle btn-af btn btn-mini left_tooltip',
+        'data-toggle' => 'dropdown',
+        'data-original-title' => 'Settings'
+        %ul.dropdown-menu
+          %li= link_to 'Search settings'
+          %li= link_to 'Advanced search'
+          %li= link_to 'Web history'
+          %li= link_to 'Search Help'
+
+.row-fluid
+  %ul.thumbnails
+    - @users.each do |user|
+      %li.span4
+        .thumbnail
+          = link_to image_tag(user.avatar.thumb), user, :class => 'pull-left'
+          .caption
+            %h4= link_to highlight(truncate(user.name, :length => 21), params[:q]), user if user.name
+            - if user.tags.present?
+              = raw user.tags.limit(3).map { |t| link_to '<i class="icon-tags"></i> '.html_safe + truncate(strip_tags(t.name), :length => 8), tag_path(t.name), :class => '' }.join(' ')
+            .desc= highlight(truncate(strip_tags(user.bio), :length => 95, :omission => '... (continued)'), params[:q]) if user.bio
+
+
+  = paginate @users

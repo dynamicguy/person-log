@@ -1,12 +1,11 @@
 require File.expand_path('../boot', __FILE__)
 
-# Pick the frameworks you want:
+#require 'rails/all'
 require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "active_resource/railtie"
 require "sprockets/railtie"
-# require "rails/test_unit/railtie"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -17,6 +16,28 @@ end
 
 module PersonLog
   class Application < Rails::Application
+
+    ActsAsTaggableOn.force_lowercase = true
+    ActsAsTaggableOn.remove_unused_tags = true
+
+    config.generators do |g|
+      g.orm :active_record
+      g.test_framework :rspec, :fixture => true
+      g.fixture_replacement :factory_girl
+      g.view_specs false
+      g.helper_specs false
+    end
+
+    #config.dev_tweaks.autoload_rules do
+    #  keep :all
+    #
+    #  skip '/favicon.ico'
+    #  skip :assets
+    #  skip :xhr
+    #  keep :forced
+    #end
+    #config.dev_tweaks.log_autoload_notice = false
+
     config.assets.paths << File.join(Rails.root, 'app', 'assets', 'fonts')
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -35,17 +56,26 @@ module PersonLog
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = 'Central Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    #config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+
+    #I18n.load_path += Dir[Rails.root.join('lib', 'locales', '*.{rb,yml}')]
+    #config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    #config.i18n.default_locale = :en
+
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = :en
+
+    #config.i18n.fallbacks = false
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    config.filter_parameters += [:password, :password_confirmation]
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
@@ -53,7 +83,7 @@ module PersonLog
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
     # like if you have constraints or database-specific column types
-    # config.active_record.schema_format = :sql
+    config.active_record.schema_format = :sql
 
     # Enforce whitelist mode for mass assignment.
     # This will create an empty whitelist of attributes available for mass-assignment for all models
@@ -62,11 +92,9 @@ module PersonLog
     config.active_record.whitelist_attributes = true
     config.assets.initialize_on_precompile = false
 
-    # Enable the asset pipeline
     config.assets.enabled = true
-
-    # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    config.assets.version = '10.0'
+    config.assets.prefix = "/assets"
     config.logger = Logger.new(STDOUT)
   end
 end

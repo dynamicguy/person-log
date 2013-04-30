@@ -1,0 +1,47 @@
+- model_class = Position
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= t '.title', :default => model_class.model_name.human
+
+
+    %p
+      %strong= model_class.human_attribute_name(:name) + ':'
+      %br
+      = @position.name
+    %p
+      %strong= model_class.human_attribute_name(:summary) + ':'
+      %br
+      = @position.summary
+    %p
+      %strong= model_class.human_attribute_name(:start_date) + ':'
+      %br
+      = @position.start_date
+    %p
+      %strong= model_class.human_attribute_name(:end_date) + ':'
+      %br
+      = @position.end_date if @position.end_date
+    %p
+      %strong= model_class.human_attribute_name(:is_current) + ':'
+      %br
+      = @position.is_current
+    %p
+      %strong= model_class.human_attribute_name(:company_id) + ':'
+      %br
+      = link_to @position.company.name, company_path(@position.company)
+    %p
+      %strong= model_class.human_attribute_name(:user_id) + ':'
+      %br
+      = link_to @position.user.name, user_path(@position.user)
+
+    .form-actions
+      = link_to t('.back', :default => t("helpers.links.back")), positions_path, :class => 'btn'
+      = link_to t('.edit', :default => t("helpers.links.edit")), edit_position_path(@position), :class => 'btn'
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), position_path(@position), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+
+.span3.right-sidebar-fluid
+  = render 'positions/sidebar'

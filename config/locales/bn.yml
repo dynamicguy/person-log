@@ -1,0 +1,5 @@
+--- 
+bn: 
+  activemodel: 
+    errors: 
+      format: "%{attribute} %{message}"

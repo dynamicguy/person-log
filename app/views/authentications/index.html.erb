@@ -1,65 +1,72 @@
 <% title "My social profiles" %>
 
-<div class="well">
-  <div class="navbar navbar-heading">
-    <div class="navbar-inner">
-      <div class="container">
-        <span class="brand">My Connected Social Profiles</span>
-        <a href="http://localhost:3000/persons" class="btn btn-mini pull-right"><i class="icon-backward"></i></a>
+<div class="span9">
+  <%= render_breadcrumbs %>
+  <div class="well">
+    <div class="navbar navbar-heading">
+      <div class="navbar-inner">
+        <div class="container">
+          <span class="brand">My Connected Social Profiles</span>
+          <a href="http://localhost:3000/persons" class="btn btn-mini pull-right"><i class="icon-backward"></i></a>
+        </div>
       </div>
     </div>
-  </div>
-  <% if @authentications %>
-      <% unless @authentications.empty? %>
-          <div class="authentications btn-toolbar">
-            <% for authentication in @authentications %>
-                <div class="authentication btn-group">
-                  <%= link_to "<i class=\"icon-#{authentication.provider}\"></i> ".html_safe + authentication.provider.titleize,
-                              authentication_path(authentication), :class => 'btn btn-af btn-large' %>
-                  <%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication
+    <% if @authentications %>
+        <% unless @authentications.empty? %>
+            <div class="authentications btn-toolbar">
+              <% for authentication in @authentications %>
+                  <div class="authentication btn-group">
+                    <%= link_to "<i class=\"icon-#{authentication.provider}\"></i> ".html_safe + authentication.provider.titleize,
+                                authentication_path(authentication), :class => 'btn btn-af btn-large' %>
+                    <%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication
                 option?', :method => :delete, :class => "remove btn btn-large btn-danger" %>
-                </div>
-            <% end %>
-            <div class="clear"></div>
-          </div>
-      <% end %>
-  <% else %>
-  <% end %>
+                  </div>
+              <% end %>
+              <div class="clear"></div>
+            </div>
+        <% end %>
+    <% else %>
+    <% end %>
+  </div>
+
+  <div class="well">
+    <div class="navbar navbar-heading">
+      <div class="navbar-inner">
+        <div class="container">
+          <span class="brand">Add another Social Profile to sign in with:</span>
+          <a href="http://localhost:3000/persons" class="btn btn-mini pull-right"><i class="icon-backward"></i></a>
+        </div>
+      </div>
+    </div>
+    <% if not @authentications.collect { |a| a.provider }.include?('twitter') %>
+        <%= link_to '<i class="icon-twitter"></i> Twitter'.html_safe, user_omniauth_authorize_path(:twitter),
+                    :class => "auth_provider btn btn-large" %>
+    <% end %>
+
+    <% if not @authentications.collect { |a| a.provider }.include?('facebook') %>
+        <%= link_to '<i class="icon-facebook"></i> Facebook'.html_safe, user_omniauth_authorize_path(:facebook),
+                    :class => "auth_provider btn btn-large" %>
+    <% end %>
+
+    <% if not @authentications.collect { |a| a.provider }.include?('google_oauth2') %>
+        <%= link_to '<i class="icon-google-plus"></i> Google Oauth2'.html_safe,
+                    user_omniauth_authorize_path(:google_oauth2), :class => "auth_provider btn btn-large" %>
+    <% end %>
+
+    <% if not @authentications.collect { |a| a.provider }.include?('github') %>
+        <%= link_to '<i class="icon-github"></i> Github'.html_safe, user_omniauth_authorize_path(:github),
+                    :class => "auth_provider btn btn-large" %>
+    <% end %>
+
+    <% if not @authentications.collect { |a| a.provider }.include?('linkedin') %>
+        <%= link_to '<i class="icon-linkedin"></i> LinkedIn'.html_safe, user_omniauth_authorize_path(:linkedin),
+                    :class => "auth_provider btn btn-large" %>
+    <% end %>
+
+    <div class="clear"></div>
+  </div>
 </div>
 
-<div class="well">
-  <div class="navbar navbar-heading">
-    <div class="navbar-inner">
-      <div class="container">
-        <span class="brand">Add another Social Profile to sign in with:</span>
-        <a href="http://localhost:3000/persons" class="btn btn-mini pull-right"><i class="icon-backward"></i></a>
-      </div>
-    </div>
-  </div>
-  <% if not @authentications.collect { |a| a.provider }.include?('twitter') %>
-      <%= link_to '<i class="icon-twitter"></i> Twitter'.html_safe, user_omniauth_authorize_path(:twitter),
-                  :class => "auth_provider btn btn-large" %>
-  <% end %>
-
-  <% if not @authentications.collect { |a| a.provider }.include?('facebook') %>
-      <%= link_to '<i class="icon-facebook"></i> Facebook'.html_safe, user_omniauth_authorize_path(:facebook),
-                  :class => "auth_provider btn btn-large" %>
-  <% end %>
-
-  <% if not @authentications.collect { |a| a.provider }.include?('google_oauth2') %>
-      <%= link_to '<i class="icon-google-plus"></i> Google Oauth2'.html_safe,
-                  user_omniauth_authorize_path(:google_oauth2), :class => "auth_provider btn btn-large" %>
-  <% end %>
-
-  <% if not @authentications.collect { |a| a.provider }.include?('github') %>
-      <%= link_to '<i class="icon-github"></i> Github'.html_safe, user_omniauth_authorize_path(:github),
-                  :class => "auth_provider btn btn-large" %>
-  <% end %>
-
-  <% if not @authentications.collect { |a| a.provider }.include?('linkedin') %>
-      <%= link_to '<i class="icon-linkedin"></i> LinkedIn'.html_safe, user_omniauth_authorize_path(:linkedin),
-                  :class => "auth_provider btn btn-large" %>
-  <% end %>
-
-  <div class="clear"></div>
+<div class="span3 right-sidebar-fluid">
+  <%= render 'authentications/sidebar' %>
 </div>

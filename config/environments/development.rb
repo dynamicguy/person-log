@@ -10,8 +10,11 @@ PersonLog::Application.configure do
   config.whiny_nils = true
 
   # Show full error reports and disable caching
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
+
+  #config.consider_all_requests_local       = false
+  #config.cache_store = :file_store, "cache"
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
@@ -30,11 +33,32 @@ PersonLog::Application.configure do
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Do not compress assets
-  config.assets.compress = false
+  #config.assets.compress = false
 
-  # Expands the lines which load the assets
+  config.assets.compress = false
+  #config.assets.compile = false
+  #config.serve_static_assets = true
   config.assets.debug = true
+
+  #config.action_mailer.default_url_options = {:host => 'local.personlog.com:3000'}
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :letter_opener
+  # change to true to allow email to be sent during development
+  config.action_mailer.perform_deliveries = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+
+  config.action_mailer.smtp_settings = {
+      address: "smtp.gmail.com",
+      port: 587,
+      domain: "personlog.com",
+      authentication: "plain",
+      enable_starttls_auto: true,
+      user_name: ENV["GMAIL_USERNAME"],
+      password: ENV["GMAIL_PASSWORD"]
+  }
 
   Rails.logger = Logger.new(STDOUT)
+  config.log_level = :info
+  ENV["QC_DATABASE_URL"] = "postgres://ferdous:f@localhost:5432/person_log_development"
 end

@@ -1,0 +1,20 @@
+- model_class = User
+= content_for :title do 'Person Listing' end
+
+.span9
+  = render_breadcrumbs
+  .well#person-details
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          .row-fluid
+            .span4
+              %span.brand= t "titles.list_of_persons"
+            .span8.filters= render 'filters'
+    .row-fluid
+      = simple_form_for '', :url => bulk_user_action_path, :html => { :id => 'bulk_form', :name => 'bulk_form', :method => :get } do |f|
+        = f.input 'bulk_action', :as => :hidden, :input_html => {:name => 'bulk_action', :id => 'bulk_action'}
+        = render 'users-readonly'
+
+.span3.right-sidebar-fluid
+  = render 'moderators/sidebar'

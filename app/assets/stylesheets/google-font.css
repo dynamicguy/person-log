@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Neuton';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Neuton Regular'), local('Neuton-Regular'), url('/assets/font/neuton.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu'), url('/assets/font/ubuntu.ttf') format('truetype');
+}

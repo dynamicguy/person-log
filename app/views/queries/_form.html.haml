@@ -1,0 +1,8 @@
+= simple_form_for @query, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :q
+  = f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id}
+  = f.input :ua, :as => :hidden, :input_html => {:value => request.env['HTTP_USER_AGENT']}
+  = f.input :ip, :as => :hidden, :input_html => {:value => request.env['REMOTE_ADDR']}
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), queries_path, :class => 'btn'

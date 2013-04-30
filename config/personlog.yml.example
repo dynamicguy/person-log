@@ -1,0 +1,75 @@
+# # # # # # # # # # # # # # # # # #
+# PersonLog application config file  #
+# # # # # # # # # # # # # # # # # #
+#
+# How to use:
+# 1. copy file as personlog.yml
+# 2. Replace personlog -> host with your domain
+# 4. Replace personlog -> email_from
+
+#
+# 1. PersonLog app settings
+# ==========================
+
+## PersonLog settings
+personlog:
+  ## Web server settings
+  host: localhost
+  port: 80
+  https: false
+
+  ## Email settings
+  # Email address used in the "From" field in mails sent by PersonLog
+  email_from: no-reply@personlog.com
+
+  ## Project settings
+  default_projects_limit: 10
+
+## Gravatar
+gravatar:
+  enabled: true                 # Use user avatar images from Gravatar.com (default: true)
+  # plain_url: "http://..."     # default: http://www.gravatar.com/avatar/%{hash}?s=%{size}&d=mm
+  # ssl_url:   "https://..."    # default: https://secure.gravatar.com/avatar/%{hash}?s=%{size}&d=mm
+
+
+
+#
+# 2. Auth settings
+# ==========================
+
+## Omniauth settings
+omniauth:
+  # Enable ability for users
+  # Allow logging in via Twitter, Google, etc. using Omniauth providers
+  enabled: false
+
+  # CAUTION!
+  # This allows users to login without having a user account first (default: false)
+  # User accounts will be created automatically when authentication was successful.
+  allow_single_sign_on: false
+  # Locks down those users until they have been cleared by the admin (default: true)
+  block_auto_created_users: true
+
+  ## Auth providers
+  # Uncomment the lines and fill in the data of the auth provider you want to use
+  # If your favorite auth provider is not listed you can user others:
+  # see https://github.com/personloghq/personloghq/wiki/Using-Custom-Omniauth-Providers
+  providers:
+    # - { name: 'google_oauth2', app_id: 'YOUR APP ID',
+    #     app_secret: 'YOUR APP SECRET',
+    #     args: { access_type: 'offline', approval_prompt: '' } }
+    # - { name: 'twitter', app_id: 'YOUR APP ID',
+    #     app_secret: 'YOUR APP SECRET'}
+    # - { name: 'github', app_id: 'YOUR APP ID',
+    #     app_secret: 'YOUR APP SECRET' }
+
+
+
+#
+# 3. Advanced settings
+# ==========================
+
+## Backup settings
+backup:
+  path: "tmp/backups"   # Relative paths are relative to Rails.root (default: tmp/backups/)
+  # keep_time: 604800   # default: 0 (forever) (in seconds)

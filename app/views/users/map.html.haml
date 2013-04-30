@@ -1,0 +1,42 @@
+= content_for :title do 'Person Map' end
+.span12
+  = render_breadcrumbs
+  .row-fluid
+    .span6
+      = render 'search'
+    .span6.filters= render 'filters'
+  %br.clearfix
+  %input{:id => 'current_map_user_id', :type=> 'hidden', :value=>current_user.id}
+
+  -#= gmaps({"map_options" => @map_opt, "markers" => {"data" => @markers, "options" => {:do_clustering => true}}})
+  = gmaps({"map_options" => @map_opt, "markers" => {"data" => @markers, "options" => {"draggable" => current_user.has_role?(:admin), :do_clustering => true, :clusterer_maxZoom => 10}}})
+
+- content_for :head do
+  = yield :scripts
+
+- content_for :scripts do
+  :javascript
+    Gmaps.map.HandleDragend = function(event) {
+      var pos = event.getPosition();
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({
+        latLng: pos
+      }, function(responses) {
+        if (responses && responses.length > 0) {
+         $.getScript('/persons/update_address/' + event.title + '/' + responses[0].formatted_address, function(data) {
+
+         });
+        } else {
+          alert('Cannot determine address at this location.');
+        }
+      });
+    };
+
+    Gmaps.map.callback = function() {
+      for (var i = 0; i <  this.markers.length; ++i) {
+         var marker = Gmaps.map.markers[i];
+         google.maps.event.addListener(marker.serviceObject, 'dragend', function(event) {
+         Gmaps.map.HandleDragend(this)
+         });
+      }
+    };

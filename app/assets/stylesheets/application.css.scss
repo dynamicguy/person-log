@@ -10,7 +10,10 @@
  *
  *= require bootstrap_and_overrides
  *= require buttons
+ *= require cursor
  *= require style
- *= require font-awesome
+ *= require google-font
+ *= require dataTables/jquery.dataTables.bootstrap
+ *= require gmaps4rails
  *= require common
  */

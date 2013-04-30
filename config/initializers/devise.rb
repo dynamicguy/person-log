@@ -40,12 +40,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email ]
+  config.case_insensitive_keys = [:email]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :email ]
+  config.strip_whitespace_keys = [:email]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -90,6 +90,28 @@ Devise.setup do |config|
   # config.pepper = "c3a36dd0f75cf238bb3899558caa45724a3d1eaafa294cff9b7acab4e3445ef099a5fcf11ff99015eed2087d1cc0827614b22e61bdf4c06123e161bacadebaad"
   config.pepper = "c3a36dd0f75cf238bb3899558caa45724a3d1eaafa294cff9b7acab4e3445ef099a5fcf11ff99015eed2087d1cc0827614b22e61bdf4c06123e161bacadebaad"
 
+  # ==> Configuration for :invitable
+  # The period the generated invitation token is valid, after
+  # this period, the invited resource won't be able to accept the invitation.
+  # When invite_for is 0 (the default), the invitation won't expire.
+  config.invite_for = 2.weeks
+
+  # Number of invitations users can send.
+  # If invitation_limit is nil, users can send unlimited invitations.
+  # If invitation_limit is 0, users can't send invitations.
+  # If invitation_limit n > 0, users can send n invitations.
+  # Default: nil
+  config.invitation_limit = 5
+
+  # The key to be used to check existing users when sending an invitation
+  # and the regexp used to test it when validate_on_invite is not set.
+  # config.invite_key = {:email => /A[^@]+@[^@]+z/}
+  # config.invite_key = {:email => /A[^@]+@[^@]+z/, :username => nil}
+
+  # Flag that force a record to be valid before being actually invited
+  # Default: false
+  #config.validate_on_invite = true
+
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
   # confirming his account. For instance, if set to 2.days, the user will be
@@ -105,7 +127,7 @@ Devise.setup do |config|
   config.reconfirmable = true
 
   # Defines which key will be used when confirming an account
-  # config.confirmation_keys = [ :email ]
+  config.confirmation_keys = [ :email ]
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
@@ -161,7 +183,7 @@ Devise.setup do |config|
   # ==> Configuration for :recoverable
   #
   # Defines which key will be used when recovering the password for an account
-  config.reset_password_keys = [ :email ]
+  config.reset_password_keys = [:email]
 
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
@@ -206,17 +228,19 @@ Devise.setup do |config|
   # config.navigational_formats = ["*/*", :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :delete
+  #config.sign_out_via = :delete
+  config.sign_out_via = Rails.env.test? ? :get : :delete
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
-  config.omniauth :facebook, "301938569919459", "a8861de755f2ea0b6ac4865b3a6bdbdc", :strategy_class => OmniAuth::Strategies::Facebook
+  config.omniauth :facebook, "301938569919459", "a8861de755f2ea0b6ac4865b3a6bdbdc", :strategy_class => OmniAuth::Strategies::Facebook, :scope => 'email,user_birthday,read_stream,friends_location,friends_birthday,friends_work_history,friends_education_history,friends_about_me'
   config.omniauth :twitter, "VnPUADgpvfApOAy5oNgJYw", "rPmNYpqiqrI3mnfISKqx7lnm6vQ5qLSQWZW3Ej8cTrU", :strategy_class => OmniAuth::Strategies::Twitter
   config.omniauth :github, "7d7461a1e35065628d4c", "e092243a9cef0c99ad234a3ba3e2e55fbb5f32f5", :strategy_class => OmniAuth::Strategies::GitHub, scope: "user,repo,gist"
-  config.omniauth :linkedin, "5tcdejy8tca8", "1YcYOSs2LKzxHuiD", :strategy_class => OmniAuth::Strategies::LinkedIn
+  config.omniauth :linkedin, "5tcdejy8tca8", "1YcYOSs2LKzxHuiD", :strategy_class => OmniAuth::Strategies::LinkedIn,
+                  :scope => 'r_fullprofile r_emailaddress r_network r_contactinfo'
   config.omniauth :google_oauth2, "526853352901.apps.googleusercontent.com", "zUdPIAOA25L3zrzRJg8yLyAb",
                   :strategy_class => OmniAuth::Strategies::GoogleOauth2, :scope => 'userinfo.email,userinfo.profile,plus.me', :access_type => 'online'
 

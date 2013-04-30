@@ -1,0 +1,35 @@
+- model_class = Company
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand=t '.title', :default => model_class.model_name.human.pluralize + ' Listing'
+          = link_to raw('<i class="icon-plus-sign"></i> ' + t('.new', :default => t("helpers.links.new"))),
+          new_company_path,
+          :class => 'btn btn-af btn-mini pull-right'
+    %table.datatable.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th= model_class.human_attribute_name(:name)
+          %th= model_class.human_attribute_name(:industry)
+          %th= model_class.human_attribute_name(:ctype)
+          %th= model_class.human_attribute_name(:created_at)
+          %th=t '.actions', :default => t("helpers.actions")
+      %tbody
+        - @companies.each do |company|
+          %tr
+            %td= link_to company.name, company_path(company)
+            %td= company.industry
+            %td= company.ctype
+            %td=l company.created_at, format: :short
+            %td
+              = link_to t('.edit', :default => t("helpers.links.edit")), edit_company_path(company), :class => 'btn btn-mini'
+              = link_to t('.destroy', :default => t("helpers.links.destroy")), company_path(company), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+
+
+
+.span3.right-sidebar-fluid
+  = render 'companies/sidebar'

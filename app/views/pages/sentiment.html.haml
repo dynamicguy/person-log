@@ -1,0 +1,22 @@
+= content_for :title do 'Sentiment Analysis' end
+
+.span12
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand Sentiment Analysis
+
+    %p
+      PersonLog is a non-profit organization with the following features:
+      %ul
+        %li= link_to 'Sentiment Analysis', page_path("help", :anchor => 'sentiment')
+        %li= link_to 'Background Check',  page_path("help", :anchor => 'background')
+        %li= link_to 'Singularity Check',  page_path("help", :anchor => 'singularity')
+        %li= link_to 'Criminal Records',  page_path("help", :anchor => 'criminal')
+        %li= link_to 'Employee Screening',  page_path("help", :anchor => 'employee')
+
+    %p
+      we are still a bootstrapped startup headquartered at Dhaka, Bangladesh; but seriously trying to be in San Francisco. We are looking
+      for potential investors, engineers. If you think you could be one, drop us a line here: hi at personlog dot com
+      and we will get back to you.

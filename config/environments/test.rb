@@ -19,7 +19,7 @@ PersonLog::Application.configure do
   config.action_controller.perform_caching = false
 
   # Raise exceptions instead of rendering exception templates
-  config.action_dispatch.show_exceptions = false
+  config.action_dispatch.show_exceptions = true
 
   # Disable request forgery protection in test environment
   config.action_controller.allow_forgery_protection    = false
@@ -34,4 +34,6 @@ PersonLog::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  ENV["QC_DATABASE_URL"] = "postgres://ferdous:f@localhost:5432/person_log_test"
 end

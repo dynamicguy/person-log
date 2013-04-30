@@ -1,0 +1,12 @@
+.row-fluid
+  .span12
+    .well
+      .navbar.navbar-heading
+        .navbar-inner
+          .container
+            =link_to 'Import Friends', nil, :class => 'brand'
+      %ul.nav.nav-tabs.nav-stacked
+        %li= link_to 'Facebook <i class="icon-facebook float-right"></i>'.html_safe, import_facebook_path
+        %li= link_to 'LinkedIn <i class="icon-linkedin float-right"></i>'.html_safe, import_linkedin_path
+        %li= link_to 'GitHub <i class="icon-github float-right"></i>'.html_safe, import_github_path
+        %li= link_to 'Twitter <i class="icon-twitter float-right"></i>'.html_safe, import_twitter_path

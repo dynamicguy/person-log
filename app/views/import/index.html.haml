@@ -1,0 +1,23 @@
+- model_class = Authentication
+
+.well.span9
+  .navbar.navbar-heading
+    .navbar-inner
+      .container
+        %span.brand=t '.title', :default => 'Import friends'
+        = link_to '<i class="icon-backward"></i>'.html_safe, :back, :class => 'btn btn-mini pull-right'
+
+  .button-group
+    =link_to '<i class="icon-twitter"></i> Twitter'.html_safe, import_twitter_path,
+      :class => "auth_provider btn btn-large"
+    =link_to '<i class="icon-facebook"></i> Facebook'.html_safe, import_facebook_path,
+    :class => "auth_provider btn btn-large"
+    =link_to '<i class="icon-google-plus"></i> Google Oauth2'.html_safe, import_google_path, :class => "auth_provider btn btn-large"
+    =link_to '<i class="icon-github"></i> Github'.html_safe, import_github_path,
+    :class => "auth_provider btn btn-large"
+    =link_to '<i class="icon-linkedin"></i> LinkedIn'.html_safe, import_linkedin_path,
+    :class => "auth_provider btn btn-large"
+
+
+.span3
+  = render 'import/sidebar'

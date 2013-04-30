@@ -1,0 +1,13 @@
+.row-fluid
+  .span12
+    .well
+      .navbar.navbar-heading
+        .navbar-inner
+          .container
+            %span.brand=t("common.widget.title")
+      %ul.nav.nav-tabs.nav-stacked
+        %li= link_to 'Who Viewed me <i class="icon-group float-right"></i>'.html_safe, visits_path
+        %li= link_to 'Person Details <i class="icon-eye-open float-right"></i>'.html_safe, nil
+        %li= link_to 'Faborite <i class="icon-heart float-right"></i>'.html_safe, nil
+        %li= link_to 'More Like This <i class="icon-group float-right"></i>'.html_safe, nil
+        %li= link_to 'Bookmark <i class="icon-bookmark float-right"></i>'.html_safe, nil

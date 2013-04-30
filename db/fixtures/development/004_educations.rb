@@ -1,0 +1,1 @@
+Education.delete_all

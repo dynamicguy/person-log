@@ -4,16 +4,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth = request.env["omniauth.auth"]
     authentication = Authentication.where(:provider => auth.provider, :uid => auth.uid).first
     if authentication
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Twitter"
       sign_in_and_redirect(:user, authentication.user)
+      set_flash_message(:notice, :success, :kind => "Twitter") if is_navigational_format?
     else
       @user = User.find_for_twitter_oauth(auth, current_user)
-      @user.authentications.create!(:raw => auth.extra.raw_info.to_json, :provider => auth.provider,
+      @user.authentications.create!(:raw => auth.to_json, :provider => auth.provider,
                                     :uid => auth.uid,
-                                    :credentials => auth.credentials.token.to_s + ' ' + auth.credentials.secret.to_s)
+                                    :credentials => [auth.credentials.token.to_s, auth.credentials.secret.to_s].join(' '))
       if @user.persisted?
         @user.add_role :user
-        flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Twitter"
+        set_flash_message(:notice, :success, :kind => "Twitter") if is_navigational_format?
         sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
                                                               #set_flash_message(:notice, :success, :kind => "Twitter") if is_navigational_format?
       else
@@ -27,15 +27,17 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth = request.env["omniauth.auth"]
     authentication = Authentication.where(:provider => auth.provider, :uid => auth.uid).first
     if authentication
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
+      set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
       sign_in_and_redirect(:user, authentication.user)
     else
       @user = User.find_for_facebook_oauth(auth, current_user)
-      @user.authentications.create!(:raw => auth.extra.raw_info.to_json, :provider => auth.provider,
+      @user.authentications.create!(:raw => auth.to_json, :provider => auth.provider,
                                     :uid => auth.uid,
-                                    :credentials => auth.credentials.token.to_s + ' ' + auth.credentials.secret.to_s)
+                                    :credentials => [auth.credentials.token.to_s, auth.credentials.secret
+                                    .to_s].join(' '))
       if @user.persisted?
         @user.add_role :user
+        FacebookFactory.update_profile(@user)
         sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
         set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
       else
@@ -49,18 +51,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth = request.env["omniauth.auth"]
     authentication = Authentication.where(:provider => auth.provider, :uid => auth.uid).first
     if authentication
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Linkedin"
       sign_in_and_redirect(:user, authentication.user)
+      set_flash_message(:notice, :success, :kind => "LinkedIn") if is_navigational_format?
     else
       @user = User.find_for_linkedin_oauth(auth, current_user)
-      @user.authentications.create!(:raw => auth.extra.raw_info.to_json, :provider => auth.provider,
+      @user.authentications.create!(:raw => auth.to_json, :provider => auth.provider,
                                     :uid => auth.uid,
-                                    :credentials => auth.credentials.token.to_s + ' ' + auth.credentials.secret.to_s)
+                                    :credentials => [auth.credentials.token.to_s, auth.credentials.secret.to_s].join(' '))
       if @user.persisted?
         @user.add_role :user
-        flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Linkedin"
+        LinkedinFactory.update_profile(@user)
         sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
-                                                              #set_flash_message(:notice, :success, :kind => "Twitter") if is_navigational_format?
+        set_flash_message(:notice, :success, :kind => "LinkedIn") if is_navigational_format?
       else
         session["devise.linkedin_data"] = request.env["omniauth.auth"]
         redirect_to new_user_registration_url
@@ -72,18 +74,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth = request.env["omniauth.auth"]
     authentication = Authentication.where(:provider => auth.provider, :uid => auth.uid).first
     if authentication
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "GitHub"
       sign_in_and_redirect(:user, authentication.user)
+      set_flash_message(:notice, :success, :kind => "GitHub") if is_navigational_format?
     else
       @user = User.find_for_github_oauth(auth, current_user)
-      @user.authentications.create!(:raw => auth.extra.raw_info.to_json, :provider => auth.provider,
+      @user.authentications.create!(:raw => auth.to_json, :provider => auth.provider,
                                     :uid => auth.uid,
-                                    :credentials => auth.credentials.token.to_s + ' ' + auth.credentials.secret.to_s)
+                                    :credentials => [auth.credentials.token.to_s, auth.credentials.secret.to_s].join(' '))
       if @user.persisted?
         @user.add_role :user
-        flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "GitHub"
+
         sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
-                                                              #set_flash_message(:notice, :success, :kind => "Twitter") if is_navigational_format?
+        set_flash_message(:notice, :success, :kind => "GitHub") if is_navigational_format?
       else
         session["devise.github_data"] = request.env["omniauth.auth"]
         redirect_to new_user_registration_url
@@ -95,18 +97,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth = request.env["omniauth.auth"]
     authentication = Authentication.where(:provider => auth.provider, :uid => auth.uid).first
     if authentication
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"
       sign_in_and_redirect(:user, authentication.user)
+      set_flash_message(:notice, :success, :kind => "Google") if is_navigational_format?
     else
       @user = User.find_for_google_oauth(auth, current_user)
-      @user.authentications.create!(:raw => auth.extra.raw_info.to_json, :provider => auth.provider,
+      @user.authentications.create!(:raw => auth.to_json, :provider => auth.provider,
                                     :uid => auth.uid,
-                                    :credentials => auth.credentials.token.to_s + ' ' + auth.credentials.secret.to_s)
+                                    :credentials => [auth.credentials.token.to_s, auth.credentials.secret.to_s].join(' '))
       if @user.persisted?
         @user.add_role :user
         flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"
         sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
-                                                              #set_flash_message(:notice, :success, :kind => "Twitter") if is_navigational_format?
+        set_flash_message(:notice, :success, :kind => "Google") if is_navigational_format?
       else
         session["devise.google_data"] = request.env["omniauth.auth"]
         redirect_to new_user_registration_url

@@ -1,0 +1,312 @@
+@charset "UTF-8";
+@import url("reset.css");
+/*==================================================*/
+/*  Cabin CSS Framework 1.1 by Adam Whitcroft       */
+/*  hello[at]adamwhitcroft[dot]com                  */
+/*  @adamwhitcroft                                  */
+/*==================================================*/
+/*  Table of contents:                              */
+/*                                                  */
+/*  01  $HTML, Body                                 */
+/*  02  $Common                                     */
+/*  03  $Clearfix                                   */
+/*  03  $Typography                                 */
+/*  04  $Lists - ol,ul,dl                           */
+/*  05  $Logo                                       */
+/*  06  $Menu                                       */
+/*  07  $Images                                     */
+/*==================================================*/
+/*  $HTML, Body                                     */
+/*==================================================*/
+html {
+	font-size:100%;
+	line-height:1.5em;
+	color:#1a1a1a;
+	overflow-y:scroll;
+	-webkit-text-size-adjust: none;
+}
+body {
+	min-height:100%;
+}
+
+.left {
+	float:left;
+}
+.right {
+	float:right;
+}
+.nomargin {
+	margin:0;
+}
+.box {
+	padding:20px;
+	margin-bottom:1.5em;
+}
+.box:last-child {
+	margin-bottom:0px;
+}
+h1,h2,h3,h4,h5,h6,ul,ol,dl,p,blockquote,address,figure,pre,fieldset,table,hr {
+	margin-bottom:1.5em;
+}
+/*==================================================*/
+/*  $Clearfix                                       */
+/*==================================================*/
+/*== Uses Nicholas Gallagher's method ==*/
+/*== http://nicolasgallagher.com/micro-clearfix-hack/ ==*/
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+.cf:after {
+    clear:both;
+}
+.cf {
+    zoom:1;
+}
+/*==================================================*/
+/*  $Typography                                     */
+/*==================================================*/
+h1,h2,h3,h4,h5,h6 {
+	font-weight:bold;
+}
+h1 {
+    font-size:2em;
+    line-height:1.5em;
+}
+h2 {
+    font-size:1.5em;
+    line-height:1em;
+}
+h3 {
+    font-size:1.25em; 
+    line-height:1.2em; 
+}
+h4 {
+    font-size:1.125em;
+    line-height:1.33em;
+}
+h5,h6 {
+    font-size:1em;
+    line-height: 1.5em;
+}
+/*== Paragraphs ==*/
+p {
+    font-size:1em;
+    line-height:1.5em;
+}
+q,i,em,cite {
+	font-style:italic;	
+}
+b,strong {
+	font-weight:bold;
+}
+s,del {
+	text-decoration:line-through;
+}
+mark {
+	background:#ffdd3d;
+}
+abbr {
+	cursor:help;
+	border-bottom:1px dotted #bbb;
+}
+small {
+	font-size:0.75em;
+}
+hr {
+	border:0;
+	border-top:1px solid #bbb;
+	border-bottom:1px solid #fff;
+	clear:both;
+	display:block;
+}
+/*== Blockquotes ==*/
+/*==================================================*/
+/*  <blockquote>                                    */
+/*    <p>                                           */
+/*      The quote                                   */
+/*    </p>                                          */
+/*    <footer> or <small>                           */
+/*      The quote citation information              */
+/*    </footer> or </small>                         */
+/*  </blockquote>                                   */
+/*==================================================*/
+blockquote {
+	padding-left:24px;
+	border-left:5px solid #bbb;
+}
+blockquote p {
+	margin:0;
+}
+blockquote footer,
+blockquote small {
+	font-style:italic;
+	display:block;
+	font-size:0.75em;
+	text-indent:0.5em;
+	color:#bbb;	
+}
+blockquote footer:before,
+blockquote small:before {
+	content:"\2014 \00A0";
+}
+/*== Links ==*/
+a,a:link {
+	text-decoration:none;
+	cursor:pointer;
+}
+a:hover {
+	text-decoration:underline;
+}
+a:visited {
+	color: #0051cc;
+}
+/*== Pre & Code ==*/
+code,
+pre {
+	font-family: Monaco, Andale Mono, Courier New, monospace;
+	font-size:0.875em;
+	background:#fff6c7;
+}
+code {
+	line-height:1em;
+}
+pre {
+	padding:10px;
+	overflow:auto;
+	white-space:pre;
+	white-space:pre-wrap;
+	word-wrap:break-word;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;	
+}
+.codecomment {
+	color:#008800;
+}
+/*== Selection ==*/
+::selection {
+	color:white;
+	background:red;
+}
+::-moz-selection {
+	color:white;
+	background:red;
+}
+a::selection {
+/* Set to same colour as your a{color} */
+}
+a::-moz-selection {
+/* Set to same colour as your a{color} */
+}
+/*==================================================*/
+/*  $Lists - ol,ul,dl                               */
+/*==================================================*/
+ul,ol {
+/* margin-bottom set in $Common */
+}
+ul ul,ul ol,ol ol,ol ul {
+	margin:0 0 0 40px;
+}
+ol {
+	list-style:decimal outside;
+}
+ol ol {
+	list-style:lower-alpha outside;
+}
+ul {
+	list-style:block outside;
+}
+dl {
+/* margin-bottom set in $Common */	
+}
+dt {
+	font-weight:bold;
+}
+dt:after{
+	content:":";
+}
+dt::after{
+	content:":";
+}
+dd {
+	margin:0 0 0 40px;
+}
+/*==================================================*/
+/*  $Logo                                           */
+/*  <a id="logo" href="/" title="Go home">          */
+/*    <img src="img/yourlogo.png"                   */
+/*  </a>                                            */
+/*==================================================*/
+.logo,.logo img {
+	display:block;
+	width:auto;
+	height:auto;
+}
+.logo {
+	background:url(img/yourlogo.png);
+}
+.logo:hover {
+	background-position:0 -00px;
+}
+.logo img {
+	position:absolute;
+	left:-9999px;
+}
+/*==================================================*/
+/*  $Menu                                           */
+/*==================================================*/
+/*== Horizontal Menu ==*/
+/*== Apply class="horizontal" to your menu ul eg: <ul class="horizontal"> ==*/
+.horizontal {
+	overflow:hidden;
+	list-style:none;
+	margin:0 0 1.5em 0;	
+	border-top:1px solid #bbb;
+	border-bottom:1px solid #bbb;	
+}
+.horizontal li {
+	float:left;
+}
+.horizontal li a {
+	padding:5px;
+	display:block;
+}
+/*== Horizontally Centered Menu ==*/
+/*== Apply class="centered" to your menu ul eg: <ul class="centered"> ==*/
+.centered {
+	list-style:none;
+	text-align:center;
+	border-top:1px solid #bbb;
+	border-bottom:1px solid #bbb;	
+}
+.centered li {
+	display:inline;
+}
+.centered li a {
+	display:inline-block;
+	padding:5px;
+}
+/*== Vertical Menu ==*/
+/*== Apply class="vertical" to your menu ul eg: <ul class="vertical"> ==*/
+.vertical {
+	overflow:hidden;
+	list-style:none;
+	margin:0 0 1.5em 0;
+}
+.vertical li {
+	line-height:1.5em;
+	border-bottom:1px solid #bbb;
+}
+.vertical li a {
+	padding:5px;
+	display:block;
+}
+.vertical li:last-child {
+	border:none;
+}
+embed,object,video {
+	max-width:100%;
+	height:auto;
+}

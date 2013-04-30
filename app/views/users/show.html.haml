@@ -1,62 +1,139 @@
 - model_class = User
+= content_for :title do @user.name end
 
-.well
-  .navbar.navbar-heading
-    .navbar-inner
-      .container
-        %span.brand=t '.title', :default => model_class.model_name.human + ' Details'
-        = link_to '<i class="icon-backward"></i>'.html_safe, :back, :class => 'btn btn-mini pull-right'
-  %p
-    %b= model_class.human_attribute_name(:email) + ':'
-    = @user.email
-  %p
-    %b= model_class.human_attribute_name(:sign_in_count) + ':'
-    = @user.sign_in_count
-  %p
-    %b= model_class.human_attribute_name(:current_sign_in_at) + ':'
-    = @user.current_sign_in_at
-  %p
-    %b= model_class.human_attribute_name(:last_sign_in_at) + ':'
-    = @user.last_sign_in_at
-  %p
-    %b= model_class.human_attribute_name(:current_sign_in_ip) + ':'
-    = @user.current_sign_in_ip
-  %p
-    %b= model_class.human_attribute_name(:last_sign_in_ip) + ':'
-    = @user.last_sign_in_ip
-  %p
-    %b= model_class.human_attribute_name(:name) + ':'
-    = @user.name
-  %p
-    %b= model_class.human_attribute_name(:location) + ':'
-    = @user.location
-  %p
-    %b= model_class.human_attribute_name(:gender) + ':'
-    = @user.gender
-  %p
-    %b= model_class.human_attribute_name(:phone) + ':'
-    = @user.phone
-  %p
-    %b= model_class.human_attribute_name(:bio) + ':'
-    = @user.bio
-  %p
-    %b= model_class.human_attribute_name(:avatar) + ':'
-    %br
-    = image_tag(@user.avatar.thumb, :class => 'thumb account-img')
-  %p
-    %b= model_class.human_attribute_name(:roles) + ':'
-    = @user.roles.collect { |r| r.name }.join(', ')
-  %p
-    %b= model_class.human_attribute_name(:tags) + ':'
-    = raw @user.tag_list.map { |t| link_to '<i class="icon-tag"></i> '.html_safe+t, tag_path(t), :class => 'btn btn-mini' }.join(' ')
-  %p
-    %b= model_class.human_attribute_name(:authentications) + ':'
-    = raw @user.authentications.map { |a| link_to "<i class=\"icon-#{a.provider}\"></i> ".html_safe + a.provider,
-    authentication_path(a),
-    :class => 'btn btn-mini' }.join(' ')
+.span9
+  = render_breadcrumbs
+  .well#person-details
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand=t '.title', :default => model_class.model_name.human + ' Details'
+          - if current_user.has_role?(:admin)
+            = link_to '<i class="icon-edit"></i> Edit Profile'.html_safe, edit_user_path,
+            :class => 'btn btn-mini pull-right btn-af', 'data-no-turbolink' => true if user_signed_in?
+          - else
+            = link_to '<i class="icon-edit"></i> Edit Profile'.html_safe, edit_user_registration_path,
+            :class => 'btn btn-mini pull-right btn-af', 'data-no-turbolink' => true if user_signed_in?
 
-  - if can? :update, model_class
-    .form-actions
-      = link_to t('.back', :default => t("helpers.links.back")), users_path, :class => 'btn'
-      = link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(@user), :class => 'btn' if can? :update, model_class
-      = link_to t('.destroy', :default => t("helpers.links.destroy")), user_path(@user), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger' if can? :destroy, model_class
+    .row-fluid
+      .span9
+        %address
+          %div{'itemscope' => '', 'itemtype' => "http://schema.org/Person"}
+            %span{'itemprop' => 'name', :class => 'person-heading'}= best_in_place @user, :name
+            %strong{'itemprop' => 'jobTitle'}= link_to [@user.positions.order(:id).first.name, @user.positions.order(:id).first.company.name].join(' at '), @user.positions.order(:id).first if @user.positions.order(:id).first
+            %div{'itemprop'=>"address", "itemscope"=>'', 'itemtype'=>"http://schema.org/PostalAddress"}
+              %span{'itemprop'=>"streetAddress"}= best_in_place @user, :address
+              %span.pad= link_to '<i class="icon-map-marker"></i> view in map'.html_safe, @user, :class => '', 'data-no-turbolink' => true
+            %abbr{"itemprop"=>"telephone", :title => 'phone'}= best_in_place @user, :phone
+        %p#biography= best_in_place @user, :bio, type: :textarea
+      .span3
+        =image_tag(@user.avatar.thumb, :class => 'pull-right thumb account-img', 'itemprop' => 'image')
+
+    - unless request.headers["X-XHR-Referer"]
+      #user-map
+        = gmaps({"map_options" => @map_opt, "markers" => {"data" => @markers, "options" => {"draggable" => false, :do_clustering => true, :clusterer_maxZoom => 10}}}) unless request.xml_http_request?
+
+
+    %hr
+    %label= model_class.human_attribute_name(:educations)
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th= 'School'
+          %th= 'Degree'
+          %th= 'Field of study'
+          %th= 'Start'
+      %tbody
+        - unless @user.educations.present?
+          %tr
+            %td{colspan: 4}= raw(t('common.notfound_with_link', :link => new_education_path))
+
+        - for education in @user.educations
+          %tr
+            %td= link_to education.school, education_path(education)
+            %td= education.degree
+            %td= education.field_of_study
+            %td= l education.start_date, :format => :long if education.start_date.present?
+
+    %label= model_class.human_attribute_name(:positions)
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th= 'Name'
+          %th= 'Company'
+          %th= 'Summary'
+          %th= 'Start Date'
+      %tbody
+        - unless @user.positions.present?
+          %tr
+            %td{colspan: 4}= raw(t('common.notfound_with_link', :link => new_position_path))
+
+        - for position in @user.positions
+          %tr
+            %td= link_to position.name, position_path(position)
+            %td= link_to position.company.name, company_path(position.company)
+            %td= truncate(position.summary)
+            %td=  l position.start_date, :format => :long if position.start_date.present?
+
+
+    .row-item#skills
+      %label= model_class.human_attribute_name(:tags)
+      = raw(@user.tag_list.map { |t| link_to '<i class="icon-tag"></i> '.html_safe+t, tag_path(t), :class => 'btn btn-mini' }.join(' ')) unless current_user.has_role?(:admin)
+      = best_in_place @user, :tag_list if current_user.has_role?(:admin)
+
+    .row-item#urls
+      - if @user.urls.length > 0
+        %label= model_class.human_attribute_name(:urls)
+        = 'None' if @user.urls.size == 0
+        - for url in @user.urls
+          =link_to truncate(url.title), url_path(url), :class => 'btn btn-mini'
+
+    - if @user.authentications.length > 0
+      .row-item
+        %label=model_class.human_attribute_name(:authentications)
+        = 'None' if @user.authentications.size == 0
+        - for authentication in @user.authentications
+          = link_to "<i class=\"icon-#{authentication.provider}\"></i> ".html_safe + authentication.provider.titleize, authentication_path(authentication), :class => 'btn btn-mini'
+
+    - if @user.friends.length > 0
+      .row-item
+        %label=model_class.human_attribute_name(:friends)
+        = 'None' if @user.friends.size == 0
+        %ul.nav.nav-pills
+          - for friend in @user.friends.all({:limit => 5})
+            %li= link_to "<i class=\"icon-user\"></i> #{truncate(friend.name, :length => 25 )}".html_safe, user_path(friend), :class => ''
+          %li.last= link_to "view all (#{@user.friends.size})", friends_path if @user.friends
+
+    - if @user.gender.present?
+      .row-item
+        %label=model_class.human_attribute_name(:gender)
+        = best_in_place @user, :gender, type: :select, collection: [["Male", "Male"], ["Female", "Female"], ["", "Unspecified"]]
+
+    - if @user.published_at.present?
+      .row-item
+        %label=model_class.human_attribute_name(:published_at)
+        = l @user.published_at, :format => :long if @user.published_at.present?
+
+    .row-item
+      %label=model_class.human_attribute_name(:published)
+      = best_in_place @user, :published, type: :checkbox, collection: %w[No Yes]
+
+    - if @user.birthday.present?
+      .row-item
+        %label=model_class.human_attribute_name(:birthday)
+        = best_in_place @user, :birthday, :type => :date
+
+    - if @user.birthplace.present?
+      .row-item
+        %label=model_class.human_attribute_name(:birthplace)
+        = best_in_place @user, :birthplace
+
+    - if @user.deathday.present?
+      .row-item
+        %label=model_class.human_attribute_name(:deathday)
+        = best_in_place @user, :deathday, :type => :date
+
+    = render 'layouts/social'
+
+.span3.right-sidebar-fluid
+  = render 'users/sidebar'

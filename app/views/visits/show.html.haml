@@ -1,0 +1,34 @@
+- model_class = Visit
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= t '.title', :default => model_class.model_name.human
+
+    %p
+      %strong= model_class.human_attribute_name(:user_id) + ':'
+      %br
+      = link_to @visit.user.name, @visit.user
+    %p
+      %strong= model_class.human_attribute_name(:ip) + ':'
+      %br
+      = @visit.ip
+    %p
+      %strong= model_class.human_attribute_name(:ua) + ':'
+      %br
+      = @visit.ua
+    %p
+      %strong= model_class.human_attribute_name(:created) + ':'
+      %br
+      = @visit.created
+
+    .form-actions
+      = link_to t('.back', :default => t("helpers.links.back")), visits_path, :class => 'btn'
+      = link_to t('.edit', :default => t("helpers.links.edit")), edit_visit_path(@visit), :class => 'btn'
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), visit_path(@visit), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+
+.span3.right-sidebar-fluid
+  = render 'visits/sidebar'

@@ -1,0 +1,10 @@
+%table.datatable.ajaxed.display.table.table-striped.table-bordered{"data-source"=> queries_url(format: "json")}
+  %thead
+    %tr
+      %th{:width => 10}= '<input type="checkbox" class="toggle">'.html_safe
+      %th= "ip"
+      %th= "Query"
+      %th= "Browser and OS"
+      %th= "created at"
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody

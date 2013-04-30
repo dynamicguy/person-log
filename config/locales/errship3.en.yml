@@ -1,0 +1,10 @@
+## line fix
+#
+en:
+  errship3:
+    '404':
+      title: 'This page does not even exists'
+      description: 'Do not freak out, everything is going to be OK. It could have moved, or someone (maybe you!) mistyped the URL or some other horrible error has occurred. Can you please try again?'
+    '500':
+      title: 'We have a problem!'
+      description: 'This has been reported to our development team. Thank you!'

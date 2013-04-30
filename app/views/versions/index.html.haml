@@ -1,0 +1,11 @@
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= 'Older Versions'
+    = render 'versions'
+
+.span3.right-sidebar-fluid
+  = render 'versions/sidebar'

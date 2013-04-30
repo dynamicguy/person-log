@@ -1,10 +1,19 @@
+<%= content_for :title do
+  'All about persons (alive, dead, undead, or fictional)'
+end %>
+<%= content_for :description do
+  'All about persons (alive, dead, undead, or fictional)'
+end %>
 <div id="home-search" class="span12">
   <h1 id="home-logo">PERSON LOG</h1>
-  <h5 class="slogan">All about persons (alive, dead, undead, or fictional)</h5>
-  <form class="form-search" action="/users/search" method="get" autocomplete="off">
-    <div class="input-append">
-      <input data-provide="typeahead" type="text" class="typeahead search-query" name="q" placeholder="type here..." value="<%= params['q'] %>">
-      <button type="submit" class="btn">Search</button>
-    </div>
-  </form>
+  <h5 class="slogan"><%= t 'site.slogan' %></h5>
+
+  <%= simple_form_for 'persons', :method => :get, :url => persons_search_path, :html => {:class => 'form-search'} do |f| %>
+      <div class="input-append">
+        <%= text_field_tag :q, nil, :placeholder => "Name", :class => "input-medium typeahead search-query", :placeholder => 'type here...' %>
+        <%= submit_tag "Search", :name => nil, :class => "btn", :id => 'search-btn' %>
+        <%#= f.input :q, :label => false, :class => "typeahead search-query", :input_html => {:name => :q, 'data-provide' => "typeahead"} %>
+        <%#= f.submit :search, :class => "btn" %>
+      </div>
+  <% end %>
 </div>

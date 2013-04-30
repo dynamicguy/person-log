@@ -1,8 +1,10 @@
-<% flash.each do |name, msg| %>
-    <% if msg.is_a?(String) %>
+<div class="row-fluid">
+  <% flash.each do |name, msg| %>
+      <% if msg.is_a?(String) %>
           <div class="c-alert pillow-emboss alert-message <%= name == :notice ? "success" : "error" %>">
-            <a class="close" href="#" data-dismiss="alert"><i class="icon-large icon-remove-circle"></i></a>
-            <%= content_tag :p, msg %>
+            <a class="close" href="#" data-dismiss="alert"><i class="icon-remove-circle"></i></a>
+            <%= content_tag :p, raw(msg), :id => "flash_#{name}" %>
           </div>
-    <% end %>
-<% end %>
+      <% end %>
+  <% end %>
+</div>

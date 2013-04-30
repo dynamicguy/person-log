@@ -1,0 +1,20 @@
+= simple_form_for @position, :html => { :class => 'form-vertical' } do |f|
+  = f.input :name, :autofocus => true
+  = f.input :summary, :as => :text, :input_html => { :cols => 50, :rows => 5, :style => 'width: 635px; height: 200px;' }
+  .input-append.date.datepicker{'data-date-format' => 'yyyy-mm-dd'}
+    = f.label :start_date
+    = f.text_field :start_date, :class => ''
+    %span.add-on
+      %i.icon-calendar
+
+  .input-append.date.datepicker{'data-date-format' => 'yyyy-mm-dd'}
+    = f.label :end_date
+    = f.text_field :end_date, :class => ''
+    %span.add-on
+      %i.icon-calendar
+  = f.input :is_current
+  = f.association :company, as: :radio_buttons
+  = f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id}
+  .form-actions
+    = f.button :submit, :class => 'btn-primary btn-af'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), positions_path, :class => 'btn'

@@ -1,0 +1,13 @@
+- model_class = Permission
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human, :default => "Edit #{model_class.model_name.human}")
+    = render :partial => "form"
+
+.span3.right-sidebar-fluid
+  = render 'permissions/sidebar'

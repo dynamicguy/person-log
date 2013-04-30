@@ -1,0 +1,51 @@
+- model_class = Company
+
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human, :default => "New #{model_class.model_name.human}")
+
+    %p
+      %strong= model_class.human_attribute_name(:name) + ':'
+      %br
+      = @company.name
+    %p
+      %strong= model_class.human_attribute_name(:description) + ':'
+      %br
+      = @company.description
+    %p
+      %strong= model_class.human_attribute_name(:industry) + ':'
+      %br
+      = @company.industry
+    %p
+      %strong= model_class.human_attribute_name(:location) + ':'
+      %br
+      = @company.location
+    %p
+      %strong= model_class.human_attribute_name(:size) + ':'
+      %br
+      = @company.size
+    %p
+      %strong= model_class.human_attribute_name(:ctype) + ':'
+      %br
+      = @company.ctype
+
+    %p
+      %strong= model_class.human_attribute_name(:positions) + ':'
+      %br
+      - for position in @company.positions.all({:limit => 5})
+        = link_to "<i class=\"icon-user\"></i> #{position.name}".html_safe, position_path(position), :class => 'btn btn-mini'
+
+
+    .form-actions
+      = link_to t('.back', :default => t("helpers.links.back")), companies_path, :class => 'btn'
+      = link_to t('.edit', :default => t("helpers.links.edit")), edit_company_path(@company), :class => 'btn'
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), company_path(@company), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+
+
+.span3.right-sidebar-fluid
+  = render 'companies/sidebar'

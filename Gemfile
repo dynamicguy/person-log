@@ -1,86 +1,187 @@
-source :rubygems
+source "https://rubygems.org"
 
-gem 'rails', '3.2.8'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'pg'
-gem 'json'
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
+def darwin_only(require_as)
+  RUBY_PLATFORM.include?('darwin') && require_as
 end
 
-gem 'jquery-rails', '~> 2.1'
+def linux_only(require_as)
+  RUBY_PLATFORM.include?('linux') && require_as
+end
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem "rails", "3.2.13"
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+# Supported DBs
+#gem "mysql2", group: :mysql
+gem "pg", :group => :postgres
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug'
-
-gem "unicorn", ">= 4.3.1"
-gem "haml", ">= 3.1.7"
-gem "haml-rails", ">= 0.3.5", :group => :development
-gem "thin", :group => :development
-gem "hpricot", ">= 0.8.6", :group => :development
-gem "ruby_parser", ">= 2.3.1", :group => :development
-gem "rspec-rails", ">= 2.11.0", :group => [:development, :test]
-gem "email_spec", ">= 1.2.1", :group => :test
-gem "cucumber-rails", ">= 1.3.0", :require => false, :group => :test
-gem "database_cleaner", ">= 0.9.1", :group => :test
-gem "launchy", ">= 2.1.2", :group => :test
-gem "capybara", ">= 1.1.2", :group => :test
-gem "factory_girl_rails", ">= 4.1.0", :group => [:development, :test]
-gem "bootstrap-sass", ">= 2.1.0.0"
-gem "devise", ">= 2.1.2"
-gem "cancan", ">= 1.6.8"
-gem "rolify", ">= 3.2.0"
-gem "simple_form", ">= 2.0.4"
-gem "quiet_assets", ">= 1.0.1", :group => :development
-gem "hub", ">= 1.10.2", :group => [:development], :require => nil
-
-gem 'bootstrap_helper'
-gem 'kaminari', '~> 0.13.0'
-gem 'errship', '~> 2.2.0'
-gem 'sunspot_rails', :git => 'git://github.com/sunspot/sunspot.git'
-gem 'sunspot_solr'
-gem 'geocoder', '~> 1.1.1'
-gem 'airbrake'
-gem 'high_voltage'
-gem 'carrierwave', '~> 0.6.2'
-gem 'mini_magick'
-gem "twitter-bootstrap-rails"
-gem 'rails_admin', '~> 0.0.4'
-gem 'acts-as-taggable-on', '~> 2.3.1'
-gem 'rails_admin_tag_list', :git => 'https://github.com/kryzhovnik/rails_admin_tag_list.git'
-
-
-gem 'omniauth'
+# Auth
+gem "devise", "~> 2.1.2"
+gem 'devise_invitable', '~> 1.0.0'
+gem 'omniauth', "~> 1.1.1"
+gem 'devise-encryptable'
 gem 'omniauth-oauth2'
+gem 'koala'
 gem 'omniauth-facebook'
-gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git', :tag => 'v0.0.13'
+gem 'omniauth-twitter', :git => 'git://github.com/arunagw/omniauth-twitter.git'
 gem 'omniauth-github'
+gem 'linkedin'
 gem 'omniauth-linkedin'
 gem 'omniauth-google-oauth2'
+gem "cancan"
+gem "rolify", ">= 3.2.0"
 
+
+# API
+gem "grape", "~> 0.2.1"
+
+# Format dates and times
+# based on human-friendly examples
+gem "stamp"
+
+# Pagination
+gem "kaminari", "~> 0.14.1"
+
+# HAML
+gem "haml-rails", "~> 0.3.5"
+
+# Generate Fake data
+gem "ffaker"
+
+# Seed data
+gem "seed-fu"
+
+# Markdown to HTML
+gem "redcarpet",     "~> 2.2.2"
+gem "github-markup", "~> 0.7.4", :require => 'github/markup'
+
+# Servers
+gem "thin", '~> 1.5.0'
+gem "unicorn", "~> 4.4.0"
+
+# Decorators
+gem "draper", "~> 0.18.0"
+
+# HTTP requests
+gem "httparty"
+
+# Colored output to console
+gem "colored"
+
+# Misc
+gem "foreman"
+gem "git"
+#gem "less-rails"
+gem "jquery-rails"
+
+group :assets do
+  gem "sass-rails",   "~> 3.2.5"
+  gem "coffee-rails", "~> 3.2.2"
+  gem 'jquery-datatables-rails'
+  gem "uglifier",     "~> 1.3.0"
+  gem "raphael-rails",    "1.5.2"
+end
+
+group :development do
+  gem "annotate", :git => "git://github.com/ctran/annotate_models.git"
+  gem "letter_opener"
+  gem 'quiet_assets', '~> 1.0.1'
+  gem 'rack-mini-profiler'
+  # Better errors handler
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  #gem 'metrical'
+  #gem 'rails_best_practices'
+  gem 'bullet'
+end
+
+group :development, :test do
+  gem 'relish'
+  gem 'rails-dev-tweaks'
+  gem 'cucumber-rails', :require => false
+  gem "rspec-rails", ">= 2.12.0"
+  gem "selenium-webdriver", "~> 2.27.2"
+  gem "capybara", "~> 2.0.1"
+  gem "pry"
+  gem "awesome_print"
+  gem "database_cleaner", :github => "bmabey/database_cleaner"
+  gem "launchy"
+  gem 'factory_girl_rails'
+
+  # Guard
+  gem 'guard-rspec'
+  gem "spork", "> 0.9.0.rc"
+  gem "guard-spork"
+  gem 'fuubar'
+  # Notification
+  gem 'rb-fsevent', :require => darwin_only('rb-fsevent')
+  gem 'growl',      :require => darwin_only('growl')
+  gem 'rb-inotify', :require => linux_only('rb-inotify')
+end
+
+group :test do
+  gem 'simplecov', '>=0.3.8', :require => false
+  gem 'email_spec'
+  gem 'test_after_commit'
+  gem "sunspot_test", "~> 0.4.0"
+end
+
+group :production do
+
+end
+
+# translation
+gem 'tolk'
+
+# versioning
 gem 'paper_trail', '~> 2'
+gem 'airbrake'
 
+# image files attachments
+gem 'mini_magick'
+gem "carrierwave", "~> 0.7.1"
+gem "fog", "~> 1.3.1"
+
+# Background job MQ service
+gem 'queue_classic'
+gem "resque"
+gem 'resque_mailer'
+
+
+# data visulaization
+gem "google_visualr", ">= 2.1.2"
+gem "useragent"
+gem "rdf-rdfa"
+
+# maps
+gem 'geocoder', '~> 1.1.1'
+gem 'gmaps4rails', :github => 'apneadiving/Google-Maps-for-Rails'
+
+# flat pages
+gem 'high_voltage'
+
+# twitter bootstrap
+gem "breadcrumbs_on_rails"
+gem 'twitter-bootstrap-rails', :github => 'seyhunak/twitter-bootstrap-rails'
+gem 'bootstrap-wysihtml5-rails'
+
+# tags and rails admin
+gem "acts-as-taggable-on", "2.3.3"
+gem 'rails_admin_tag_list', :github => 'kryzhovnik/rails_admin_tag_list', :ref => "1092becaa3b3a19874710910d287541563e9026b"
+gem 'rails_admin', '~> 0.0.4'
+
+# errrors for dummy
+gem 'errship3'
+
+
+gem "simple_form", ">= 2.0.4"
+
+# solr and friends
+gem 'sunspot_rails', :git => 'git://github.com/sunspot/sunspot.git'
+gem 'sunspot_solr'
+
+gem 'turbolinks', :github => 'rails/turbolinks'
+gem 'cache_digests'
+gem 'best_in_place'
+
+gem 'rails-gallery'
+#gem 'bootstrap-addons-rails'

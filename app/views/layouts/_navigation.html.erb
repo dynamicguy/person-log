@@ -1,7 +1,12 @@
 <div class="navbar-inner">
   <div class="container" style="width: auto;">
-    <a class="brand" href="/"><img src="/assets/logo.png"></a>
+    <a class="brand" href="/" data-no-turbolink="true"><img src="/assets/logo.png"></a>
     <ul class="nav pull-right">
+      <% if user_signed_in? %>
+          <li class="text-link">Welcome, <%= link_to current_user.name, edit_user_registration_path %></li>
+      <% else %>
+          <li class="text-link">Welcome Guest, <%= link_to 'Login', new_user_session_path %></li>
+      <% end %>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-xlarge icon-user"></i>
           <b class="caret"></b></a>
@@ -14,15 +19,14 @@
               <li class="account-info">
                 <h3><%= current_user.name %></h3>
 
-                <p><%= current_user.bio %></p>
+                <p><%= raw truncate(current_user.bio, :length => 200) %></p>
               </li>
               <li class="account-footer">
                 <div class="row-fluid">
                   <div class="span12">
                     <%= link_to 'Edit profile', edit_user_registration_path, :class => "btn btn-primary btn-small" %>
                     <%= link_to 'View profile', current_user, :class => 'btn btn-primary btn-small' %>
-                    <%= link_to 'Logout', destroy_user_session_path, :method => 'delete',
-                                :class => 'btn btn-danger btn-small' %>
+                    <%= link_to 'Logout', destroy_user_session_path, :method => 'delete', :class => 'btn btn-danger btn-small', 'data-confirm' => "Please confirm your action." %>
                   </div>
                 </div>
                 <div class="clearfix"></div>
@@ -40,5 +44,11 @@
       </li>
     </ul>
 
+  </div>
+</div>
+
+<div id="loader">
+  <div id="progress-bar" class="progress active progress-warning progress-striped no-border" style="display: none;">
+    <div class="bar" style="width: 100%"></div>
   </div>
 </div>

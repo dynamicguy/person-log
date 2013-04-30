@@ -1,0 +1,29 @@
+<% content_for :title do 'Show Confirmation' end %>
+<div class="well">
+  <div class="navbar navbar-heading">
+    <div class="navbar-inner">
+      <div class="container">
+        <span class="brand">
+           Activate your account
+        </span>
+      </div>
+    </div>
+  </div>
+  <%= simple_form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:class => 'form-vertical', :method => 'put'}, :id => 'activation-form' do |f| %>
+      <fieldset>
+        <legend>
+          Account Activation
+          <% if resource.email %>
+              for <%= resource.email %>
+          <% end %>
+        </legend>
+        <%= f.error_notification %>
+        <% if @requires_password %>
+            <%= f.input :password %>
+            <%= f.input :password_confirmation %>
+        <% end %>
+        <%= hidden_field_tag :confirmation_token, @confirmation_token %>
+        <p><%= f.submit "Activate", :class => 'btn btn-af' %></p>
+      </fieldset>
+  <% end %>
+</div>

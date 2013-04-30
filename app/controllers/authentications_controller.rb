@@ -1,9 +1,13 @@
 class AuthenticationsController < ApplicationController
+  load_and_authorize_resource
+  before_filter :authenticate_user!, :only => [:index, :edit, :destroy]
+  add_breadcrumb :authentications, :authentications_path
+
   # GET /authentications
   # GET /authentications.json
   def index
     @authentications = current_user.authentications if current_user
-
+    add_breadcrumb :list
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @authentications }
@@ -14,6 +18,7 @@ class AuthenticationsController < ApplicationController
   # GET /authentications/1.json
   def show
     @authentication = Authentication.find(params[:id])
+    add_breadcrumb :details
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +30,7 @@ class AuthenticationsController < ApplicationController
   # GET /authentications/new.json
   def new
     @authentication = Authentication.new
+    add_breadcrumb :new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,6 +40,7 @@ class AuthenticationsController < ApplicationController
 
   # GET /authentications/1/edit
   def edit
+    add_breadcrumb :edit
     @authentication = Authentication.find(params[:id])
   end
 

@@ -1,39 +1,68 @@
 - model_class = User
+= content_for :title do 'Person Search Result' end
 
-.row-fluid
-  .span6
-    = render 'search'
-  .span6
-    .pull-right
-      %h5.pad=link_to current_user.name, current_user
-
-.row-fluid
-  .well.alert-message.notice
+.span12
+  = render_breadcrumbs
+  .row-fluid
     .span6
-      %span.badge.badge-success= @search.total if @search.total.present?
-      persons found in #{Time.now - @start} seconds
-    .span6
+      = render 'search'
+    .span6.filters
+      = link_to '<i class="icon-list"></i> View as List'.html_safe, persons_list_path(params), :class => 'btn btn-inverse btn-mini pull-right'
+      = link_to '<i class="icon-map-marker"></i> View as Map'.html_safe, persons_map_path(params), :class => 'btn btn-inverse btn-mini pull-right', 'data-no-turbolink' => true
+      = link_to '<i class="icon-picture"></i> View as Card'.html_safe, users_path(params), :class => 'btn btn-inverse btn-mini pull-right'
       .pull-right.dropdown
-        =link_to '<i class="icon-cogs"></i>'.html_safe, '#',
-        :class => 'dropdown-toggle btn-af btn btn-mini left_tooltip',
+        =link_to '<i class="icon-sort"></i> Sort by'.html_safe, '#',
+        :class => 'dropdown-toggle btn btn-inverse btn-mini',
         'data-toggle' => 'dropdown',
         'data-original-title' => 'Settings'
         %ul.dropdown-menu
-          %li= link_to 'Search settings'
-          %li= link_to 'Advanced search'
-          %li= link_to 'Web history'
-          %li= link_to 'Search Help'
+          %li= link_to 'email desc', '#', :onClick => "$('#sort').val('email');$('#direction').val('desc');$('#search-form').submit(); return false;"
+          %li= link_to 'email asc', '#', :onClick => "$('#sort').val('email');$('#direction').val('asc');$('#search-form').submit(); return false;"
+          %li= link_to 'id desc', '#', :onClick => "$('#sort').val('id');$('#direction').val('desc');$('#search-form').submit(); return false;"
+          %li= link_to 'id asc', '#', :onClick => "$('#sort').val('id');$('#direction').val('asc');$('#search-form').submit(); return false;"
+          %li= link_to 'published_at desc', '#', :onClick => "$('#sort').val('published_at');$('#direction').val('desc');$('#search-form').submit(); return false;"
+          %li= link_to 'published_at asc', '#', :onClick => "$('#sort').val('published_at');$('#direction').val('asc');$('#search-form').submit(); return false;"
+  %br.clearfix
 
-.row-fluid
-  %ul.thumbnails
-    - @search.results.each do |user|
-      %li.span4
-        .thumbnail
-          = link_to image_tag(user.avatar.thumb), user, :class => 'pull-left'
-          .caption
-            %h4= link_to user.name, user
-            = raw user.tag_list.map { |t| link_to '<i class="icon-tag"></i> '.html_safe+t, tag_path(t), :class => '' }.join(' ')
-            .desc= truncate(user.bio, :length => 110, :omission => '... (continued)')
+  .row-fluid
+    .span12
+      .c-alert.pillow-emboss
+        .alert-message.custom
+          .span6
+            %div.badge.badge-success= @search.total if @search.total.present?
+            persons found in #{Time.now - @start} seconds
+          .span6
+            .pull-right.dropdown
+              =link_to '<i class="icon-cogs"></i> <span class="caret"></span>'.html_safe, '#',
+              :class => 'dropdown-toggle btn btn-mini left_tooltip',
+              'data-toggle' => 'dropdown',
+              'data-original-title' => 'Settings'
+              %ul.dropdown-menu
+                %li= link_to 'Search settings'
+                %li= link_to 'Advanced search'
+                %li= link_to 'Web history', queries_path
+                %li= link_to 'Search Help', page_path('help')
+
+  .row-fluid
+    .span12.tag-container
+      %span
+      - if @search.facet(:tag_list)
+        - @search.facet(:tag_list).rows.each_with_index do |facet, index|
+          - break if index == 8;
+          = link_to '<i class="icon-tags"></i> '.html_safe + "#{facet.value} (#{facet.count})", tag_path(facet.value), :class => 'btn btn-mini'
+
+  .row-fluid
+    .span12
+      %ul.thumbnails
+        - @search.results.each do |user, index|
+          %li.span4
+            .thumbnail
+              = link_to image_tag(user.avatar.thumb), user, :class => 'pull-left'
+              .caption
+                %h4= link_to highlight(truncate(user.name, :length => 21), params[:q]), user if user.name
+                - if user.tags.present?
+                  = raw user.tags.limit(3).map { |t| link_to '<i class="icon-tags"></i> '.html_safe + truncate(strip_tags(t.name), :length => 8), tag_path(t.name), :class => '' }.join(' ')
+                .desc= highlight(truncate(strip_tags(user.bio), :length => 90, :omission => '... (continued)'), params[:q]) if user.bio
 
 
-  %div= paginate @search.results
+    = paginate @search.results

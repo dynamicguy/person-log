@@ -1,0 +1,32 @@
+- model_class = Newsletter
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand=t '.title', :default => model_class.model_name.human.pluralize + ' Listing'
+          = link_to t('.new', :default => t("helpers.links.new")), new_newsletter_path, :class => 'btn btn-af btn-mini pull-right'
+
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= model_class.human_attribute_name(:subject)
+          %th= model_class.human_attribute_name(:delivered_at)
+          %th= model_class.human_attribute_name(:created_at)
+          %th=t '.actions', :default => t("helpers.actions")
+      %tbody
+        - @newsletters.each do |newsletter|
+          %tr
+            %td= link_to newsletter.subject, newsletter_path(newsletter)
+            %td= newsletter.delivered_at
+            %td=l newsletter.created_at
+            %td
+              = link_to t('.edit', :default => t("helpers.links.edit")), edit_newsletter_path(newsletter), :class => 'btn btn-mini'
+              = link_to t('.destroy', :default => t("helpers.links.destroy")), newsletter_path(newsletter), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+              = link_to "Deliver Newsletter", deliver_newsletter_path(newsletter), method: :post, :class => 'btn btn-af btn-mini'
+
+
+.span3
+  = render 'newsletters/sidebar'

@@ -1,0 +1,42 @@
+- model_class = Education
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= t '.title', :default => model_class.model_name.human
+    %p
+      %strong= model_class.human_attribute_name(:school) + ':'
+      %br
+      = @education.school
+    %p
+      %strong= model_class.human_attribute_name(:degree) + ':'
+      %br
+      = @education.degree
+    %p
+      %strong= model_class.human_attribute_name(:field_of_study) + ':'
+      %br
+      = @education.field_of_study
+    %p
+      %strong= model_class.human_attribute_name(:start_date) + ':'
+      %br
+      = l @education.start_date, :format => :long
+    %p
+      %strong= model_class.human_attribute_name(:end_date) + ':'
+      %br
+      = l @education.end_date, :format => :long
+    %p
+      %strong= model_class.human_attribute_name(:user_id) + ':'
+      %br
+      = link_to @education.user.name, @education.user
+
+    .form-actions
+      = link_to t('.back', :default => t("helpers.links.back")), educations_path, :class => 'btn'
+      = link_to t('.edit', :default => t("helpers.links.edit")), edit_education_path(@education), :class => 'btn'
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), education_path(@education), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+
+
+.span3.right-sidebar-fluid
+  = render 'educations/sidebar'

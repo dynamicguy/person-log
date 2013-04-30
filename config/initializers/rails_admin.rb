@@ -1,8 +1,4 @@
-# RailsAdmin config file. Generated on October 23, 2012 23:25
-# See github.com/sferik/rails_admin for more informations
-
 RailsAdmin.config do |config|
-
   # If your default_local is different from :en, uncomment the following 2 lines and set your default locale here:
   # require 'i18n'
   # I18n.default_locale = :de
@@ -13,7 +9,7 @@ RailsAdmin.config do |config|
   # config.audit_with :history, User
 
   # Or with a PaperTrail: (you need to install it first)
-  # config.audit_with :paper_trail, User
+  config.audit_with :paper_trail, User
 
   # Set the admin name here (optional second array element will appear in a beautiful RailsAdmin red ©)
   config.main_app_name = ['Person Log', 'Admin']
@@ -88,13 +84,13 @@ RailsAdmin.config do |config|
 
   # config.model Role do
   #   # Found associations:
-  #     configure :resource, :polymorphic_association         # Hidden 
+  #     configure :resource, :polymorphic_association         # Hidden
   #     configure :users, :has_and_belongs_to_many_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :name, :string 
-  #     configure :resource_id, :integer         # Hidden 
-  #     configure :resource_type, :string         # Hidden 
-  #     configure :created_at, :datetime 
+  #     configure :id, :integer
+  #     configure :name, :string
+  #     configure :resource_id, :integer         # Hidden
+  #     configure :resource_type, :string         # Hidden
+  #     configure :created_at, :datetime
   #     configure :updated_at, :datetime   #   # Sections:
   #   list do; end
   #   export do; end
@@ -106,26 +102,26 @@ RailsAdmin.config do |config|
   # config.model User do
   #   # Found associations:
   #     configure :roles, :has_and_belongs_to_many_association   #   # Found columns:
-  #     configure :id, :integer 
-  #     configure :email, :string 
-  #     configure :password, :password         # Hidden 
-  #     configure :password_confirmation, :password         # Hidden 
-  #     configure :reset_password_token, :string         # Hidden 
-  #     configure :reset_password_sent_at, :datetime 
-  #     configure :remember_created_at, :datetime 
-  #     configure :sign_in_count, :integer 
-  #     configure :current_sign_in_at, :datetime 
-  #     configure :last_sign_in_at, :datetime 
-  #     configure :current_sign_in_ip, :string 
-  #     configure :last_sign_in_ip, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :name, :string 
-  #     configure :first_name, :string 
-  #     configure :last_name, :string 
-  #     configure :avatar, :carrierwave 
-  #     configure :confirmed_at, :date 
-  #     configure :confirmed_send_at, :date 
+  #     configure :id, :integer
+  #     configure :email, :string
+  #     configure :password, :password         # Hidden
+  #     configure :password_confirmation, :password         # Hidden
+  #     configure :reset_password_token, :string         # Hidden
+  #     configure :reset_password_sent_at, :datetime
+  #     configure :remember_created_at, :datetime
+  #     configure :sign_in_count, :integer
+  #     configure :current_sign_in_at, :datetime
+  #     configure :last_sign_in_at, :datetime
+  #     configure :current_sign_in_ip, :string
+  #     configure :last_sign_in_ip, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :name, :string
+  #     configure :first_name, :string
+  #     configure :last_name, :string
+  #     configure :avatar, :carrierwave
+  #     configure :confirmed_at, :date
+  #     configure :confirmed_send_at, :date
   #     configure :confirmation_token, :string   #   # Sections:
   #   list do; end
   #   export do; end

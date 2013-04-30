@@ -1,72 +1,66 @@
 PersonLog::Application.routes.draw do
+
+  resources :images
+
+
+  resources :galleries
+
+
+  mount Tolk::Engine => '/tolk', :as => 'tolk'
+  resources :permissions
+  resources :visits
+  get "moderators/versions"
+  get "moderators/dashboard"
+  get "/pages/:id" => 'pages#show', :as => :page
+  get "import" => "import#index"
+  get "import/twitter"
+  get "import/facebook"
+  get "import/linkedin"
+  get "import/github"
+  get "import/google"
+  get "import/linkedin_profile"
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  get "/persons/search" => "users#search"
+  get "/persons/map" => "users#map"
+  get "/persons/tags" => "users#tags"
+  get "/friends" => "users#friends"
+  get "/persons/typeahead" => "users#typeahead"
+  get "/persons/list" => "users#list"
+  get "/persons/manage" => "users#manage"
+  match "/persons/update_address/:id/:address" => "users#update_address"
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+  get 'tags/:tag', :to => 'users#index', :as => :tag
+  resources :queries
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  devise_for :users, :path => "persons", :controllers => {:registrations => 'registrations',
+                                                          :invitations => 'users/invitations',
+                                                          :confirmations => "confirmations",
+                                                          :omniauth_callbacks => "users/omniauth_callbacks"}
+  #resources :users, :path => 'persons', only: [:show, :index, :edit, :update]
+  match 'persons/bulk_invite/:quantity' => 'users#bulk_invite', :via => :get, :as => :bulk_invite
+  match 'persons/bulk_action' => 'users#bulk_action', :via => :get, :as => :bulk_user_action
+  resources :users, :path => 'persons' do
+    get 'invite', :on => :member
+  end
 
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+  authenticated :user do
+    root :to => 'home#index'
+  end
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  devise_scope :user do
+    root :to => "registrations#new"
+    match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
+  end
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
-
-  #match 'auth/:provider/callback', to: 'sessions#create'
-  #match 'auth/failure', to: redirect('/')
-  get "/users/search"           => "users#search"
-  get "/users/typeahead"           => "users#typeahead"
-  get 'tags/:tag', to: 'users#index', as: :tag
-  devise_for :users, :path => "persons", controllers: {:registrations => 'registrations',
-                                                       :omniauth_callbacks => "users/omniauth_callbacks"}
-  resources :users, :path => 'persons', only: [:show, :index, :edit, :update]
-
-  root :to => "home#index"
   resources :authentications
+  resources :positions
+  resources :educations
+  resources :companies
+  resources :urls
+  resources :newsletters do
+    member { post :deliver }
+  end
+  match "versions/:id/revert" => "versions#revert", :as => "revert_version"
+  get "versions" => "versions#index"
+  get "versions/:id" => "versions#show", :as => :version
 end

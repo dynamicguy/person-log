@@ -1,0 +1,11 @@
+= simple_form_for @company, :html => { :class => 'form-vertical' } do |f|
+  = f.input :name, :autofocus => true
+  = f.input :description, :as => :text, :input_html => { :cols => 50, :rows => 5, :style => 'width: 635px; height: 200px;' }
+  = f.input :industry
+  = f.input :location
+  = f.input :size
+  = f.input :ctype
+  = f.association :positions, :as => :check_boxes
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), companies_path, :class => 'btn'

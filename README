@@ -1,3 +1,9 @@
+mysqldump -udguser -hlocalhost -pdgpasswd dynamicguy > dynamicguy_prod.sql
+mysqldump -udguser -hlocalhost -pdgpasswd dynamicguy < dynamicguy_prod.sql
+
+/home/dev/public_html/raakib_edge.tasawrstaging.com/code/current/public
+
+
 RECIPES
 ["controllers", "core", "email", "extras", "frontend", "gems", "git", "init", "models", "prelaunch", "railsapps", "readme", "routes", "setup", "testing", "views"]
 PREFERENCES

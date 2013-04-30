@@ -1,0 +1,82 @@
+##
+en:
+  breadcrumbs:
+    application:
+      home: Home
+    urls:
+      urls: urls
+      list: list
+      create: create
+      new: new
+      edit: edit
+      details: details
+    users:
+      persons: persons
+      manage: manage
+      details: details
+      edit: edit
+      create: create
+      map: map
+      search: search
+      list: list
+    moderators:
+      dashboard: moderator dashboard
+    authentications:
+      authentications: authentications
+      list: list
+      create: create
+      new: new
+      edit: edit
+      details: details
+    companies:
+      companies: companies
+      list: list
+      create: create
+      new: new
+      edit: edit
+      details: details
+    educations:
+      educations: educations
+      list: list
+      create: create
+      new: new
+      edit: edit
+      details: details
+    visits:
+      visits: visits
+      list: list
+      create: create
+      new: new
+      edit: edit
+      details: details
+    versions:
+      versions: versions
+      list: list
+      create: create
+      new: new
+      edit: edit
+      details: details
+    urls:
+      urls: urls
+      list: list
+      create: create
+      new: new
+      edit: edit
+      details: details
+    queries:
+      queries: queries
+      list: list
+      create: create
+      new: new
+      edit: edit
+      details: details
+    positions:
+      positions: positions
+      list: list
+      create: create
+      new: new
+      edit: edit
+      details: details
+    registrations:
+      edit: edit profile
+
