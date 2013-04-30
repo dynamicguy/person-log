@@ -1,7 +1,11 @@
 class GalleriesController < ApplicationController
+  add_breadcrumb :galleries, :galleries_path
+  before_filter :authenticate_user!
+
   # GET /galleries
   # GET /galleries.json
   def index
+    add_breadcrumb :list
     @galleries = Gallery.all
 
     respond_to do |format|
@@ -13,6 +17,7 @@ class GalleriesController < ApplicationController
   # GET /galleries/1
   # GET /galleries/1.json
   def show
+    add_breadcrumb :details
     @gallery = Gallery.find(params[:id])
 
     respond_to do |format|
@@ -24,6 +29,7 @@ class GalleriesController < ApplicationController
   # GET /galleries/new
   # GET /galleries/new.json
   def new
+    add_breadcrumb :new
     @gallery = Gallery.new
 
     respond_to do |format|
@@ -34,6 +40,7 @@ class GalleriesController < ApplicationController
 
   # GET /galleries/1/edit
   def edit
+    add_breadcrumb :edit
     @gallery = Gallery.find(params[:id])
   end
 

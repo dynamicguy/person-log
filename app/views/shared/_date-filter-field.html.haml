@@ -1,0 +1,14 @@
+%p.filter.form-search
+  %span.form-label
+    %a{:href=>'#', :class => 'delete remove-link btn btn-info', 'onClick' => "$(this).parent().parent().fadeOut('slow'); return false;"} <i class="icon-trash icon-white"></i> #{field_name.humanize}
+  %select.date-dropdown.switch-additionnal-fieldsets.input-small{:name => "date_filter[#{field_name}]", "onChange" => 'processDateDropdownFilter(this);'}
+    %option{"data-additional-fieldset" => "default", :value => "default"} Date ...
+    %option{"data-additional-fieldset" => "between", :value => "between"} Between ... and ...
+    %option{:value => "today"} Today
+    %option{:value => "yesterday"} Yesterday
+    %option{:value => "this_week"} This week
+    %option{:value => "last_week"} Last week
+    %option{:disabled => "disabled"} ---------
+    %option{:value => "_not_null"} Is present
+    %option{:value => "_null"} Is blank
+  %span.filter-fields-container= f.text_field "#{field_name}_cont".to_sym, :class => 'input-small', 'data-id' => field_name

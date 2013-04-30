@@ -1,0 +1,19 @@
+- model_class = Gallery
+
+%p
+  %strong= model_class.human_attribute_name(:name) + ':'
+  %br
+  = best_in_place @gallery, :name
+%p
+  %strong= model_class.human_attribute_name(:description) + ':'
+  %br
+  = best_in_place @gallery, :description
+%p
+  %strong= model_class.human_attribute_name(:user_id) + ':'
+  %br
+  = link_to @gallery.user.name, @gallery.user
+
+%p
+  %strong= model_class.human_attribute_name(:images) + ':'
+  %br
+  = link_to @gallery.images.size, images_path(:gallery_id => @gallery.id)

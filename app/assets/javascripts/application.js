@@ -18,7 +18,7 @@
 //= require bootstrap-wysihtml5
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
-//= require plugins/chosen.jquery
+//= require plugins/chosen/chosen.jquery
 //= require raphael
 //= require confirmation
 //= require bootstrap-datepicker/bootstrap-datepicker

@@ -1,0 +1,4 @@
+%p.filter.form-search
+  %span.form-label
+    %a{:href=>'#', :class => 'delete remove-link btn btn-info', 'onClick' => "$(this).parent().parent().fadeOut('slow'); return false;"} <i class="icon-trash icon-white"></i> #{field_name}
+  %span.filter-fields-container= f.text_field "#{field_name}_eq".to_sym, :class => 'input-small'

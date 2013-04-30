@@ -1,8 +1,12 @@
 class ImagesController < ApplicationController
+  add_breadcrumb :images, :images_path
+  before_filter :authenticate_user!
+
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all
+    add_breadcrumb :list
+    @images = Image.all(:include => [:gallery])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,6 +17,7 @@ class ImagesController < ApplicationController
   # GET /images/1
   # GET /images/1.json
   def show
+    add_breadcrumb :details
     @image = Image.find(params[:id])
 
     respond_to do |format|
@@ -24,6 +29,7 @@ class ImagesController < ApplicationController
   # GET /images/new
   # GET /images/new.json
   def new
+    add_breadcrumb :new
     @image = Image.new
 
     respond_to do |format|
@@ -34,6 +40,7 @@ class ImagesController < ApplicationController
 
   # GET /images/1/edit
   def edit
+    add_breadcrumb :edit
     @image = Image.find(params[:id])
   end
 

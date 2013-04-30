@@ -1,0 +1,12 @@
+#personlog-carousel.carousel.slide
+  / Carousel items
+  .carousel-inner
+    - for item in images
+      .item
+        = image_tag(item.image.url)
+        .carousel-caption
+          %h4= item.name
+          %p= item.description
+  / Carousel nav
+  %a.carousel-control.left{"data-slide" => "prev", :href => "#personlog-carousel"} ‹
+  %a.carousel-control.right{"data-slide" => "next", :href => "#personlog-carousel"} ›

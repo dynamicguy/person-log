@@ -1,4 +1,13 @@
 - model_class = Gallery
-.page-header
-  %h1=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human, :default => "New #{model_class.model_name.human}")
-= render :partial => "form"
+
+.span3.leftsidebar= render 'sidebar'
+
+.span9
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human, :default => "New #{model_class.model_name.human}")
+
+    = render "form"

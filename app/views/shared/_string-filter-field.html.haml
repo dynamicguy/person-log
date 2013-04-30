@@ -1,0 +1,12 @@
+%p.filter.form-search
+  %span.form-label
+    %a{:href=>'#', :class => 'delete remove-link btn btn-info', 'onClick' => "$(this).parent().parent().fadeOut('slow'); return false;"} <i class="icon-trash icon-white"></i> #{field_name.humanize}
+  %select.string-dropdown.switch-additionnal-fieldsets.input-small{:name => "string_filter#{field_name}", "onChange" => 'processStringDropdownFilter(this);'}
+    %option{"data-additional-fieldset" => "additional-fieldset", :value => "like"} Contains
+    %option{"data-additional-fieldset" => "additional-fieldset", :value => "is"} Is exactly
+    %option{"data-additional-fieldset" => "additional-fieldset", :value => "starts_with"} Starts with
+    %option{"data-additional-fieldset" => "additional-fieldset", :value => "ends_with"} Ends with
+    %option{:disabled => "disabled"} ---------
+    %option{:value => "_present"} Is present
+    %option{:value => "_blank"} Is blank
+  %span.filter-fields-container= f.text_field "#{field_name}_cont".to_sym, :class => 'input-small', 'data-id' => field_name

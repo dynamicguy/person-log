@@ -1,21 +1,19 @@
 - model_class = Gallery
-.page-header
-  %h1=t '.title', :default => model_class.model_name.human
 
-%p
-  %strong= model_class.human_attribute_name(:name) + ':'
-  %br
-  = @gallery.name
-%p
-  %strong= model_class.human_attribute_name(:description) + ':'
-  %br
-  = @gallery.description
-%p
-  %strong= model_class.human_attribute_name(:user_id) + ':'
-  %br
-  = @gallery.user_id
+- cache @gallery do
+  = render_breadcrumbs
+  .well
+    .navbar.navbar-heading
+      .navbar-inner
+        .container
+          %span.brand= t '.title', :default => model_class.model_name.human
+          = link_to raw('<i class="icon-edit-sign"></i> ' + t('.edit', :default => t("helpers.links.edit"))), edit_gallery_path, :class => 'btn btn-success btn-mini btn-plus pull-right'
 
-.form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), galleries_path, :class => 'btn'
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_gallery_path(@gallery), :class => 'btn'
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), gallery_path(@gallery), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+    .row-fluid
+      -#.span4= render 'gallery'
+      .span12= render 'shared/carousel', {:images => @gallery.images}
+
+    .form-actions
+      = link_to t('.back', :default => t("helpers.links.back")), galleries_path, :class => 'btn'
+      = link_to t('.edit', :default => t("helpers.links.edit")), edit_gallery_path(@gallery), :class => 'btn'
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), gallery_path(@gallery), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

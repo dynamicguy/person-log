@@ -79,4 +79,19 @@ en:
       details: details
     registrations:
       edit: edit profile
+    galleries:
+      galleries: 'galleries'
+      list: list
+      details: details
+      edit: edit
+      create: create
+      search: search
+      advanced_search: advanced search
+    images:
+      images: 'images'
+      list: list
+      details: details
+      edit: edit
+      create: create
+
 
