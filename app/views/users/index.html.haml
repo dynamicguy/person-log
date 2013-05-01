@@ -43,19 +43,21 @@
                 %li= link_to 'Web history', queries_path
                 %li= link_to 'Search Help', page_path('help')
 
-  .row-fluid
-    .span12.tag-container
-      %span
-      - if @search.facet(:tag_list)
-        - @search.facet(:tag_list).rows.each_with_index do |facet, index|
-          - break if index == 8;
-          = link_to '<i class="icon-tags"></i> '.html_safe + "#{facet.value} (#{facet.count})", tag_path(facet.value), :class => 'btn btn-mini'
+  - if @search.facet(:tag_list)
+    .row-fluid
+      .span12.tag-container
+        %span
+          - @search.facet(:tag_list).rows.each_with_index do |facet, index|
+            - break if index == 8;
+            = link_to '<i class="icon-tags"></i> '.html_safe + "#{facet.value} (#{facet.count})", tag_path(facet.value), :class => 'btn btn-mini'
 
   .row-fluid
     .span12
       %ul.thumbnails
         - @search.results.each do |user, index|
           %li.span4
+            - if user.dead
+              %span.dead.pull-right dead
             .thumbnail
               = link_to image_tag(user.avatar.thumb), user, :class => 'pull-left'
               .caption

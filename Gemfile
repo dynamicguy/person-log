@@ -182,6 +182,8 @@ gem 'sunspot_solr'
 gem 'turbolinks', :github => 'rails/turbolinks'
 gem 'cache_digests'
 gem 'best_in_place'
+#gem 'ransack'
+gem "nested_form", :git => 'git://github.com/ryanb/nested_form'
 
 gem 'rails-gallery'
 #gem 'bootstrap-addons-rails'

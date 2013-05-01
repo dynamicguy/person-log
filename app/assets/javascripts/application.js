@@ -13,12 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require wysihtml5
+//= require wysihtml5-0.3.0
 //= require bootstrap-wysihtml5
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
 //= require bootstrap-datepicker/bootstrap-datepicker
-//= require plugins/chosen.jquery
+//= require plugins/chosen/chosen.jquery
 //= require plugins/bootbox/bootbox
 //= require confirmation
 //= require best_in_place

@@ -151,6 +151,10 @@ class User < ActiveRecord::Base
 
   validates_confirmation_of :password
 
+  def dead
+    true
+  end
+
   def location
     [lat, lon]
   end

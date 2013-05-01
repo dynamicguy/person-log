@@ -43,6 +43,12 @@ GIT
       coffee-rails
 
 GIT
+  remote: git://github.com/ryanb/nested_form
+  revision: a25eebe8205e4e63899873b716535def6c1f5a9d
+  specs:
+    nested_form (0.3.2)
+
+GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 26e38bf06cd6cbc8d55631740deca826965abb33
   specs:
@@ -578,6 +584,7 @@ DEPENDENCIES
   letter_opener
   linkedin
   mini_magick
+  nested_form!
   omniauth (~> 1.1.1)
   omniauth-facebook
   omniauth-github

@@ -1,0 +1,1 @@
+Company.delete_all
