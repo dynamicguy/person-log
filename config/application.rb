@@ -1,11 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
-#require 'rails/all'
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "active_resource/railtie"
-require "sprockets/railtie"
+require 'rails/all'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -66,10 +61,9 @@ module PersonLog
     #config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     #config.i18n.default_locale = :en
 
-    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.load_path += Dir[Rails.root.join('lib', 'locales', '*.{rb,yml}')]
     config.i18n.default_locale = :en
-
-    #config.i18n.fallbacks = false
+    config.i18n.fallbacks = true
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
@@ -93,7 +87,7 @@ module PersonLog
     config.assets.initialize_on_precompile = false
 
     config.assets.enabled = true
-    config.assets.version = '10.0'
+    config.assets.version = '11.0'
     config.assets.prefix = "/assets"
     config.logger = Logger.new(STDOUT)
   end

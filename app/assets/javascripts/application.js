@@ -12,16 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require webfont
-//= require gmaps4rails/all_apis
 //= require twitter/bootstrap
+//= require wysihtml5
 //= require bootstrap-wysihtml5
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
-//= require plugins/chosen/chosen.jquery
-//= require raphael
-//= require confirmation
 //= require bootstrap-datepicker/bootstrap-datepicker
+//= require plugins/chosen.jquery
+//= require plugins/bootbox/bootbox
+//= require confirmation
 //= require best_in_place
 //= require common
+//= require search
+//= require nested_form
 //= require turbolinks
